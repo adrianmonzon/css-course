@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adyacente</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1 style="text-align: center;">Adyacente</h1>
+    <section style="display: flex; align-items: center;">
+        <div>
+            <h1>Adjacent Sibling (h2 + p)</h1>
+            <hr>
+            <h2>Not applied</h2>
+            <p>CSS applied</p>
+            <!-- <a href="#">Applied</a> -->
+            <h2>Not applied</h2>
+            <h3>Not applied</h3>
+            <p>Not applied</p>
+            <h2>Not applied</h2>
+            <p>CSS applied</p>
+            <!-- <a href="#">Applied</a> -->
+        </div>
+        <div style="border: 1px solid black; padding: 5px;">
+            <code>Cada elemento que vaya justo <b>inmediatamente</b> después del indicado previamente recibirá los estilos aplicados. <br>
+                Cada vez que haya un p justo después de un h2, recibirá los estilos.
+                Igualmente, si fuese h2 + p + a, recibirían los estilos todas las etiquetas <code>a</code> justo
+            después de un p que a su vez esté
+            justo después de un h2
+            </code>
+        </div>
+    </section>
+</body>
+
+</html>
