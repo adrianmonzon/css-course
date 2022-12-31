@@ -11,30 +11,35 @@
 
 <body>
     <h1 style="text-align: center;">Hijo</h1>
-    <section style="display: flex; align-items: center;">
-        <div>
-            <h1>Child (div > span)</h1>
-            <hr>
-        <div>
-            <h2>Not applied</h2>
-            <span>CSS applied</span>
-            <p>Not applied</p>
-            <h2>Not applied</h2>
-            <article>
+    <div style="text-align: center; display: flex; justify-content: center;">
+        <section style="display: flex; align-items: center;">
+            <div>
+                <h1>Child (div > span)</h1>
+                <hr>
+            <div>
+                <h2>Not applied</h2>
+                <span>CSS applied</span>
                 <p>Not applied</p>
-            </article>
-            <span>CSS applied</span>
-            <span><p>CSS applied</p></span>
-        </div>
-        </div>
-        <div style="border: 1px solid black; padding: 5px;">
-            <code>Cada elemento que esté <b>dentro</b> (por eso se llama hijo) del indicado previamente recibirá los estilos aplicados. <br>
+                <h2>Not applied</h2>
+                <article>
+                    <p>Not applied</p>
+                </article>
+                <span>CSS applied</span>
+                <span><p>CSS applied</p></span>
+            </div>
+            </div>
+            <div>
+                <img src="./child.png" alt="code-example">
+            </div>
+        </section>
+    </div>
+        <div style="text-align: center; display: flex; justify-content: center;">
+            <code style="border: 1px solid black; padding: 5px;">Cada elemento que esté <b>dentro</b> (por eso se llama hijo) del indicado previamente recibirá los estilos aplicados. <br>
                 El elemento tiene que ser hijo <b>directo</b> del indicado previamente, es decir, si el <code>span</code> está dentro de un <code>article</code> dentro del <code>div</code> no recibiría los estilos, puesto que su padre directo en este caso sería el article, aunque estuviera dentro del <code>div</code>. <br>
                 La diferencia con el general es que el otro se basa en que los elementos sean hermanos (estar al mismo nivel) y aquí en estar dentro el uno del otro.
                 Igualmente, si fuese h2 > span > p, recibirían los estilos todas las etiquetas <code>p</code> que estuvieran dentro de un <code>span</code> que a su vez estuviera dentro de un <code>h2</code>
             </code>
         </div>
-    </section>
 </body>
 
 </html>

@@ -11,29 +11,35 @@
 
 <body>
     <h1 style="text-align: center;">Adyacente</h1>
-    <section style="display: flex; align-items: center;">
-        <div>
-            <h1>Adjacent Sibling (h2 + p)</h1>
-            <hr>
-            <h2>Not applied</h2>
-            <p>CSS applied</p>
-            <!-- <a href="#">Applied</a> -->
-            <h2>Not applied</h2>
-            <h3>Not applied</h3>
-            <p>Not applied</p>
-            <h2>Not applied</h2>
-            <p>CSS applied</p>
-            <!-- <a href="#">Applied</a> -->
-        </div>
-        <div style="border: 1px solid black; padding: 5px;">
-            <code>Cada elemento que vaya justo <b>inmediatamente</b> después del indicado previamente recibirá los estilos aplicados. <br>
-                Cada vez que haya un p justo después de un h2, recibirá los estilos.
-                Igualmente, si fuese h2 + p + a, recibirían los estilos todas las etiquetas <code>a</code> justo
-            después de un p que a su vez esté
+    <div style="text-align: center; display: flex; justify-content: center;">
+        <section style="display: flex; align-items: center;">
+            <div>
+                <h1>Adjacent Sibling (h2 + p)</h1>
+                <hr>
+                <h2>Not applied</h2>
+                <p>CSS applied</p>
+                <a href="#">Applied</a>
+                <h2>Not applied</h2>
+                <h3>Not applied</h3>
+                <p>Not applied</p>
+                <h2>Not applied</h2>
+                <p>CSS applied</p>
+                <a href="#">Applied</a>
+            </div>
+            <div>
+                <img src="./adjacent.png" alt="code-example">
+            </div>
+        </section>
+    </div>
+    <div style="text-align: center; display: flex; justify-content: center;">
+        <code style="border: 1px solid black; padding: 5px;">Cada elemento que vaya justo <b>inmediatamente</b> después del indicado previamente recibirá los estilos
+            aplicados. <br>
+            Cada vez que haya un p justo después de un h2, recibirá los estilos.
+            Igualmente, si fuese h2 + p + a, recibirían los estilos todas las etiquetas <code>a</code> justo
+            después de un p que a su vez estén
             justo después de un h2
-            </code>
-        </div>
-    </section>
+        </code>
+    </div>
 </body>
 
 </html>
