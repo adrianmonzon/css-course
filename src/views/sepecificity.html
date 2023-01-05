@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Specificity</title>
+    <link rel="stylesheet" href="/src/styles/sepecificity.css">
+</head>
+
+<body>
+    <h1 style="text-align: center">Specificity</h1>
+    <section>
+        <h2>Definición</h2>
+        <p>La especificidad indica qué selectores tienen más jerarquía y, por tanto, cuál es el estilo aplicado cuando hay varias reglas apuntando a un mismo elemento.</p>
+        <img src="/src/assets/specificity.png" alt="specificity">
+        <h3>Ejemplo</h3>
+        <h4 class="title">Soy un texto</h4>
+        <code>Todos los elementos que no tienen selector concreto heredan los estilos del padre (body), pero 'Soy un texto' sí que tiene un selector de clase (.title) y su especificidad es mayor, por lo que adopta los estilos indicados.
+            <br> Si se le aplicase una font-family directamente a la clase .title, ésta prevalecería sobre la que actualmente está recibiendo por el selector de etiqueta h4.
+            <br>La herencia tiene una baja especificidad.</code>
+        <img src="/src/assets/specificity-example.png" alt="specificity-example">
+    </section>
+</body>
+
+</html>
