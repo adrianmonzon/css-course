@@ -16,10 +16,13 @@
         <p>La especificidad indica qué selectores tienen más jerarquía y, por tanto, cuál es el estilo aplicado cuando hay varias reglas apuntando a un mismo elemento.</p>
         <img src="/src/assets/specificity.png" alt="specificity">
         <h3>Ejemplo</h3>
-        <h4 class="title">Soy un texto</h4>
-        <code>Todos los elementos que no tienen selector concreto heredan los estilos del padre (body), pero 'Soy un texto' sí que tiene un selector de clase (.title) y su especificidad es mayor, por lo que adopta los estilos indicados.
-            <br> Si se le aplicase una font-family directamente a la clase .title, ésta prevalecería sobre la que actualmente está recibiendo por el selector de etiqueta h4.
-            <br>La herencia tiene una baja especificidad.</code>
+        <h4 class="title" id="hola">Soy un texto</h4>
+        <div style="text-align: center; display: flex;">
+            <code style="border: 1px solid black; padding: 5px;">Todos los elementos que no tienen selector concreto heredan los estilos del padre (body), pero 'Soy un texto' sí que tiene un selector de clase (.title) y su especificidad es mayor, por lo que adopta los estilos indicados.
+                <br> Si se le aplicase una font-family directamente a la clase .title, ésta prevalecería sobre la que actualmente está recibiendo por el selector de etiqueta h4.
+                <br> Si se le asigna un id a 'Soy un texto' y se le da la propiedad color: purple, se pondría de color purple, ya que los selectores por id tienen mayor especificidad que los de clase.
+                <br>La herencia tiene una baja especificidad.</code>
+        </div>
         <img src="/src/assets/specificity-example.png" alt="specificity-example">
     </section>
 </body>

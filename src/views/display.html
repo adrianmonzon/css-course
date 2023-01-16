@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Propiedad Display</title>
+  </head>
+
+  <body>
+    <h1 style="text-align: center">Display</h1>
+    <section>
+      <h3>block</h3>
+      <p>Uno encima del otro</p>
+      <p>
+        Ocupan el 100% del ancho de la página por defecto (a no ser que se hayan
+        establecido márgenes o lo que sea).
+      </p>
+    </section>
+    <section>
+      <h3>inline</h3>
+      <p>Uno al lado del otro</p>
+      <p>
+        No se les puede aplicar márgenes superior ni inferior, padding, etc.
+      </p>
+      <p>
+        Ocupan el ancho que necesita su contenido (por ej. la longitud de una
+        palabra dentro de una etiqueta <code>a</code>)
+      </p>
+    </section>
+    <section>
+      <h3>inline-block</h3>
+      <p>Mezcla de ambos</p>
+      <p>Se colocan como elementos en línea (uno al lado del otro)</p>
+      <p>Ocupan solo el ancho que su contenido requiere</p>
+      <p>
+        SÍ se les puede aplicar márgenes superior e inferior, padding, etc.
+        (como a los de bloque)
+      </p>
+    </section>
+    <section>
+      <h3>display: none vs. visibility: hidden</h3>
+      <h4><code>display: none;</code></h4>
+      <p>This value removes the element to which you apply it from the document flow. This means that the element is not visible and it also doesn't "block its position". Other elements can (and will) take its place instead.</p>
+      <h4><code>visibility: hidden;</code></h2>
+      <p>If you only want to hide an element but you want to keep its place (i.e. other elements don't fill the empty spot.</p>
+      <p>The element is only invisible, it's not removed from the document flow and of course also not from the DOM.</p>
+    </section>
+  </body>
+</html>
