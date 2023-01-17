@@ -5,46 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Propiedad Display</title>
+    <link rel="stylesheet" href="/src/styles/display.css" />
   </head>
 
   <body>
     <h1 style="text-align: center">Display</h1>
-    <section>
-      <h3>block</h3>
-      <p>Uno encima del otro</p>
-      <p>
-        Ocupan el 100% del ancho de la página por defecto (a no ser que se hayan
-        establecido márgenes o lo que sea).
-      </p>
+    <section class="first-section">
+      <div>
+        <h3>block</h3>
+        <p>Uno encima del otro</p>
+        <p>
+          Ocupan el 100% del ancho de la página por defecto (a no ser que se hayan
+          establecido márgenes o lo que sea).
+        </p>
+      </div>
+      <div>
+        <h3>inline</h3>
+        <p>Uno al lado del otro</p>
+        <p>
+          No se les puede aplicar márgenes superior ni inferior, padding, etc. Sí tienen margin-left y margin-right.
+        </p>
+        <p>No respetan ni width ni height.</p>
+        <p>
+          Ocupan el ancho que necesita su contenido (por ej. la longitud de una
+          palabra dentro de una etiqueta <code>a</code>)
+        </p>
+      </div>
+      <div>
+        <h3>inline-block</h3>
+        <p>Mezcla de ambos</p>
+        <p>Se colocan como elementos en línea (uno al lado del otro)</p>
+        <p>Ocupan solo el ancho que su contenido requiere</p>
+        <p>
+          Pero SÍ se les puede aplicar márgenes superior e inferior, padding, etc.
+          (como a los de bloque)
+        </p>
+      </div>
+      <div>
+        <h3>display: none vs. visibility: hidden</h3>
+        <h4><code>display: none;</code></h4>
+        <p>This value removes the element to which you apply it from the document flow. This means that the element is not visible and it also doesn't "block its position". Other elements can (and will) take its place instead.</p>
+        <h4><code>visibility: hidden;</code></h2>
+        <p>If you only want to hide an element but you want to keep its place (i.e. other elements don't fill the empty spot.</p>
+        <p>The element is only invisible, it's not removed from the document flow and of course also not from the DOM.</p>
+        </div>
     </section>
     <section>
-      <h3>inline</h3>
-      <p>Uno al lado del otro</p>
-      <p>
-        No se les puede aplicar márgenes superior ni inferior, padding, etc.
-      </p>
-      <p>
-        Ocupan el ancho que necesita su contenido (por ej. la longitud de una
-        palabra dentro de una etiqueta <code>a</code>)
-      </p>
-    </section>
-    <section>
-      <h3>inline-block</h3>
-      <p>Mezcla de ambos</p>
-      <p>Se colocan como elementos en línea (uno al lado del otro)</p>
-      <p>Ocupan solo el ancho que su contenido requiere</p>
-      <p>
-        SÍ se les puede aplicar márgenes superior e inferior, padding, etc.
-        (como a los de bloque)
-      </p>
-    </section>
-    <section>
-      <h3>display: none vs. visibility: hidden</h3>
-      <h4><code>display: none;</code></h4>
-      <p>This value removes the element to which you apply it from the document flow. This means that the element is not visible and it also doesn't "block its position". Other elements can (and will) take its place instead.</p>
-      <h4><code>visibility: hidden;</code></h2>
-      <p>If you only want to hide an element but you want to keep its place (i.e. other elements don't fill the empty spot.</p>
-      <p>The element is only invisible, it's not removed from the document flow and of course also not from the DOM.</p>
+      <h3>Cómo crear un <code>header</code> que contenga un <code>div</code> con un logo y una <code>nav</code> compuesta de una <code>ul</code>, mediante la propiedad <code>display: inline-block;</code></h3>
+      <h4>HTML</h4>
+      <img src="/src/assets/nav-html.png" alt="html-code">
+       <h4>CSS</h4>
+      <img src="/src/assets/nav-css.png" alt="css-code">
+      <h4>Añadido a posteriori:</h4>
+      <p>Para alinear los items (el logo y la nav), se usa la propiedad <b>vertical-align: middle;</b> en cada elemento a alinear (el <code>div</code> que contiene el logo y la <code>nav</code>).<br>(Recordar que <code>align-items: center;</code> es solo para Flexbox).</p>
     </section>
   </body>
 </html>

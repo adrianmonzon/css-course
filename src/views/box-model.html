@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box model</title>
+</head>
+
+<body>
+    <h1 style="text-align: center">Modelo de caja</h1>
+    <section class="first-section">
+        <h2>Definición</h2>
+        <p>Cada elemento, sea <code>inline</code> o <code>block</code>, es considerado como una caja, que se compone de la siguiente forma:</p>
+        <img src="/src/assets/box-model.png" alt="box-model">
+        <p><code>box-sizing</code> puede ser <code>content-box</code> (por defecto) o <code>border-box</code>.</p>
+        <p><code style="border: 1px solid black; padding: 3px;">box-sizing: border-box;</code>: sirve para que todos los elementos ocupen el width/height establecido teniendo en cuenta los margin, paddings, etc establecidos. Si no, sumará al width/height establecido los margin, padding, etc. y ocupará más espacio del deseado. <br>Suele aplicarse con el selector universal, para que afecte a todos los elementos de la web ( <code>* { box-sizing: border-box }</code> )</p>
+      </section>
+</body>
+
+</html>
