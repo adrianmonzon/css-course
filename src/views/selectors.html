@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selectores</title>
+  </head>
+
+  <body>
+    <h1 style="text-align: center">Selectores</h1>
+    <section>
+      <h3>Clases vs ID's</h3>
+      <p>
+        Para estilizar, mejor usar las clases, ya que los ID's solo se puede
+        utilizar uno por página y tienen otros usos más convenientes que para
+        estilizar. <br />Por ejemplo, si una <code>section</code> tiene el
+        id="section1", al clickar en una etiqueta <code>a</code> con
+        <b>href="#section1"</b>, nos llevará a esa sección.
+      </p>
+      <h3>!important</h3>
+      <p>
+        Sirve para "anular" la especificidad y provocar que la propiedad a la
+        que se le aplica el <code>!important</code> prevalezca.
+      </p>
+      <h4>Ejemplo</h4>
+      <p>
+        Si a un elemento se le aplican dos clases (.main y .example) y ambas
+        comparten alguna propiedad, se establecerá la que esté más abajo en el
+        fichero CSS (por ello es Cascading Style Sheet).
+      </p>
+      <code>.main { height: 200px; border: 1px solid black; }</code>
+      <code style="display: block"
+        >.example { height: 500px; border: 1px solid orange; }</code
+      >
+      <p>
+        Sin embargo, si se le añade <code>!important</code> a la propiedad de la
+        clase que esté más arriba, ésta prevalecerá sobre la que esté más abajo.
+      </p>
+      <code>.main { height: 200px; border: 1px solid black !important; }</code>
+      <code style="display: block"
+        >.example { height: 500px; border: 1px solid orange; }</code
+      >
+      <p>
+        En este caso, el height será el de la clase .example, pero el border
+        será el de la clase .main por haberle añadido <code>!important</code>
+      </p>
+      <p>
+        <b>No es recomendable usar <code>!important</code></b
+        >, solo cuando sea estrictamente necesario.
+      </p>
+    </section>
+  </body>
+</html>
