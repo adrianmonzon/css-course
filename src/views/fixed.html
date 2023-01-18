@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/src/styles/fixed.css">
+    <title>Position</title>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child-1">Navigation Bar</div>
+        <div class="child-2">Background Image</div>
+        <div class="child-3">Features</div>
+    </div>
+    <div>
+        <h2>Premisas importantes</h2>
+        <ul>
+            <li>
+                <p>Por defecto, el valor es: <code>position: static;</code></p>
+            </li>
+            <li>
+                <p>Para poder posicionar mediantes las diferentes propiedades, hay que cambiar el valor de
+                    <code>position</code> para
+                    que <b>deje de ser <code>static</code></b></p>
+            </li>
+            <li>
+                <p>Una vez se aplica <code>position: fixed;</code> el elemento deja de existir en el <i>Document
+                        Flow</i> (pero sigue presente con su ancho reducido, pasando a ser un elemento de tipo
+                    <b>inline-block</b> ) y los siguientes elementos ocupan su
+                    espacio.
+                </p>
+            </li>
+            <li>
+                <p>
+                    El elemento pasa a ir de la mano con el <i>viewport</i> (toda la pantalla o lo que ocupa la ventana
+                    del navegador), es decir, más allá incluso de la tag <code>html</code> .<br>
+                    Al ponerle por ej. <code>top: 0;</code> y quitarle los márgenes al elemento ( <code>margin:
+                        0;</code> ), se puede apreciar cómo el elemento se pega arriba del todo de la página (si
+                    pusiéramos <code>bottom: 0;</code> se pegaría a la parte más baja de la ventana o <i>viewport</i>).
+                </p>
+            </li>
+            <li>
+                <p>El posicionamiento se puede aplicar tanto a elementos en línea como en bloque (por supuesto también
+                    inline-block).</p>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <h2>Ejemplo con la Navigation Bar</h2>
+        <p>Para colocarla arriba del todo y que ocupe todo el ancho, habría que hacer el siguiente código:</p>
+        <code>.child-1 { position: fixed; top: 0; left: 0; margin: 0; width: 100% }</code>
+        <p>De esta forma, iría "pegada" arriba del todo y a la izquierda y, como ha pasado a ser un elemento
+            <code>inline-block</code>, establecemos que su <code>width</code>sea el 100%.
+        </p>
+        <p><b>IMPORTANTE: </b>Si no está aplicado de manera general en el proyecto, habría que establecer la propiedad
+            <b><code style="border: 1px solid black; padding: 3px;">box-sizing: border-box;</code></b> para que no se
+            añadan al ancho otras propiedades (margin, etc.)
+            establecidas por defecto o aposta.
+        </p>
+        <p>Es decir, el código final sería este: <code>.child-1 { position: fixed; top: 0; left: 0; margin: 0; width:
+                100%; box-sizing: border-box; }</p> (comprobar inspeccionando el elemento).
+    </div>
+</body>
+
+</html>

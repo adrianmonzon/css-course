@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Position</title>
+    <link rel="stylesheet" href="/src/styles/position.css">
+</head>
+
+<body>
+    <h1 style="text-align: center">Position</h1>
+    <h2>Definición</h2>
+    <p>Es la propiedad que permite mover a los elementos a casi cualquier posición de la página.</p>
+    <p>Puede tener los siguientes valores:</p>
+    <ul>
+        <li>
+            <h3><code>static</code></h3>
+            <p>Es el valor que viene por defecto.</p>
+        </li>
+        <li>
+            <h3><code>absolute</code></h3>
+            <p>Provoca que se reajuste el flujo y el siguiente elemento no ocupe el espacio del elemento desplazado,
+                sino que vaya a continuación.</p>
+        </li>
+        <li>
+            <h3><code>relative</code></h3>
+            <p>Provoca que se reajuste el flujo y el siguiente elemento no ocupe el espacio del elemento
+                desplazado,
+                sino que vaya a continuación.</p>
+        </li>
+        <li>
+            <h3><code>fixed</code></h3>
+            <p>Provoca que se reajuste el flujo y el siguiente elemento no ocupe el espacio del elemento
+                desplazado,
+                sino que vaya a continuación.
+            </p>
+            <a href="/src/views/fixed.html">Ver ejemplo</a>
+        </li>
+        <li>
+            <h3><code>sticky</code></h3>
+            <p>Provoca que se reajuste el flujo y el siguiente elemento no ocupe el espacio del elemento
+                desplazado,
+                sino que vaya a continuación.</p>
+        </li>
+    </ul>
+    <p><b>Propiedad relacionada importante: <code style="border: 1px solid black; padding: 3px;">z-index</code></b><br>
+        <ul>
+            <li>Su valor por defecto es auto o 0</li>
+            <li><b>SOLO AFECTA</b> a elementos que tengan la propiedad <code>position</code> <b>distinta</b> de
+                <code>static</code> (valor por defecto)</li>
+            <li>Si queremos que el elemento que reciba la propiedad esté por <b>encima</b> de otro, usar un número
+                <b>mayor
+                    que 0</b></li>
+            <li>Si queremos que el elemento que reciba la propiedad esté <b>detrás</b> de otro, usar un número <b>menor
+                    que 0</b>
+            </li>
+            <li>
+                Cuando usamos <code>position: fixed;</code> los elementos que vienen a continuación ocupan el espacio
+                que antes ocupaba el elemento que ha recibido dicha propiedad, ya que desaparece del <i>Document
+                    Flow</i>.<br>
+                Por ello, si por ejemplo el elemento que ha recibido <code>position: fixed;</code> es un div cuyo fondo
+                es una imagen, o una imagen en sí, aparecerá sobre los elementos siguientes, que acaban de "subir" y
+                ocupar su espacio, pero los "tapa" dicha imagen. Por tanto, para poder mandar este div o imagen detrás
+                de los elementos y así poder visualizarlos, quedando la imagen de fondo, usaríamos <code><b>z-index:
+                        -1;</b></code>
+            </li>
+            <li>
+                Si un elemento <i>x</i> con <code>position: fixed;</code> está situado en el <code>html</code> pòr
+                debajo del elemento <i>y</i> (con también <code>position: fixed;</code>), el elemento <i>x</i> será el
+                que "suba"
+                a ocupar el espacio que ha dejado <i>y</i> al salirse del <i>Document Flow</i> y aparecerá <b>por
+                    delante</b>.
+            </li>
+            <li>
+                Cuando dos elementos tengan <code>position: fixed;</code> y también <code>z-index</code> cada uno,
+                estará por delante el elemento cuyo valor de <code>z-index</code> sea mayor. Ejemplo: <br>
+                Si <i>x</i> tiene <code>z-index: 5</code> e <i>y</i> tiene <code>z-index: 6</code>, <i>y</i> aparecerá
+                por delante. <br>
+                Al revés, si <i>x</i> tiene <code>z-index: -2</code> e <i>y</i> <code>z-index: -3</code>, <i>y</i>
+                aparecerá por detrás de <i>x</i>.
+            </li>
+        </ul>
+    </p>
+</body>
+
+</html>
