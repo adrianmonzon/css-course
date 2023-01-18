@@ -16,6 +16,24 @@
       <p>Definen el estilo de un <b>estado especial</b> de un elemento.</p>
       <p>Ejemplos: <code>:hover, :active, :not, :focus, etc.</code></p>
       <p>
+        <code>:focus</code> sirve para indicar, mediante la aparición de unos bordes concretos (<code>outline</code>),
+        que el usuario ha clickado o seleccionado el elemento.
+        <br />Para eliminar (también se puede cambiar el color) los que vienen por defecto del navegador, como en los
+        botones por ej., hacer lo
+        siguiente: <br>
+        <code>
+          button:focus { outline: none;
+          }
+        </code>
+      </p>
+      <p>
+        <code>:active</code> sirve para indicar el estado de un elemento cuando se está manteniendo pulsado. Ej.: <br>
+        <code>
+          button:active { background: red;
+          }
+        </code>
+      </p>
+      <p>
         <code>:not</code> sirve para indicar que NO lleve el estilo aplicado
         el selector que se establezca, ya sea una tag, una clase, id, etc.
         <br />

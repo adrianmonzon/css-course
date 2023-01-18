@@ -11,11 +11,38 @@
 <body>
     <h1 style="text-align: center">Margen</h1>
     <section>
-        <p>En algunas etiquetas (como <code>body</code>) el navegador establece márgenes por defecto. Tenerlo en cuenta.</p>
-      <div style="text-align: center; display: flex; height: 400px;"> 
+        <p>En algunas etiquetas (como <code>body, ul</code>, etc.) el navegador establece márgenes por defecto. Tenerlo
+            en cuenta.</p>
+        <div style="text-align: center; display: flex; height: 400px;">
             <img src="/src/assets/margin.png" alt="margin">
             <img src="/src/assets/margin-collapse.png" alt="margin-collapse">
         </div>
+    </section>
+    <section>
+        <h2><code>margin: 0 auto;</code> vs. <code>text-align: center;</code></h2>
+        <p><code> text-align: center;</code> como su nombre indica, está pensado para centrar texto específicamente,
+            aunque
+            también puedes manipular ciertos elementos para que <code>text-align: center;</code> funcione con ellos, aún
+            sin ser
+            texto. Usualmente, este funciona con elementos de tipo <b>inline</b> (El texto es de tipo inline, por eso
+            funciona
+            con textos)
+        </p>
+        <p>
+            <code>margin: auto;</code> aunque centra los elementos, no está pensando para centrarlos, de hecho, como su
+            nombre
+            lo
+            dice, lo que hace es agregar un margen de manera automática. <code>margin: auto;</code> es un “hack” que
+            usamos para
+            centrar cierto tipo de elementos, porque realmente no funciona con todos, para que funcione, el elemento que
+            quieres centrar debe ser de tipo <b>block</b>, y este debe tener una <b>medida absoluta</b>, solo de esa
+            manera el
+            navegador es capaz de calcular los márgenes de izquierda y derecha para que se pueda centrar.
+        </p>
+        <p>
+            Aunque eran buenos trucos, hoy en día la verdad es que ya no es recomendable usar ni uno ni otro, hoy en día
+            la mejor opción es <b>Flexbox</b>.
+        </p>
     </section>
 </body>
 

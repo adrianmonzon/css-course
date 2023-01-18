@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Propiedades interesantes</title>
+</head>
+
+<body>
+    <h1 style="text-align: center">Propiedades interesantes</h1>
+    <ul>
+        <div>
+            <li>
+                <h2><code>float: left/right;</code></h2>
+                <p>Desplaza a un elemento fuera del flujo del DOM (left o right)</p>
+                <p>Problema: el elemento que esté inmediatamente después en el DOM, ocupará el espacio que antes ocupaba
+                    el que ha sido desplazado (y su estilo se verá incluso alterado).</p>
+                <p>Para solventar eso, hay que hacer una "ñapa": crear un div vació que tenga la siguiente propiedad:
+                </p>
+            </li>
+            <li>
+                <h2><code>clear: both;</code></h2>
+                <p>Provoca que se reajuste el flujo y el siguiente elemento no ocupe el espacio del elemento desplazado,
+                    sino que vaya a continuación.</p>
+            </li>
+        </div>
+    </ul>
+</body>
+
+</html>

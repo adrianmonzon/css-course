@@ -7,14 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CSS Course</title>
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <header class="header">
-    <div class="logo"><a href="#">logo</a></div>
+    <div class="logo"><a href="#">laBibliaFrontend</a></div>
     <nav class="main-nav">
       <ul class="main-nav__items">
         <li class="main-nav__item">
@@ -39,12 +37,67 @@
           <a href="/src/views/selectors.html">Selectores</a>
         </li>
         <li class="main-nav__item">
+          <a href="/src/views/properties.html">Propiedades interesantes</a>
+        </li>
+        <li class="main-nav__item">
           <a href="/src/views/resources.html">Recursos</a>
         </li>
       </ul>
     </nav>
   </header>
-  <h1 style="text-align: center">CSS Course</h1>
+  <main>
+    <section class="product-overview">
+      <h1>La biblia frontend</h1>
+    </section>
+    <section class="plans">
+      <h1 class="section-title">Bloques</h1>
+      <div style="width: 80%; margin: auto; text-align: center;">
+        <article class="plan">
+          <h1>FREE</h1>
+          <h2>$0/month</h2>
+          <h3>For hobby projects or small teams.</h3>
+          <ul class="plan__content">
+            <li>1 Workspace</li>
+            <li>Unlimited Traffic</li>
+            <li>10GB Storage</li>
+            <li>Basic Support</li>
+          </ul>
+          <div>
+            <button>CHOOSE PLAN</button>
+          </div>
+        </article>
+        <article class="plan plan--highlighted">
+          <h1 class="plan__recommended">RECOMMENDED</h1>
+          <h1>PLUS</h1>
+          <h2>$29/month</h2>
+          <h3>For ambitious projects.</h3>
+          <ul class="plan__content">
+            <li>5 Workspaces</li>
+            <li>Unlimited Traffic</li>
+            <li>100GB Storage</li>
+            <li>Plus Support</li>
+          </ul>
+          <div>
+            <button>CHOOSE PLAN</button>
+          </div>
+        </article>
+        <article class="plan">
+          <h1>PREMIUM</h1>
+          <h2>$99/month</h2>
+          <h3>Your enterprise solution.</h3>
+          <ul class="plan__content">
+            <li>10 Workspaces</li>
+            <li>Unlimited Traffic</li>
+            <li>Unlimited Storage</li>
+            <li>Priority Support</li>
+          </ul>
+          <div>
+            <button>CHOOSE PLAN</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
 </body>
 
 </html>
