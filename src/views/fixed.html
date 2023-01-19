@@ -15,52 +15,26 @@
         <div class="child-3">Features</div>
     </div>
     <div>
-        <h2>Premisas importantes</h2>
-        <ul>
-            <li>
-                <p>Por defecto, el valor es: <code>position: static;</code></p>
-            </li>
-            <li>
-                <p>Para poder posicionar mediantes las diferentes propiedades, hay que cambiar el valor de
-                    <code>position</code> para
-                    que <b>deje de ser <code>static</code></b></p>
-            </li>
-            <li>
-                <p>Una vez se aplica <code>position: fixed;</code> el elemento deja de existir en el <i>Document
-                        Flow</i> (pero sigue presente con su ancho reducido, pasando a ser un elemento de tipo
-                    <b>inline-block</b> ) y los siguientes elementos ocupan su
-                    espacio.
-                </p>
-            </li>
-            <li>
-                <p>
-                    El elemento pasa a ir de la mano con el <i>viewport</i> (toda la pantalla o lo que ocupa la ventana
-                    del navegador), es decir, más allá incluso de la tag <code>html</code> .<br>
-                    Al ponerle por ej. <code>top: 0;</code> y quitarle los márgenes al elemento ( <code>margin:
-                        0;</code> ), se puede apreciar cómo el elemento se pega arriba del todo de la página (si
-                    pusiéramos <code>bottom: 0;</code> se pegaría a la parte más baja de la ventana o <i>viewport</i>).
-                </p>
-            </li>
-            <li>
-                <p>El posicionamiento se puede aplicar tanto a elementos en línea como en bloque (por supuesto también
-                    inline-block).</p>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <h2>Ejemplo con la Navigation Bar</h2>
-        <p>Para colocarla arriba del todo y que ocupe todo el ancho, habría que hacer el siguiente código:</p>
+        <h2>Ejemplo ( <code>fixed</code> ) con la Navigation Bar</h2>
+        <p>Para colocarla arriba del todo y que ocupe todo el ancho, una forma sería mediante el siguiente código:</p>
         <code>.child-1 { position: fixed; top: 0; left: 0; margin: 0; width: 100% }</code>
         <p>De esta forma, iría "pegada" arriba del todo y a la izquierda y, como ha pasado a ser un elemento
-            <code>inline-block</code>, establecemos que su <code>width</code>sea el 100%.
+            <code>inline-block</code>, establecemos que su <code>width</code> sea el 100%.
         </p>
+        <p>En este caso podemos aplicar <code>fixed</code> sin problema y que quede fijada, porque al hacer scroll no se
+            va a notar, ya que queremos que siempre esté anclada al mismo lugar (arriba del todo).</p>
         <p><b>IMPORTANTE: </b>Si no está aplicado de manera general en el proyecto, habría que establecer la propiedad
             <b><code style="border: 1px solid black; padding: 3px;">box-sizing: border-box;</code></b> para que no se
             añadan al ancho otras propiedades (margin, etc.)
             establecidas por defecto o aposta.
         </p>
         <p>Es decir, el código final sería este: <code>.child-1 { position: fixed; top: 0; left: 0; margin: 0; width:
-                100%; box-sizing: border-box; }</p> (comprobar inspeccionando el elemento).
+                100%; box-sizing: border-box; }</code></p> (comprobar inspeccionando el elemento).
+        <h2>Ejemplo ( <code>relative</code> )</h2>
+        <p>Inspeccionar el primer elemento por ej. y aplicarle <code>.child-1 { position: relative; top: 400px; }</code>
+        </p>
+        <p>Vemos como los siguientes <i>childs</i> no suben a ocupar su espacio, ya que con <code>relative</code> el
+            elemento posicionado <b>NO SE SALE</b> del <i>Document Flow</i></p>.
     </div>
 </body>
 
