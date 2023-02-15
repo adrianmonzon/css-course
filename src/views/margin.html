@@ -20,13 +20,8 @@
     </section>
     <section>
         <h2><code>margin: 0 auto;</code> vs. <code>text-align: center;</code></h2>
-        <p><code> text-align: center;</code> como su nombre indica, está pensado para centrar texto específicamente,
-            aunque
-            también puedes manipular ciertos elementos para que <code>text-align: center;</code> funcione con ellos, aún
-            sin ser
-            texto. Usualmente, este funciona con elementos de tipo <b>inline</b> (El texto es de tipo inline, por eso
-            funciona
-            con textos)
+        <p><code> text-align: center;</code> Funciona en elementos en <b>bloque</b> (div, p, article, ul, li, header,
+            nav, table, <a href="https://developer.mozilla.org/es/docs/Web/HTML/Block-level_elements">etc.</a> )
         </p>
         <p>
             <code>margin: auto;</code> aunque centra los elementos, no está pensando para centrarlos, de hecho, como su
@@ -35,7 +30,8 @@
             dice, lo que hace es agregar un margen de manera automática. <code>margin: auto;</code> es un “hack” que
             usamos para
             centrar cierto tipo de elementos, porque realmente no funciona con todos, para que funcione, el elemento que
-            quieres centrar debe ser de tipo <b>block</b>, y este debe tener una <b>medida absoluta</b>, solo de esa
+            quieres centrar debe ser de tipo <b>block</b>, y este debe tener una <b>medida absoluta</b> (ej. width:
+            200px;), solo de esa
             manera el
             navegador es capaz de calcular los márgenes de izquierda y derecha para que se pueda centrar.
         </p>
@@ -43,6 +39,7 @@
             Aunque eran buenos trucos, hoy en día la verdad es que ya no es recomendable usar ni uno ni otro, hoy en día
             la mejor opción es <b>Flexbox</b>.
         </p>
+        <p>Ver ejemplo <a href="https://codepen.io/adrianmf/pen/MWBVMQB">aquí</a></p>
     </section>
 </body>
 

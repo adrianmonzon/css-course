@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unidades</title>
+</head>
+
+<body>
+    <h1 style="text-align: center">Unidades</h1>
+    <div style="display: flex;">
+        <ul>
+            <li>
+                <!-- <h2><code>position: fixed;</code></h2>
+                    <p>Al utilizar como unidad el %, la referencia es el <b>viewport</b>.</p> -->
+                <h2>%</h2>
+                <ul>
+                    <li>
+                        <code>position: fixed;</code> : la referencia es el <b>viewport</b>.
+                    </li>
+                    <li>
+                        <code>position: absolute;</code> : la referencia es el <b>elemento que lo contiene + su
+                            padding, cuya
+                            <i>position</i> sea distinta de <i>static</i></b>.
+                    </li>
+                    <li>
+                        <code>position: static;</code> | <code>position: relative;</code> : la referencia es el
+                        <b>elemento padre que sea de bloque, sin contar
+                            el
+                            padding</b>.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h2>em</h2>
+                <ul>
+                    <li>
+                        Unidad en base al tamaño por defecto de la font-size, es decir, si la font-size es 16px por
+                        defecto y establecemos a un elemento font-size: 1.5em, se multiplicará 16x1.5 para obtener su
+                        font-size.
+                    </li>
+                    <li>
+                        <b>Problema:</b> Por temas de herencia, cuando hay varios tamaños establecidos en em, se pueden
+                        ir sobreescribiendo sucesivamente y provocar un lío. Por ello, es conveniente usarlo <b>solo en
+                            algún caso puntual</b> y no sobre varios elementos.
+                    </li>
+                    <li>Ejemplo:
+                        <p style="border: 1px solid black; padding: 5px; display: inline-block;">
+                            Body = 1em (16px) <br>
+                            Hijo = 1.3em (16px x 1.3 = 20.8px) <br>
+                            Nieto = 1.3em (20.8px x 1.3 = 27.04px)
+                        </p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h2>rem</h2>
+                <ul>
+                    <li>
+                        En este caso, <b>no hay problema de herencia</b> con respecto a los elementos padres.
+                    </li>
+                    <li>
+                        Es mejor unidad de medida.
+                    </li>
+                    <li>
+                        Al igual que <i>em</i>, se puede aplicar a más propiedades (margin, padding, etc.), no solo a
+                        font-size, aunque siempre
+                        su referencia es el tamaño por defecto (16px) del font-size del elemento <code>html</code>
+                        (navegador).
+                    </li>
+                    <li>
+                        Tampoco es necesario convertir todo a rem, por ej en propiedades del estilo de box-shadow,
+                        border, border-radius, etc. podemos utilizar px.
+                    </li>
+                    <li>
+                        Convertir píxeles a rem: <b>multiplicar por 0.0625</b>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h2>vh</h2>
+                <ul>
+                    <li>
+                        Se refiere al height del viewport.
+                    </li>
+                    <li>
+                        1px = 0.0753vh
+                    </li>
+                    <li>
+                        1vh = 13.28px
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h2>vw</h2>
+                <ul>
+                    <li>
+                        Se refiere al width del viewport.
+                    </li>
+                    <li>
+                        1px = 0.0747vw
+                    </li>
+                    <li>
+                        1vw = 13.38px
+                    </li>
+                </ul>
+            </li>
+            <div style="border: 1px solid black; padding: 5px; display: inline-block; margin-top: 20px;">
+                <h3>Nota</h3>
+                <p>Windows, Viewport Units & Scrollbars
+                    Hiding Scrollbars on Windows machines
+                    After adding vw , you probably saw that the scrollbars appeared in case you are working on Windows.
+                    This
+                    happens as using vw on Windows does not include the scrollbars - vw: 100 is equal to 100% of the
+                    viewport width + the scrollbars. On the Mac this is not an issue, but when using Windows it is as
+                    the
+                    scrollbars are displayed by default.
+
+                    In case you don't want to display these scrollbars, you can use one of these solutions:
+
+                    - Use width: 100% instead of vw: 100
+
+                    - Add overflow-x: hidden; to the body selector in the shared.css file to hide the horizontal
+                    scrollbar
+                    (or overflow-y: hidden to hide the vertical scrollbar)
+
+                    Alternatively you could also use the ::-webkit-scrollbar pseudo element. Simply add the following
+                    code
+                    to the shared.css file:
+
+                    body: :-webkit-scrollbar {
+                    width: 0
+                    }
+                    To make sure this works correctly on different browsers, you have to add additional code to it. This
+                    blog post nicely summarizes all the code needed right <a
+                        href="https://web.archive.org/web/20180505112131/https://blogs.msdn.microsoft.com/kurlak/2013/11/03/hiding-vertical-scrollbars-with-pure-css-in-chrome-ie-6-firefox-opera-and-safari/">here</a>
+                    .
+
+                    Make sure to follow these approaches in case you don't want to display the scrollbars on Windows
+                    machines.</p>
+            </div>
+    </div>
+    </ul>
+    <ul>
+        <li>
+            <h2>Aplicar <code>height: 100%;</code> a un elemento:</h2>
+            <p>Es necesario aplicárselo también a sus padres (incluso <code>body</code> y <code>html</code>)
+                para
+                que lo reciba.</p>
+        </li>
+    </ul>
+</body>
+
+</html>
