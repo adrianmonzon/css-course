@@ -7,39 +7,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adyacente</title>
     <link rel="stylesheet" href="/src/styles/adjacent-sibling.css">
+    <link rel="stylesheet" href="/shared.css">
 </head>
 
 <body>
-    <h1 style="text-align: center;">Adyacente</h1>
-    <div style="text-align: center; display: flex; justify-content: center;">
-        <section style="display: flex; align-items: center;">
-            <div>
-                <h1>Adjacent Sibling (h2 + p)</h1>
-                <hr>
-                <h2>Not applied</h2>
-                <p>CSS applied</p>
-                <a href="#">Applied</a>
-                <h2>Not applied</h2>
-                <h3>Not applied</h3>
-                <p>Not applied</p>
-                <h2>Not applied</h2>
-                <p>CSS applied</p>
-                <a href="#">Applied</a>
-            </div>
-            <div>
-                <img src="/src/assets/adjacent.png" alt="code-example">
-            </div>
-        </section>
-    </div>
-    <div style="text-align: center; display: flex; justify-content: center;">
-        <code style="border: 1px solid black; padding: 5px;">Cada elemento que vaya justo <b>inmediatamente</b> después del indicado previamente recibirá los estilos
-            aplicados. <br>
-            Cada vez que haya un p justo después de un h2, recibirá los estilos.
-            Igualmente, si fuese h2 + p + a, recibirían los estilos todas las etiquetas <code>a</code> justo
-            después de un p que a su vez estén
-            justo después de un h2
-        </code>
-    </div>
+    <header class="header">
+        <div class="logo"><a href="/">laBibliaFrontend</a></div>
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a href="/src/views/combinators.html">Combinadores</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/sepecificity.html">Especificidad</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/margin.html">Margen</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/box-model.html">Box model</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/display.html">Display property</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/pseudo.html">Pseudo</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/selectors.html">Selectores</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/position.html">Position</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/background.html">Background</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/footer.html">Footer</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/responsive.html">Responsive</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/properties.html">Propiedades interesantes</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/units.html">Unidades</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/images.html">Imágenes</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/resources.html">Recursos</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 style="text-align: center;">Adyacente</h1>
+        <div style="text-align: center; display: flex; justify-content: center;">
+            <section style="display: flex; align-items: center;">
+                <div>
+                    <h1>Adjacent Sibling (h2 + p)</h1>
+                    <hr>
+                    <h2>Not applied</h2>
+                    <p>CSS applied</p>
+                    <a href="#">Applied</a>
+                    <h2>Not applied</h2>
+                    <h3>Not applied</h3>
+                    <p>Not applied</p>
+                    <h2>Not applied</h2>
+                    <p>CSS applied</p>
+                    <a href="#">Applied</a>
+                </div>
+                <div>
+                    <img src="/src/assets/adjacent.png" alt="code-example">
+                </div>
+            </section>
+        </div>
+        <div style="text-align: center; display: flex; justify-content: center;">
+            <code style="border: 1px solid black; padding: 5px;">Cada elemento que vaya justo <b>inmediatamente</b>
+                después del indicado previamente recibirá los estilos
+                aplicados. <br>
+                Cada vez que haya un p justo después de un h2, recibirá los estilos.
+                Igualmente, si fuese h2 + p + a, recibirían los estilos todas las etiquetas <code>a</code> justo
+                después de un p que a su vez estén
+                justo después de un h2
+            </code>
+        </div>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link">
+                    <a href="#">Support</a>
+                </li>
+                <li class="main-footer__link">
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 
 </html>

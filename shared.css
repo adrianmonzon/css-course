@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+    /* necesario para que todos los elementos ocupen el width/height establecido teniendo en cuenta los margin, paddings, etc establecidos. Si no, sumará al width/height establecido los margin, padding, etc. y ocupará más espacio del deseado */
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+main {
+    min-height: calc(100vh - 3.5rem - 8rem);
+    /* margin-top: 3.5rem; */
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    background-color: #2ddf2d;
+    width: 100%;
+    padding: 8px 16px;
+
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -2; */
+}
+
+.logo {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.logo a {
+    color: #0e4f1f;
+}
+
+.main-nav {
+    display: inline-block;
+    text-align: right;
+    /* queremos que esté el línea con el logo, por lo que debe ocupar el 100% del ancho menos el espacio que ocupa el div del logo (verlo en la caja del inspector de elementos) */
+    /* al restar los píxeles exactos que ocupa el div, aún va a seguir en una línea diferente, ya que hay un caracter "invisible" entre la tag <div></div> y la <nav></nav> cuando se pone una abajo de la otra, por lo que habría que
+    poner las dos etiquetas justo inmediatamente al lado (</div><nav>), o restar unos píxeles más de los exactos (lo cual vamos a hacer restando 5px más, ya que el div del logo ocupa unos 29px) */
+    width: calc(100% - 250px);
+    vertical-align: middle;
+}
+
+/* le quitamos los márgenes y paddings que tiene la etiqueta ul por defecto, para así poder establecer su ancho */
+.main-nav__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.main-nav__item {
+    display: inline-block;
+    margin: 0 16px;
+}
+
+.main-nav__item a {
+    color: #0e4f1f;
+}
+
+.main-nav__item a:hover,
+.main-nav__item a:active {
+    color: white;
+}
+
+.main-footer {
+    background: black;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.main-footer__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.main-footer__link {
+    display: inline-block;
+    margin: 0 1rem;
+}
+
+.main-footer__link a {
+    color: white;
+    text-decoration: none;
+}
+
+.main-footer__link a:hover,
+.main-footer__link a:active {
+    color: #ccc;
+}
+
+@media (min-width: 40rem) {
+    .plan__list {
+        width: 100%;
+        text-align: center;
+    }
+
+    .plan {
+        display: inline-block;
+        width: 30%;
+        min-width: 13rem;
+        max-width: 25rem;
+        vertical-align: middle;
+    }
+
+    .plan--highlighted {
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .key-feature {
+        display: inline-block;
+        width: 30%;
+        max-width: 25rem;
+        vertical-align: top;
+    }
+}

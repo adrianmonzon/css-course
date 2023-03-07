@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diseño responsive</title>
+</head>
+
+<body>
+    <h1 style="text-align: center">Diseño responsive</h1>
+    <h2>Premisas:</h2>
+    <section style="display: flex">
+        <div>
+            <ul>
+                <li>
+                    <h3>Mobile first</h3>
+                    <ul>
+                        <li>
+                            Desarrollamos la web primeramente enfocados en la pantalla de un móvil.
+                        </li>
+                        <li>
+                            Los usuarios ya suelen acceder desde los móviles o tablets antes que desde ordenadores.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Tope: unos 600px (40rem)</h3>
+                    <ul>
+                        <li>
+                            A partir de ahí, ya consideramos que la pantalla es de un dispositivo superior a un móvil o
+                            tablet.
+                        </li>
+                        <li>
+                            Ejemplo:
+                            <p><code>@media (min-width: 40rem) {
+                                    .product-overview h1 {
+                                    font-size: 3rem;
+                                    }
+                                    }</code></p>
+                            Cuando el ancho de un dispositivo sea igual o mayor que 40rem (unos 600px), aplicamos más
+                            tamaño a la fuente (ya que estaríamos aplicando a dispositivos superiores.)
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Media queries</h3>
+                    <ul>
+                        <li>
+                            Importante: para un correcto funcionamiento, tienen que ir ordenadas de <b>menor a mayor</b>
+                            valor en la hoja de estilos. Ejemplo con el <i>min-width</i>:
+                            <p><code>@media (min-width: 40rem) {
+                                    .product-overview h1 {
+                                    font-size: 3rem;
+                                    }
+                                    } <br> @media (min-width: 60rem) {
+                                    .product-overview h1 {
+                                    font-size: 3rem;
+                                    }
+                                    }</code></p>
+                        </li>
+                        <li>
+                            mydevice.io : comprobar tamaño de dispositivos (ver <a
+                                href="https://www.mydevice.io/#compare-devices">aquí</a>)
+                        </li>
+                        <li>
+                            En el código, lo correcto es colocarlas todas <b>abajo del todo</b>.
+                        </li>
+                        <li>Ejemplo con la página de <a href="/index.html">inicio</a>
+                            <p>Código por defecto (<b>mobile First</b>):</p>
+                            <code>
+                                .plan {
+                                background: #d5ffdc;
+                                text-align: center;
+                                padding: 1rem;
+                                margin: 0.5rem 0;
+                                width: 100%;
+                                }
+                            </code>
+                            <p>Código para <i>Desktop</i>:</p>
+                            <code>
+                                @media (min-width: 40rem) {
+                                .plan__list {
+                                width: 100%;
+                                text-align: center;
+                                }
+                                .plan {
+                                display: inline-block;
+                                width: 30%;
+                                vertical-align: middle;
+                                }
+                                }
+                            </code>
+                        </li>
+                        <li>
+                            Operadores lógicos:
+                            <ul>
+                                <li>
+                                    <h4><code>and</code></h4>
+                                    <p>Para que se cumplan dos condiciones.</p>
+                                    <p>Ejemplo con mínimo de ancho y dispositivo en horizontal (ej. iPad girado):</p>
+                                    <code style="border: 1px solid black; padding: 3px">
+                                        @media (min-width: 40rem) and (orientation: landscape) {}
+                                    </code>
+                                </li>
+                                <li>
+                                    <h4><code>,</code></h4>
+                                    <p>Es como un "or". Con que se cumpla una condición, vale.</p>
+                                    <p>Ejemplo con mínimo de ancho o dispositivo en vertical:</p>
+                                    <code style="border: 1px solid black; padding: 3px">
+                                        @media (min-width: 200rem), (orientation: portrait) {}
+                                    </code>
+                                    <p>Estando el dispositivo en vertical (<i>portrait</i>), ya se aplicaría.</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+</body>
+
+</html>

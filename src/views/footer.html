@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Footer</title>
+</head>
+
+<body>
+  <h1 style="text-align: center">Cómo situar correctamente el footer</h1>
+  <section>
+    <ul>
+      <li>
+        Pantalla: 100% del height del viewport -> De ese 100vh, hay que tener en cuenta que una parte lo ocupa la
+        <b>nav</b> y otra el <b>footer</b>.
+      </li>
+      <li>
+        Para ello, realizamos el siguiente cálculo: <p
+          style="display: inline-block; border: 1px solid black; padding: 3px;">100vh -
+          height de la nav - height del footer</p>
+        <ul>
+          Desglose:
+          <li>
+            En esta web, el height de la nav es 3.5rem (2.5rem del height del icono + 2x0.5rem del padding)
+          </li>
+          <li>
+            El height del footer es: 19px + 32px (padding-top) + 32px (padding-bottom) + 48px (margin-top) = 131px =
+            8rem (inspeccionar <i>main-footer</i>).
+          </li>
+        </ul>
+        <p style="display: inline-block; border: 1px solid black; padding: 3px;">
+          <code>
+            main {
+            min-height: calc(100vh - 3.5rem - 8rem)
+            }
+          </code>
+        </p>
+      </li>
+      <li>
+        Tener cuidado con <b>márgenes superiores o inferiores adicionales</b> que puedan ampliar el tamaño del main
+        (sustituirlos, en la medida de lo posible, por <b>padding-top o padding-bottom</b> )
+      </li>
+      <li>
+        Así, siempre quedará el footer anclado a la parte más inferior de la página.
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>
