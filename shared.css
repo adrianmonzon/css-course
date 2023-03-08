@@ -3,14 +3,24 @@
     /* necesario para que todos los elementos ocupen el width/height establecido teniendo en cuenta los margin, paddings, etc establecidos. Si no, sumará al width/height establecido los margin, padding, etc. y ocupará más espacio del deseado */
 }
 
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
+    display: grid;
+    grid-template-rows: 2.5rem auto 8rem;
+    grid-template-areas: "header"
+                         "main"
+                         "footer" ;
+    height: 100%;
 }
 
 main {
-    min-height: calc(100vh - 3.5rem - 8rem);
-    /* margin-top: 3.5rem; */
+    /* grid-row: 2 / 3; */
+    grid-area: main;
 }
 
 a {
@@ -20,19 +30,21 @@ a {
 .header {
     background-color: #2ddf2d;
     width: 100%;
-    padding: 8px 16px;
-
-    /* position: fixed;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 100;
     top: 0;
     left: 0;
-    z-index: -2; */
 }
 
 .logo {
-    display: inline-block;
-    font-size: 22px;
+    /* display: inline-block; */
+    font-size: 1.4rem;
     font-weight: bold;
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 
 .logo a {
@@ -40,13 +52,13 @@ a {
 }
 
 .main-nav {
-    display: inline-block;
-    text-align: right;
+    /* display: inline-block;
+    text-align: right; */
     /* queremos que esté el línea con el logo, por lo que debe ocupar el 100% del ancho menos el espacio que ocupa el div del logo (verlo en la caja del inspector de elementos) */
     /* al restar los píxeles exactos que ocupa el div, aún va a seguir en una línea diferente, ya que hay un caracter "invisible" entre la tag <div></div> y la <nav></nav> cuando se pone una abajo de la otra, por lo que habría que
     poner las dos etiquetas justo inmediatamente al lado (</div><nav>), o restar unos píxeles más de los exactos (lo cual vamos a hacer restando 5px más, ya que el div del logo ocupa unos 29px) */
-    width: calc(100% - 250px);
-    vertical-align: middle;
+    /* width: calc(100% - 250px); */
+    /* vertical-align: middle; */
 }
 
 /* le quitamos los márgenes y paddings que tiene la etiqueta ul por defecto, para así poder establecer su ancho */
@@ -54,6 +66,7 @@ a {
     margin: 0;
     padding: 0;
     list-style: none;
+    display: flex;
 }
 
 .main-nav__item {
@@ -74,6 +87,8 @@ a {
     background: black;
     padding: 2rem;
     margin-top: 3rem;
+    /* grid-row: 3 / 4; */
+    grid-area: footer;
 }
 
 .main-footer__links {

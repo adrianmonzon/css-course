@@ -32,7 +32,21 @@
 .product-overview h1 {
     color: white;
     font-family: 'Anton', sans-serif;
-    font-size: 1.6rem;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 5%;
+    left: 3%;
+}
+
+
+.product-overview__badge {
+    /* position: fixed; */
+    /* top: 80px;
+    left: 1350px; */
+    color: white;
+    position: absolute;
+    top: 21.5%;
+    right: 3%;
 }
 
 @media (min-width: 40rem) and (min-height: 40rem) {
@@ -44,18 +58,12 @@
     .product-overview h1 {
         font-size: 3rem;
     }
-}
 
-.product-overview__badge {
-    /* position: fixed; */
-    /* top: 80px;
-    left: 1350px; */
-    color: white;
-    position: absolute;
-    top: 0;
-    right: 40px;
-}
+    .product-overview__badge {
+        top: 11%;
+    }
 
+}
 .section-title {
     color: #2ddf5c;
     text-align: center;
