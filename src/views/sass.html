@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SASS</title>
+</head>
+
+<body>
+    <h1 style="text-align: center">SASS</h1>
+    <ul>
+        <li>
+            <h2>Pre procesador de CSS</h2>
+        </li>
+        <li>
+            <h2>Diferencia <i>.sass</i> y <i>.scss</i></h2>
+            <ul>
+                <li>
+                    Sass: Se trata de Sass en su estado puro y original. Utiliza una sintaxis identada que deja de lado
+                    el
+                    uso de llaves ({ }) y el punto y coma (;) tras cada declaración.
+                </li>
+                <li>
+                    Scss: En este tipo puedes utilizar prácticamente todas las características del lenguaje, pero se
+                    mantiene una sintaxis igual al CSS tradicional. Es decir, en este tipo de archivos será necesario
+                    utilizar llaves ({ }) y el punto y coma (;) tras cada declaración.
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2>Ventajas:</h2>
+            <ul>
+                <li>
+                    Selectores anidados (<i>Nested selectors</i>) <br>
+                    <code>
+                        .example {<br>
+                        background-color: red; <br>
+                        font-size: 3rem;<br>
+
+                        &__title {<br>
+                        font-weight: bold;<br>
+                        } <br>
+
+                        p { <br>
+                        color: red;<br>
+                        } <br>
+
+                        &--disabled { <br>
+                        color: grey; <br>
+                        } <br>
+                        }
+                    </code>
+                </li>
+                <li>
+                    Propiedades anidadas: <br>
+                    <code>
+                        .container {<br>
+                        flex: { <br>
+                        direction: column; <br>
+                        wrap: nowrap; <br>
+                        } <br>
+                        }
+                    </code>
+                </li>
+                <li>
+                    Variables:
+                    <ul>
+                        <li>
+                            Se declaran arriba del todo del fichero.
+                        </li>
+                        <li>
+                            Ejs.: $dark-green: #2A7432; $small: 1rem; etc.
+                        </li>
+                        <li>
+                            Se pueden establecer operaciones matemáticas con las variables (ej. $size-default * 3; ej.
+                            $small / 2;)
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Listas: (variables de más de un valor):
+                    <code><b>$border-default: 0.05rem solid black;</b></code>
+                </li>
+                <li>
+                    Maps:
+                    <ul>
+                        <li>
+                            Conjunto de variables dentro de una misma "familia"
+                        </li>
+                        <li>
+                            <code>$colors: (main: #267543, secondary: #2C9DD4);</code>
+                        </li>
+                        <li>
+                            Cómo se usan: <br>
+                            <code>.example { color: <b>map-get($colors, main);</b> }</code>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Funciones nativas (hay varias, mirarlas en MDN):
+                    <ul>
+                        <li>
+                            lighten() : para aclarar un color seleccionado, ejs.: background-color:
+                            lighten(map-get($colors, main), 70%); color: lighten(green, 40%);
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Partials
+                    <ul>
+                        <li>
+                            Ficheros que contienen código para importarlo en otros ficheros
+                        </li>
+                        <li>
+                            Suelen definirse con guión bajo al principio (_example.scss)
+                        </li>
+                        <li>
+                            Ejemplo: un fichero llamado _variables.scss que contenga todas las variables definidas
+                            y que luego se importe en el main.scss u otros ficheros que usen esas variables
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Posibilidad de anidar (introducir) las media queries dentro de cada selector, para que quede más
+                    ordenado
+                </li>
+                <li>
+                    @extend: para heredar estilos aplicados a otra clase y así no tener que repetir código o aplicar
+                    cada vez esa clase. Ejemplo:
+                    <p><code>.example { @extend .previous-style; margin-bottom: 1rem; }</code></p>
+                </li>
+                <li>
+                    Mixins
+                    <ul>
+                        <li>
+                            Código reutilizable
+                        </li>
+                        <li>
+                            Modo de uso:
+                            <ul>
+                                <li>
+                                    Creación: <code><b>@mixin nombre-del-mixin() { display: flex; justify-content:
+                                            center; align-items: center; }</b></code>
+                                </li>
+                                <li>
+                                    Importación: <code><b>.clase-ejemplo { @include nombre-del-mixin(); margin-top:
+                                            2rem; }</b></code>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Se pueden establecer <b>argumentos</b> y <b>contenido dinámico</b>
+                            <ul>
+                                <li>
+                                    Ej.: media query con contenido dinámico en función del tamaño de pantalla
+                                    establecido:
+                                    <p>Declaración: <code><b>@mixin media-min-width($width) { @media (min-width: $width)
+                                                { @content;
+                                                }
+                                                }</b></code></p>
+                                    <p>Importación: <code><b>@include media-min-width(40rem) { font-size: 125%;
+                                                }</b></code></p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+        </li>
+    </ul>
+    </li>
+    </ul>
+</body>
+
+</html>
