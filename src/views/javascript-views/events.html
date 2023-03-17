@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eventos</title>
+</head>
+
+<body>
+    <h1 style="text-align: center">Eventos</h1>
+    <section style="display: flex; align-items: center">
+        <ul>
+            <li>
+                Son <b>objetos</b>
+            </li>
+            <li>
+                Tipos:
+                <ul>
+                    <li>
+                        click
+                    </li>
+                    <li>
+                        mouse
+                    </li>
+                    <li>
+                        etc.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                preventDefault()
+                <ul>
+                    <li>
+                        previene/detiene el comportamiento por defecto del navegador al llevar a cabo el
+                        evento en cuestión.
+                    </li>
+                    <li>
+                        Ej.: en los eventos <i>submit</i> en los form, al clickar en el botón que ejecuta ese evento, el
+                        navegador recarga la página tras enviar esa info al servidor. Con <i>preventDefault()</i>,
+                        evitamos ese
+                        comportamiento para así poder hacer/ver lo que queramos.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                stopPropagation()
+                <ul>
+                    <li>
+                        Evita que se ejecuten eventos asignados a elementos padres
+                    </li>
+                    <li>
+                        Ejemplo: un botón dentro de un div, le añadimos al evento <i>stopPropagation()</i> para que solo
+                        se ejecute el evento de ese botón y no el que tenga el div o elementos padres.
+                    </li>
+                    <li>
+                        No todos los eventos se propagan
+                        <ul>
+                            <li>
+                                si la propiedad del evento, <code><b>bubbles: false</b>, significa que ese evento NO se
+                                    propaga</code>
+                            </li>
+                            <li>
+                                Ejs. <i>click</i> SÍ se propaga, <i>mouseenter</i> NO
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        A diferencia de <i>preventDefault()</i>, aquí NO detenemos el comportamiento del navegador
+                    </li>
+                </ul>
+            </li>
+            <li>
+                stopImmediatePropagation()
+                <ul>
+                    <li>
+                        ejecuta solo el primer evento asignado a un elemento (en caso de tener varios) y se detiene
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Delegación (Iterar sobre elementos y evitar asignar un evento a cada uno, sino un solo evento al
+                contenedor):
+                <ul>
+                    <li>
+                        Manera tradicional 1:
+                        <ul>
+                            <li>
+                                Podemos seleccionar todos los <code>li</code> de una página e iterar sobre ellos,
+                                asignando a cada uno un evento (pudiendo ser el mismo, como que al clickar cada uno se
+                                coloree de rojo el fondo).
+                            </li>
+                            <li>
+                                Ej. <code>const listItems = document.querySelectorAll('li');</code>
+                                <code>listItems.forEach(listItem => listItem.addEventListener('click', event => {
+                                    event.target.classList.toggle('hightlight')}))</code>
+                            </li>
+                            <li>
+                                Esto es correcto pero <b>no del todo eficiente</b>, ya que asignar tantos eventos
+                                consume más memoria.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Manera tradicional 2:
+                        <ul>
+                            <li>
+
+                            </li>
+                        </ul>
+                    </li>
+                    event.target.closest(cssSelector);
+                </ul>
+            </li>
+        </ul>
+    </section>
+</body>
+
+</html>
