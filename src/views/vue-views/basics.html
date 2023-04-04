@@ -19,10 +19,45 @@
                         {{ variables }}
                     </li>
                     <li>
-                        {{ llamarFunciones() }}
+                        {{ llamarFunciones() }} (esto puede suponer un problema):
+                        <ul>
+                            <li>
+                                cada vez que se ejecuta un método, Vue hace internamente una recarga de la página y
+                                todos los métodos que se encuentren interpolados se vuelven a llamar, aunque no tengan
+                                nada que ver con el otro método ejecutado. Esto se debe a que, por si acaso sí tuvieran
+                                que ver, Vue los vuelve a ejecutar para "mantener actualizados" todos los valores.
+                            </li>
+                            <li>
+                                por ello, mejor interpolar con <b><i>computed properties</i></b> (sólo se vuelven a
+                                ejecutar/llamar si alguna de las variables globales que contenga cambia su valor).
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h2>Watchers</h2>
+                <ul>
+                    <li>
+                        Pendientes de alguna variable del data/setup en concreto y, cuando ésta cambie su valor u ocurra
+                        algo
+                        estipulado, se ejecutan.
                     </li>
                     <li>
-                        v-html: renderizar variables/funciones que contengan/retornen html.
+                        Llevan el mismo nombre que la variable a observar. (Ej. en el data: const name = ''; --- el
+                        watcher sería name())
+                    </li>
+                    <li>
+                        Diferencias con las computadas:
+                        <ul>
+                            <li>
+                                Computadas: para renderizar algo en el template dinámicamente.
+                            </li>
+                            <li>
+                                Watchers: para ejecutarse sólo cuando le ocurra algo concreto a algún elemento del
+                                data/setup.
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </li>
@@ -31,79 +66,177 @@
                 <ul>
                     <li>
                         <h3>input</h3>
-                        Ejemplo: ejecutar función sin argumentos para mostrar en pantalla el nombre introducido por
-                        un usuario.
                         <ul>
                             <li>
-                                al llamar a función sin argumentos:
+                                Ejemplo: ejecutar función sin argumentos para mostrar en pantalla el nombre introducido
+                                por
+                                un usuario.
                                 <ul>
                                     <li>
-                                        el <b>evento</b> será el argumento por defecto (es un
-                                        objeto)
-                                    </li>
-                                    <li>
-                                        proporciona información sobre el elemento HTML en el que ocurrió ese evento
-                                    </li>
-                                    <li>
-                                        ejemplo:
+                                        al llamar a función sin argumentos:
                                         <ul>
                                             <li>
-                                                Template:
-                                                <code>
-                                                    < input type="text" v-on:input="setName" />
-                                                </code>
-                                                <p style="display: inline-block"><b>(Evento de tipo input)</b></p>
+                                                el <b>evento</b> será el argumento por defecto (es un
+                                                objeto)
                                             </li>
                                             <li>
-                                                Data:
-                                                <code>
-                                                    data() {return name: ''}
-                                                </code>
+                                                proporciona información sobre el elemento HTML en el que ocurrió ese
+                                                evento
                                             </li>
                                             <li>
-                                                Función:
-                                                <code>setName(event) { this.name = event.target.value } </code>
+                                                ejemplo:
+                                                <ul>
+                                                    <li>
+                                                        Template:
+                                                        <code>
+                                                            < input type="text" v-on:input="setName" />
+                                                        </code>
+                                                        <p style="display: inline-block"><b>(Evento de tipo input)</b>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        Data:
+                                                        <code>
+                                                            data() {return name: ''}
+                                                        </code>
+                                                    </li>
+                                                    <li>
+                                                        Función:
+                                                        <code>setName(event) { this.name = event.target.value } </code>
+                                                    </li>
+                                                </ul>
+                                                De esta forma, al llamar a la función sin argumentos, coge por defecto
+                                                el evento
+                                                y así accedemos al valor del elemento html (input) donde ocurre el
+                                                evento (input) y establecemos que su value es la variable <i>name</i>,
+                                                retornada en el data()
                                             </li>
                                         </ul>
-                                        De esta forma, al llamar a la función sin argumentos, coge por defecto el evento
-                                        y así accedemos al valor del elemento html (input) donde ocurre el
-                                        evento (input) y establecemos que su value es la variable <i>name</i>,
-                                        retornada en el data()
+                                    </li>
+                                </ul>
+                                <ul>
+                            </li>
+                            <li>
+                                Si quisiéramos añadir argumentos además del evento, vue nos proporciona
+                                <b><i>$event</i></b>
+                                para
+                                ello:
+                                <ul>
+                                    <li>
+                                        Template:
+                                        <code>
+                                            < input type="text" v-on:input="setName(<b>$event</b>, 'Martínez')" />
+                                        </code>
+                                    </li>
+                                    <li>
+                                        Data:
+                                        <code>
+                                            data() {return name: ''}
+                                        </code>
+                                    </li>
+                                    <li>
+                                        Función:
+                                        <code>setName(event, lastName) { this.name = event.target.value }
+                                        </code>
+                                    </li>
+                                </ul>
+                        </ul>
+                    </li>
+                    <li #id="v-model">
+                        v-model
+                        <ul>
+                            <li>
+                                "Atajo" de Vue para hacer a la vez que el value del input sea dinámico
+                                (v-bind:value="whateverName") y asignar al evento input un método que settée esa
+                                variable (v-on:setName)
+                            </li>
+                            <li>
+                                Ese concepto se llama <i><b>Two way binding</b></i> (enlazar con variables y manejo de
+                                eventos)
+                            </li>
+                            <li>
+                                v-model="whateverName"
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3> Prevenir comportamiento del evento (ej.: <i>submit</i>):</h3>
+                <ul>
+                    <li>
+                        preventDefault() (Vanilla JavaScript). Ej.:
+                        <code>methods: { <br> submitForm(event) { event.preventDefault(); alert('Hello');
+                            }</code>
+                    </li>
+                    <li>
+                        <i><b>Vue modifiers</b></i>:
+                        <ul>
+                            <li>
+                                <b>.prevent</b>
+                            </li>
+                            <li>
+                                otros:
+                                <ul>
+                                    <li>
+                                        para <i>click</i>
+                                        <ul>
+                                            <li>
+                                                .right (ej. click.right, ejecuta el evento <i>click</i> al
+                                                clickar el botón derecho)
+                                            </li>
+                                            <li>
+                                                .left
+                                            </li>
+                                            <li>
+                                                .middle
+                                            </li>
+                                            <li>
+                                                etc.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        para <i>keyup</i> (teclas)
+                                        <ul>
+
+                                            <li>.enter (ej. :keyup.enter="confirmName"), solo ejecuta al pulsar la tecla
+                                                <i>Enter</i></li>
+                                            <li>etc.</li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
-                        <ul>
                     </li>
-                    <li>
-                        Si quisiéramos añadir argumentos además del evento, vue nos proporciona <b><i>$event</i></b>
-                        para
-                        ello:
-                        <ul>
-                            <li>
-                                Template:
-                                <code>
-                                    < input type="text" v-on:input="setName(<b>$event</b>, 'Martínez')" />
-                                </code>
-                            </li>
-                            <li>
-                                Data:
-                                <code>
-                                    data() {return name: ''}
-                                </code>
-                            </li>
-                            <li>
-                                Función:
-                                <code>setName(event, lastName) { this.name = event.target.value }
-                                </code>
-                            </li>
-                        </ul>
                 </ul>
             </li>
         </ul>
         </li>
-        </ul>
-    </section>
-</body>
-
-</html>
+        <li>
+            <h3>Directivas</h3>
+            <ul>
+                <li>
+                    v-bind: (:) hacer dinámicos los valores de los atributos
+                </li>
+                <li>
+                    v-on:event (@) (puede haber más de uno en un mismo elemento)
+                </li>
+                <li>
+                    <a href="#v-model" style="text-decoration: none;">v-model</a> (ver arriba)
+                </li>
+                <li>
+                    v-html: renderizar variables/funciones que contengan/retornen html.
+                </li>
+                <li>
+                    v-once
+                    <ul>
+                        <li>
+                            Solo se actualiza una vez el contenido de la variable
+                        </li>
+                        <li>
+                            Ej. contador que queremos muestre su estado inicial y su estado actualizado. <br>
+                            <code>
+                                < p v-once>Starting: {{counter}}< /p> <br>
+                                        < p>Result: {{counter}}< /p> </code> </li> </ul> </li> </ul> </li> </ul>
+                                                </section> </body> </html>
