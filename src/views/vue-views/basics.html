@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Básicos</title>
+</head>
+
+<body>
+    <h1 style="text-align: center">Básicos</h1>
+    <section style="display: flex; align-items: center">
+        <ul>
+            <li>
+                <h2>Interpolación</h2>
+                <ul>
+                    <li>
+                        {{ variables }}
+                    </li>
+                    <li>
+                        {{ llamarFunciones() }}
+                    </li>
+                    <li>
+                        v-html: renderizar variables/funciones que contengan/retornen html.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h2>Eventos</h2>
+                <ul>
+                    <li>
+                        <h3>input</h3>
+                        Ejemplo: ejecutar función sin argumentos para mostrar en pantalla el nombre introducido por
+                        un usuario.
+                        <ul>
+                            <li>
+                                al llamar a función sin argumentos:
+                                <ul>
+                                    <li>
+                                        el <b>evento</b> será el argumento por defecto (es un
+                                        objeto)
+                                    </li>
+                                    <li>
+                                        proporciona información sobre el elemento HTML en el que ocurrió ese evento
+                                    </li>
+                                    <li>
+                                        ejemplo:
+                                        <ul>
+                                            <li>
+                                                Template:
+                                                <code>
+                                                    < input type="text" v-on:input="setName" />
+                                                </code>
+                                                <p style="display: inline-block"><b>(Evento de tipo input)</b></p>
+                                            </li>
+                                            <li>
+                                                Data:
+                                                <code>
+                                                    data() {return name: ''}
+                                                </code>
+                                            </li>
+                                            <li>
+                                                Función:
+                                                <code>setName(event) { this.name = event.target.value } </code>
+                                            </li>
+                                        </ul>
+                                        De esta forma, al llamar a la función sin argumentos, coge por defecto el evento
+                                        y así accedemos al valor del elemento html (input) donde ocurre el
+                                        evento (input) y establecemos que su value es la variable <i>name</i>,
+                                        retornada en el data()
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul>
+                    </li>
+                    <li>
+                        Si quisiéramos añadir argumentos además del evento, vue nos proporciona <b><i>$event</i></b>
+                        para
+                        ello:
+                        <ul>
+                            <li>
+                                Template:
+                                <code>
+                                    < input type="text" v-on:input="setName(<b>$event</b>, 'Martínez')" />
+                                </code>
+                            </li>
+                            <li>
+                                Data:
+                                <code>
+                                    data() {return name: ''}
+                                </code>
+                            </li>
+                            <li>
+                                Función:
+                                <code>setName(event, lastName) { this.name = event.target.value }
+                                </code>
+                            </li>
+                        </ul>
+                </ul>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+</body>
+
+</html>
