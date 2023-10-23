@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ciclo de vida</title>
+</head>
+
+<body>
+    <h1 style="text-align: center">Ciclo de vida</h1>
+    <section style="display: flex; align-items: center">
+        <ul>
+            <li>
+                <h2>beforeCreate()</h2>
+                <ul>
+                    <li>la aplicación de Vue ni siquiera se ha inicializado del todo</li>
+                    <li>no aparece nada en pantalla (probar con un console.log y estableciendo punto de
+                        ruptura en <i>Sources</i> en las <i>developer tools</i>)</li>
+                </ul>
+            </li>
+            <li>
+                <h2>created()</h2>
+                <ul>
+                    <li>la aplicación de Vue se ha inicializado del todo internamente, pero <b>no</b> se ha montado
+                        todavía</li>
+                    <li>todavía no aparece nada en pantalla</li>
+                </ul>
+            </li>
+            <li>
+                <h2>beforeMount()</h2>
+                <ul>
+                    <li>justo antes de que se monte (vea) la aplicación</li>
+                </ul>
+            </li>
+            <li>
+                <h2>mounted()</h2>
+                <ul>
+                    <li>ya se ha montado en pantalla
+                        <ul>
+                            <li>
+                                inicializada del todo internamente
+                            </li>
+                            <li>
+                                todos los datos procesados
+                            </li>
+                            <li>
+                                template compilada
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h2>beforeUpdate()</h2>
+                <ul>
+                    <li>justo antes de que se valide/acepte la actualización o el cambio producido</li>
+                    <li>todavía <b>no</b> se muestra en pantalla la modificación</li>
+                </ul>
+            </li>
+            <li>
+                <h2>updated()</h2>
+                <ul>
+                    <li>se ejecuta nada más validarse la modificación</li>
+                    <li>ya se ven en pantalla los cambios</li>
+                </ul>
+            </li>
+            <li>
+                <h2>beforeUnmount()</h2>
+                <ul>
+                    <li>se ejecuta justo antes de desmontar una aplicación</li>
+                    <li>ej. usando <code>app.unmount()</code> (método de Vue)</li>
+                </ul>
+            </li>
+            <li>
+                <h2>unmounted()</h2>
+                <ul>
+                    <li>se ejecuta justo después de desmontarse/eliminarse la aplicación</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</body>
+
+</html>

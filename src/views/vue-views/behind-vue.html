@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Behind Vue</title>
+</head>
+
+<body>
+    <h1 style="text-align: center">Behind Vue</h1>
+    <section style="display: flex; align-items: center">
+        <ul>
+            <li>Diferencia con Javascript:</li>
+            <ul>
+                <li>
+                    Javascript:
+                    <ul>
+                        <li>
+                            <code>let message = 'Hello';</code><br><code>let longMessage = message + '
+                                world!';</code><br><code>console.log(longMessage); // 'Hello
+                                world!'</code><br><code>message =
+                                'Hellooo';</code><br><code>console.log(longMessage); // 'Hello world!'</code><br>
+                            <b>No hay reactividad</b>
+                        </li>
+                        <li>
+                            Proxy: El objeto Proxy permite crear un intermediario para otro objeto, el cual puede
+                            interceptar y redefinir operaciones fundamentales para dicho objeto. (ver <a
+                                href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Proxy">aquí</a>
+                            )
+                        </li>
+                    </ul>
+                </li>
+                <li>Vue: Funciona mediante proxies, que permiten rastrear las propiedades de los objetos para que cuando
+                    cambie el valor de estas, se actualice el nuevo valor, y otra serie de cosas (watchers, computadas,
+                    etc.)</li>
+            </ul>
+            <li>
+                refs: atributo para referenciar elementos html y manejar así cuando se requiera el DOM
+                (this.$refs.nombreEstablecido)
+            </li>
+            <li>
+                Virtual DOM: Vue establece un DOM virtual en memoria y cada vez que algo cambia, compara el nuevo
+                Virtual DOM con el anterior y modifica el DOM real sólo con los cambios que se han producido.
+            </li>
+        </ul>
+    </section>
+</body>
+
+</html>

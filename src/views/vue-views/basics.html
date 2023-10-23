@@ -214,7 +214,7 @@
         </ul>
         </li>
         <li>
-            <h3>Directivas</h3>
+            <h2>Directivas</h2>
             <ul>
                 <li>
                     v-bind: (:) hacer dinámicos los valores de los atributos
@@ -238,5 +238,57 @@
                             Ej. contador que queremos muestre su estado inicial y su estado actualizado. <br>
                             <code>
                                 < p v-once>Starting: {{counter}}< /p> <br>
-                                        < p>Result: {{counter}}< /p> </code> </li> </ul> </li> </ul> </li> </ul>
-                                                </section> </body> </html>
+                                        < p>Result: {{counter}}< /p> </code> </li> </ul> </li> <li>
+                                            v-show
+                                            <ul>
+                                                <li>
+                                                    Diferencia con v-if:
+                                                    <ul>
+                                                        <li>
+                                                            v-show <b>oculta ( <i>display: none;</i> )</b> el
+                                                            elemento, pero está presente y lo muestra si se cumple
+                                                            la condición
+                                                        </li>
+                                                        <li>
+                                                            v-if <b>elimina</b> el elemento del DOM y lo añade si se cumple
+                                                            la condición
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            v-for
+                                            <ul>
+                                                <li>
+                                                    v-for="(item, index, key) in items" :key="item.id"
+                                                    <ul>
+                                                        <li>
+                                                            index: índice del elemento en el array/objeto
+                                                        </li>
+                                                        <li>
+                                                            key: nombre de la propiedad (si iteramos sobre un objeto) (no confundir con el atributo <i>:key</i> )
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    :key="item.id"
+                                                    <ul>
+                                                        <li>
+                                                            <b>Fundamental</b> para diferenciar los elementos y que no se mezclen/pierdan valores
+                                                        </li>
+                                                        <li>
+                                                            Así ayudamos a Vue a no tener problemas de rendimiento por detrás
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+    </section>
+</body>
+
+</html>
