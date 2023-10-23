@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1 style="text-align: center">Básicos</h1>
+    <h1>Básicos</h1>
     <section style="display: flex; align-items: center">
         <ul>
             <li>
@@ -44,7 +44,7 @@
                         estipulado, se ejecutan.
                     </li>
                     <li>
-                        Llevan el mismo nombre que la variable a observar. (Ej. en el data: const name = ''; --- el
+                        Llevan el mismo nombre que la variable a observar. (Ej. en el data: const name = 'whatever'; --- el
                         watcher sería name())
                     </li>
                     <li>
@@ -105,8 +105,8 @@
                                                         <code>setName(event) { this.name = event.target.value } </code>
                                                     </li>
                                                 </ul>
-                                                De esta forma, al llamar a la función sin argumentos, coge por defecto
-                                                el evento
+                                                De esta forma, al llamar a la función sin argumentos (mirar arriba en Template), coge por defecto <br>
+                                                el evento (evidentemente hay que pasarle un parámetro para que acceda al evento, como se ve arriba en Función) <br>
                                                 y así accedemos al valor del elemento html (input) donde ocurre el
                                                 evento (input) y establecemos que su value es la variable <i>name</i>,
                                                 retornada en el data()

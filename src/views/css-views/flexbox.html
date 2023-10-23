@@ -6,118 +6,152 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flexbox</title>
+  <link rel="stylesheet" href="/shared.css">
 </head>
 
 <body>
-  <h1 style="text-align: center">Flexbox</h1>
-  <section>
-    <ul>
-      <li>
-        <code>display: flex;</code>
-        <p>El tamaño del contenedor se ajusta al tamaño de la pantalla (mejor opción responsive).</p>
-        <code>display: inline-flex</code>
-        <p>El tamaño del contenedor es siempre el mismo, independientemente del tamaño de la pantalla.</p>
-      </li>
-      <li>
-        Propiedades <i>flex container</i> (padre):
-        <ul>
-          <li>
-            <code>flex-direction</code>
-            <p>Opciones:</p>
-            <ul>
-              <li>
-                <code>row</code> (por defecto)
-              </li>
-              <li>
-                <code>row-reverse</code>: se invierte el orden de los elementos.
-              </li>
-              <li>
-                <code>column</code>: los elementos se posicionan en columna, en vez de en fila.
-              </li>
-              <li>
-                <code>column-reverse</code>: posicionamiento en columna, pero cambiando el orden de los elementos (de
-                abajo a arriba).
-              </li>
-            </ul>
-          </li>
-          <li>
-            <code>flex-wrap</code>
-            <p>Opciones</p>
-            <ul>
-              <li>
-                <code>nowrap</code> (por defecto)
-              </li>
-              <li>
-                <code>wrap</code>: al reducir el ancho del contenedor, los elementos van posicionandose uno debajo del
-                otro, lo que provoca que el alto del contenedor sea cada vez mayor.
-              </li>
-              <li>
-                <code>wrap-reverse</code>: igual que wrap, pero el orden de los elementos al posicionarse sería el
-                inverso.
-              </li>
-          </li>
-        </ul>
-      <li>
-        <code>flex-flow: row wrap;</code> (<i>shorthand</i> para poner las dos anteriores)
-      </li>
-      <li>
-        <code>justify-content</code>: si es <code>center</code>, centra el conjunto de los elementos en el
-        <b>eje principal</b> (si es <code>flex-direction: row;</code> el eje principal es <b>horizontal</b> y el
-        transversal es vertical).
-      </li>
-      <li>
-        <code>align-items</code>: si es <code>center</code>, centra los elementos en el <b>eje transversal</b> (si es
-        <code>flex-direction: row;</code> el eje transversal es <b>vertical</b> y si el <code>flex-direction:
-          column</code> es <b>horizontal</b>).
-      </li>
-      <li>Ejemplo de <code>justify-content: center;</code> y <code>align-items: center;</code> <a
-          href="https://developer.mozilla.org/es/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container">aquí</a>
-      </li>
-      <li><code>align-content:</code> establece dónde se quedaran ubicados los elementos tras minimizar el contenedor.
-      </li>
-      <li>
-        <code>z-index</code> <b>también afecta</b> a flex items, además de a elementos cuya propiedad
-        <code>position</code> es distinta de <code>static</code>
-      </li>
-      </li>
-    </ul>
-  </section>
-  <ul>
-    <li>
-      Propiedades <i>flex items</i> (hijos):
-      <ul>
-        <li>
-          <code>order: 0 (default)</code>: Para cambiar el orden de un elemento dentro del contenedor.
-          <p><code>order: 1;</code> pone el elemento al final (siempre que otro elemento no tenga por valor 2 o más) y
-            <br>
-            <code>order: -1;</code> al principio (siempre que no haya valores inferiores)</p>
+  <header class="header">
+    <div class="logo"><a href="/">laBibliaFrontend</a></div>
+    <nav class="main-nav">
+      <ul class="main-nav__items">
+        <li class="main-nav__item">
+          <a href="/src/views/css-views/main.html">CSS</a>
         </li>
-        <li>
-          <code>align-self</code> Alinea un item concreto en el <b>eje transversal</b>
-          <p>Ej.: <code>align-self: flex-start;</code> alinearía el item arriba del todo si la flex direction fuera
-            <i>row</i>, porque en ese caso, el eje transversal es vertical (de arriba a abajo).</p>
+        <li class="main-nav__item">
+          <a href="/src/views/javascript-views/main.html">JavaScript</a>
         </li>
-        <li>
-          <code>flex-grow: 0 (default)</code>: Si el valor es 1 o superior, ese elemento ocupará más espacio al ampliar
-          el ancho de la página que el
-          resto de elementos que tengan valores inferiores (o nada, que por defecto será 0).
-        </li>
-        <li>
-          <code>flex-shrink: 1 (default)</code>: Si el valor es superior a 1, ese elemento decrecerá más que el resto al
-          minimizar el ancho de la página.
+        <li class="main-nav__item">
+          <a href="/src/views/webpack/main.html">Webpack</a>
         </li>
       </ul>
-    </li>
-    <li>
-      <code>flex-basis: auto (default)</code>: Si el valor es por ej. 300px, sobrescribirá el valor del <b>width</b> del
-      elemento (cuando la flex-direction sea row) <br>
-      Si la flex-direction es <b>column</b>, el valor sustituirá al <b>height</b> del elemento. <br>
-      Por tanto, siempre aplica al <b>eje principal</b>.
-    </li>
-    <li>
-      <code>flex: 0 (grow) 1 (shrink) auto (basis)</code>: Shorthand
-    </li>
-  </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Flexbox</h1>
+    <section>
+      <ul>
+        <li>
+          <code>display: flex;</code>
+          <p>El tamaño del contenedor se ajusta al tamaño de la pantalla (mejor opción responsive).</p>
+          <code>display: inline-flex</code>
+          <p>El tamaño del contenedor es siempre el mismo, independientemente del tamaño de la pantalla.</p>
+        </li>
+        <li>
+          Propiedades <i>flex container</i> (padre):
+          <ul>
+            <li>
+              <code>flex-direction</code>
+              <p>Opciones:</p>
+              <ul>
+                <li>
+                  <code>row</code> (por defecto)
+                </li>
+                <li>
+                  <code>row-reverse</code>: se invierte el orden de los elementos.
+                </li>
+                <li>
+                  <code>column</code>: los elementos se posicionan en columna, en vez de en fila.
+                </li>
+                <li>
+                  <code>column-reverse</code>: posicionamiento en columna, pero cambiando el orden de los elementos (de
+                  abajo a arriba).
+                </li>
+              </ul>
+            </li>
+            <li>
+              <code>flex-wrap</code>
+              <p>Opciones</p>
+              <ul>
+                <li>
+                  <code>nowrap</code> (por defecto)
+                </li>
+                <li>
+                  <code>wrap</code>: al reducir el ancho del contenedor, los elementos van posicionandose uno debajo del
+                  otro, lo que provoca que el alto del contenedor sea cada vez mayor.
+                </li>
+                <li>
+                  <code>wrap-reverse</code>: igual que wrap, pero el orden de los elementos al posicionarse sería el
+                  inverso.
+                </li>
+            </li>
+          </ul>
+        <li>
+          <code>flex-flow: row wrap;</code> (<i>shorthand</i> para poner las dos anteriores)
+        </li>
+        <li>
+          <code>justify-content</code>: si es <code>center</code>, centra el conjunto de los elementos en el
+          <b>eje principal</b> (si es <code>flex-direction: row;</code> el eje principal es <b>horizontal</b> y el
+          transversal es vertical).
+        </li>
+        <li>
+          <code>align-items</code>: si es <code>center</code>, centra los elementos en el <b>eje transversal</b> (si es
+          <code>flex-direction: row;</code> el eje transversal es <b>vertical</b> y si el <code>flex-direction:
+            column</code> es <b>horizontal</b>).
+        </li>
+        <li>Ejemplo de <code>justify-content: center;</code> y <code>align-items: center;</code> <a
+            href="https://developer.mozilla.org/es/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container">aquí</a>
+        </li>
+        <li><code>align-content:</code> establece dónde se quedaran ubicados los elementos tras minimizar el contenedor.
+        </li>
+        <li>
+          <code>z-index</code> <b>también afecta</b> a flex items, además de a elementos cuya propiedad
+          <code>position</code> es distinta de <code>static</code>
+        </li>
+        </li>
+      </ul>
+    </section>
+    <ul>
+      <li>
+        Propiedades <i>flex items</i> (hijos):
+        <ul>
+          <li>
+            <code>order: 0 (default)</code>: Para cambiar el orden de un elemento dentro del contenedor.
+            <p><code>order: 1;</code> pone el elemento al final (siempre que otro elemento no tenga por valor 2 o más) y
+              <br>
+              <code>order: -1;</code> al principio (siempre que no haya valores inferiores)</p>
+          </li>
+          <li>
+            <code>align-self</code> Alinea un item concreto en el <b>eje transversal</b>
+            <p>Ej.: <code>align-self: flex-start;</code> alinearía el item arriba del todo si la flex direction fuera
+              <i>row</i>, porque en ese caso, el eje transversal es vertical (de arriba a abajo).</p>
+          </li>
+          <li>
+            <code>flex-grow: 0 (default)</code>: Si el valor es 1 o superior, ese elemento ocupará más espacio al
+            ampliar
+            el ancho de la página que el
+            resto de elementos que tengan valores inferiores (o nada, que por defecto será 0).
+          </li>
+          <li>
+            <code>flex-shrink: 1 (default)</code>: Si el valor es superior a 1, ese elemento decrecerá más que el resto
+            al
+            minimizar el ancho de la página.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <code>flex-basis: auto (default)</code>: Si el valor es por ej. 300px, sobrescribirá el valor del <b>width</b>
+        del
+        elemento (cuando la flex-direction sea row) <br>
+        Si la flex-direction es <b>column</b>, el valor sustituirá al <b>height</b> del elemento. <br>
+        Por tanto, siempre aplica al <b>eje principal</b>.
+      </li>
+      <li>
+        <code>flex: 0 (grow) 1 (shrink) auto (basis)</code>: Shorthand
+      </li>
+    </ul>
+  </main>
+  <footer class="main-footer">
+    <nav>
+      <ul class="main-footer__links">
+        <li class="main-footer__link">
+          <a href="#">Support</a>
+        </li>
+        <li class="main-footer__link">
+          <a href="#">Terms of Use</a>
+        </li>
+      </ul>
+    </nav>
+  </footer>
 </body>
 
 </html>

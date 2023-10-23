@@ -6,41 +6,77 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Margen</title>
+    <link rel="stylesheet" href="/shared.css">
 </head>
 
 <body>
-    <h1 style="text-align: center">Margen</h1>
-    <section>
-        <p>En algunas etiquetas (como <code>body, ul</code>, etc.) el navegador establece márgenes por defecto. Tenerlo
-            en cuenta.</p>
-        <div style="text-align: center; display: flex; height: 400px;">
-            <img src="/src/assets/margin.png" alt="margin">
-            <img src="/src/assets/margin-collapse.png" alt="margin-collapse">
-        </div>
-    </section>
-    <section>
-        <h2><code>margin: 0 auto;</code> vs. <code>text-align: center;</code></h2>
-        <p><code> text-align: center;</code> Funciona en elementos en <b>bloque</b> (div, p, article, ul, li, header,
-            nav, table, <a href="https://developer.mozilla.org/es/docs/Web/HTML/Block-level_elements">etc.</a> )
-        </p>
-        <p>
-            <code>margin: auto;</code> aunque centra los elementos, no está pensando para centrarlos, de hecho, como su
-            nombre
-            lo
-            dice, lo que hace es agregar un margen de manera automática. <code>margin: auto;</code> es un “hack” que
-            usamos para
-            centrar cierto tipo de elementos, porque realmente no funciona con todos, para que funcione, el elemento que
-            quieres centrar debe ser de tipo <b>block</b>, y este debe tener una <b>medida absoluta</b> (ej. width:
-            200px;), solo de esa
-            manera el
-            navegador es capaz de calcular los márgenes de izquierda y derecha para que se pueda centrar.
-        </p>
-        <p>
-            Aunque eran buenos trucos, hoy en día la verdad es que ya no es recomendable usar ni uno ni otro, hoy en día
-            la mejor opción es <b>Flexbox</b>.
-        </p>
-        <p>Ver ejemplo <a href="https://codepen.io/adrianmf/pen/MWBVMQB">aquí</a></p>
-    </section>
+    <header class="header">
+        <div class="logo"><a href="/">laBibliaFrontend</a></div>
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a href="/src/views/css-views/main.html">CSS</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/javascript-views/main.html">JavaScript</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/webpack/main.html">Webpack</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Margen</h1>
+        <section>
+            <p>En algunas etiquetas (como <code>body, ul</code>, etc.) el navegador establece márgenes por defecto.
+                Tenerlo
+                en cuenta.</p>
+            <div style="text-align: center; display: flex; height: 400px;">
+                <img src="/src/assets/margin.png" alt="margin">
+                <img src="/src/assets/margin-collapse.png" alt="margin-collapse">
+            </div>
+        </section>
+        <section>
+            <h2><code>margin: 0 auto;</code> vs. <code>text-align: center;</code></h2>
+            <p><code> text-align: center;</code> Funciona en elementos en <b>bloque</b> (div, p, article, ul, li,
+                header,
+                nav, table, <a href="https://developer.mozilla.org/es/docs/Web/HTML/Block-level_elements">etc.</a> )
+            </p>
+            <p>
+                <code>margin: auto;</code> aunque centra los elementos, no está pensando para centrarlos, de hecho, como
+                su
+                nombre
+                lo
+                dice, lo que hace es agregar un margen de manera automática. <code>margin: auto;</code> es un “hack” que
+                usamos para
+                centrar cierto tipo de elementos, porque realmente no funciona con todos, para que funcione, el elemento
+                que
+                quieres centrar debe ser de tipo <b>block</b>, y este debe tener una <b>medida absoluta</b> (ej. width:
+                200px;), solo de esa
+                manera el
+                navegador es capaz de calcular los márgenes de izquierda y derecha para que se pueda centrar.
+            </p>
+            <p>
+                Aunque eran buenos trucos, hoy en día la verdad es que ya no es recomendable usar ni uno ni otro, hoy en
+                día
+                la mejor opción es <b>Flexbox</b>.
+            </p>
+            <p>Ver ejemplo <a href="https://codepen.io/adrianmf/pen/MWBVMQB">aquí</a></p>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link">
+                    <a href="#">Support</a>
+                </li>
+                <li class="main-footer__link">
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 
 </html>

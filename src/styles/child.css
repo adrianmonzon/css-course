@@ -5,3 +5,7 @@ div>span {
 div>span>p {
     color: orange;
 }
+
+img {
+    width: 30rem;
+}

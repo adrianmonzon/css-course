@@ -9,11 +9,34 @@
 </head>
 
 <body>
-    <h1 style="text-align: center">Vuex</h1>
+    <h1>Vuex</h1>
     <section style="display: flex; align-items: center">
         <ul>
-            <li>Def.: Librería</li>
-            <li>$store.state</li>
+            <li>Def.: Librería para manejar el estado global (el local es de los propios componentes)</li>
+            <li>Para datos que se usan en varios componentes (ej. carrito de compra, autenticación de usuario, etc.)</li>
+            <li>Pasos para su uso:
+                <ul>
+                    <li>
+                        <i>import {createStore} from vuex</i> en App.js
+                    </li>
+                    <li>
+                        creamos una constante llamada <i>store</i> que sea igual a la función createStore(), la cual contiene un objeto con el método state() dentro, que a su vez retorna otro objeto con las propiedades/datos del estado global:
+                    </li>
+                    <li>
+                        <code>
+                            const store = createStore({
+                            state () {
+                            return {
+                            counter: 0
+                            }
+                            }
+                            })
+                        </code>
+                    </li>
+                    <li><i>app.use(store)</i> (la constante que hemos creado arriba) en App.js</li>
+                    <li>En el componente correspondiente, hacemos <i>$store.state.counter</i> para acceder en este caso al counter de nuestro store arriba</li>
+                </ul>
+            </li>
         </ul>
     </section>
 </body>

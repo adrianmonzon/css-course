@@ -7,335 +7,389 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grid</title>
     <link rel="stylesheet" href="/src/styles/grid.css" />
+    <link rel="stylesheet" href="/shared.css" />
 </head>
 
 <body>
-    <h1 style="text-align: center">Grid</h1>
-    <div class="container">
-        <div class="el1">Element 1</div>
-        <div class="el2">Element 2</div>
-        <div class="el3">Element 3</div>
-        <div class="el4">Element 4</div>
-    </div>
-    <div class="example">
-        <div class="item1">Header</div>
-        <div class="item2">Aside</div>
-        <div class="item3">Main</div>
-        <div class="item4">Footer</div>
-    </div>
-    <div style="display: flex">
-        <section>
-            <ul>
-                <li>
-                    <h2><code>display: grid;</code></h2>
+    <header class="header">
+        <div class="logo"><a href="/">laBibliaFrontend</a></div>
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a href="/src/views/css-views/main.html">CSS</a>
                 </li>
-                <li>
-                    Propiedades:
-                    <ul>
-                        <li>
-                            Plantilla:
-                            <ul>
-                                <li>
-                                    <code>grid-template-columns: 200px 150px 20%; | grid-template-columns: <b>repeat(4,
-                                            25%)</b>;</code>
-                                    <p><b>fr</b>: ej.: <code>grid-template-columns: 200px 2fr 1fr;</code></p>
-                                    <p>fr representa el espacio restante.</p>
-                                    <p>Si una columna es 2fr, ocupará el doble que la que sea 1fr</p>
-                                </li>
-                                <li>
-                                    <code>grid-template-rows: 5rem 2rem; | grid-template-rows: 5rem <b>minmax(10px,
-                                            auto)
-                                            100px</b>;</code>
-                                    <p>Se puede usar la función <b>fit-content()</b> para que, en caso de requerir más o
-                                        menos espacio, se adapte. Ej.:</p>
-                                    <code>grid-template-rows: 2.5rem auto <b>fit-content(8rem)</b>;</code>
-                                </li>
-                                <li>
-                                    <p><code>grid-template-areas</code>: Se puede establecer un nombre para cada
-                                        posición
-                                        del
-                                        grid y luego utilizarlo en los
-                                        elementos para indicar desde cuál a cuál tienen que situarse, etc. Ej.:</p>
-                                    <div style="display: flex; justify-content: start;">
-                                        <code><b>grid-template-areas:</b></code> <code><b>"header header" <br>
-                                                "aside
-                                                main" <br>"footer
-                                                footer";</b></code> (se puede poner así para visualizar mejor el grid).
-                                    </div>
-                                    <p>Luego, a cada <b>item</b> del grid se le indica mediante <b>grid-area</b> a qué
-                                        área
-                                        debe
-                                        pertenecer, lo cual es como indicárselo mediante grid-column-start,
-                                        grid-row-end,
-                                        etc..
-                                        Ej.:</p>
-                                    <code>.item1 { <br>
-                                        background-color: yellow; <br>
-                                        /* grid-column-start: 1;<br>
-                                        grid-column-end: 3; */<br>
-                                        <b>grid-area: header;</b><br>
-                                        text-align: center;<br>
-                                        }<br>
-
-                                        .item2 {<br>
-                                        background-color: aqua;<br>
-                                        text-align: center;<br>
-                                        <b>grid-area: aside;</b><br>
-                                        }<br>
-
-                                        .item3 {<br>
-                                        background-color: springgreen;<br>
-                                        text-align: center;<br>
-                                        <b>grid-area: main;</b><br>
-                                        }<br>
-
-                                        .item4 {<br>
-                                        background-color: orange;<br>
-                                        /* grid-column-start: 1;<br>
-                                        grid-column-end: 3; */<br>
-                                        <b>grid-area: footer;</b><br>
-                                        text-align: center;<br>
-                                        }</code>
-                                </li>
-                                <li>
-                                    Posicionamiento:
-                                    <ul>
-                                        <li><code>justify-items</code>: colocar todos los items en el eje principal de
-                                            sus
-                                            respectivas casillas</li>
-                                        <li><code>align-items</code>: colocar items eje transversal (normalmente,
-                                            vertical) de
-                                            sus respectivas casillas
-                                        </li>
-                                        <li><code>justify-content</code>: posicionar en el eje principal el <b>grid
-                                                completo</b> dentro de su contenedor</li>
-                                        <li>
-                                            <code>align-content</code>: posicionar en el eje transversal el <b>grid
-                                                completo</b> dentro de su contenedor</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Responsive:
-                                    <ul>
-                                        <li>
-                                            Se pueden añadir/quitar filas y/o columnas mediante <i>media-queries</i> y
-                                            que el grid cambie según el tamaño de la pantalla establecido.
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Flow: Por defecto, al crear un grid, los elementos hijos se sitúan en filas, cuyo
-                                    tamaño se ajusta al contenido de cada uno de esos hijos. Podemos cambiar ambas:
-                                    <ul>
-                                        <li>
-                                            <code>grid-auto-rows: minmax(8rem, auto);</code> Cambia el tamaño de las
-                                            filas generadas automáticamente, en este ejemplo estableceríamos que como
-                                            mínimo fueran de 8rem y el máx fuese automático, adaptado a la longitud del
-                                            contenido.
-                                        </li>
-                                        <li>
-                                            <code>grid-auto-flow: column;</code> Así, cambiaríamos el flujo automático
-                                            y, en vez de que los hijos apareciesen en filas, aparecerían en
-                                            <b>columnas</b>
-                                        </li>
-                                        <li><code>grid-auto-columns: 5rem;</code> En caso de cambiar el flujo a
-                                            <i>column</i>, así estableceríamos el tamaño que quisiéramos a las columnas
-                                            automáticas.</li>
-                                        <li>
-                                            Para que no haya casillas del grid en blanco tras el posicionamiento, se
-                                            puede añadir <i><b>dense</b></i> al lado de <code>grid-auto-flow: row/column
-                                                dense;</code> así, pero <b>no es recomendable</b>, sólo tenerlo en
-                                            cuenta.
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Ajustar automáticamente las columnas para que ocupen lo que la pantalla requiera:
-                                    <ul>
-                                        <li>
-                                            <code>auto-fill</code>: hace que las columnas se ajusten automáticamente
-                                            para así rellenar siempre el ancho de la pantalla. <br>
-                                            Ej. <code>grid-template-columns: repeat(auto-fill, 10rem);</code>
-                                        </li>
-                                        <li>
-                                            <code>auto-fit</code>: cuando no hay muchos elementos y no ocupan todo el
-                                            ancho (por tanto, no lo rellenan del todo), utilizamos <i>auto-fit</i> para
-                                            que las columnas existentes se coloquen en el centro o de la mejor manera
-                                            posible. <br>
-                                            Ej. <code>grid-template-columns: repeat(auto-fit, 10rem);</code>
-                                        </li>
-                                    </ul>
-                                </li>
-                        </li>
-                    </ul>
+                <li class="main-nav__item">
+                    <a href="/src/views/javascript-views/main.html">JavaScript</a>
                 </li>
-                <li>
-                    Item:
-                    <ul>
-                        <li>
-                            <code> grid-column-start: 3;
-                                grid-column-end: 5;</code>
-                            <p>Aplicándolo al Element 3, le decimos que ocupe desde el vértice 3 al vértice 5 de
-                                las
-                                columnas
-                                (había 4 columnas inicialmente, por lo que hay 5 vértices desde el principio
-                                hasta
-                                el
-                                final).
-                            </p>
-                            <p>Eso genera que el siguiente elemento (el 4) pase a la siguiente columna, ya que
-                                el 3
-                                ha
-                                ocupado
-                                su espacio.</p>
-                        </li>
-                        <li>
-                            <code> grid-row-start: 1;
-                                grid-row-end: 3;</code>
-                            <p>Aplicado el Element 3, le decimos que ocupe desde el vértice 1 de las filas al 3.
-                            </p>
-                        </li>
-
-                        <li>
-                            <b>Shorthand column:</b>
-                            <code>grid-column: <i>grid-column-start</i> / <i>grid-column-end</i>; </code>
-                            <p>Ej.: <code>grid-column: 1 / -1;</code> (-1 aplica a la <b>última columna</b>, así
-                                no
-                                hay
-                                que cambiar la cifra de 5 a 6 por ej si añadimos una columna).</p>
-                        </li>
-                        <li>
-                            <b>Shorthand row:</b>
-                            <code>grid-row: <i>grid-row-start</i> / <i>grid-row-end</i>; </code>
-                            <p>Ej.: <code>grid-row: row-1-start (nombre que se puede predefinir mediante []) /
-                                    span
-                                    1;
-                                    (una fila después) (también sirve en el caso de column, una columna
-                                    después).</code>
-                            </p>
-                        </li>
-                        <li>
-                            <b>Shorthand completo:</b>
-                            <code>grid-area: <i>grid-row-start</i> / <i>grid-column-start</i> /
-                                <i>grid-row-end</i>
-                                /
-                                <i>grid-column-end</i>;</code>
-                        </li>
-                        <li>
-                            Posicionamiento (sobreescribe lo que pueda haber aplicado para todos los elementos del grid
-                            en su conjunto):
-                            <ul>
-                                <li>
-                                    <code>justify-self</code>: posicionar item en su casilla en el eje principal
-                                    (horizontal)
-                                </li>
-                                <li>
-                                    <code>align-self</code>: posicionar item en su casilla en el eje transversal
-                                    (vertical)
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                <li class="main-nav__item">
+                    <a href="/src/views/webpack/main.html">Webpack</a>
                 </li>
             </ul>
-            </li>
-            </ul>
-        </section>
-        <hr>
-        <section>
-            <ul>
-                <li>
-                    <h2>Grid para Layout (Nav, Main y Footer)</h2>
-                    <p>Tenemos dos maneras:</p>
-                    <ul>
-                        <li>
-                            Manera 1:
-                            <ul>
-                                <li>
-                                    <h3>2 rows: Una para el main (auto) y otra para el footer (la altura que queramos
-                                        darle, ej. 3.5rem).</h3>
-                                    <p>Añadimos padding-top al main con la altura de la nav, para que se desplace hacia
-                                        abajo y empiece justo
-                                        después de la nav.</p>
-                                    <p>Al estar posicionada de forma fija, la nav no forma parte del <i>Document
-                                            Flow</i> y por eso no necesita su propia fila en el grid.</p>
-                                </li>
-                                <li>
-                                    <h3>height: 100% al body y al html</h3>
-                                    <p>Con esto, provocamos que la row cuya altura es auto ocupe todo el espacio
-                                        restante de la altura del footer y el padding-top establecido, cuya altura es la
-                                        de la nav.</p>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            Manera 2 (más correcta):
-                            <ul>
-                                <li>
-                                    <h3>height: 100% al body y al html</h3>
-                                </li>
-                                <li>
-                                    <h3>Agregar 3 filas e indicar a partir de qué vertice comienza el main y a partir de
-                                        cuál el footer</h3>
-                                    <ul>
-                                        Podemos indicarlo mediante:
-                                        <li>
-                                            <h4><code>grid-template-rows al body y grid-row al elemento (main, footer,
-                                                    etc.)</code></h4> (por ejemplo)
-                                            <code>body { <br>
-                                                margin: 0; <br>
-                                                font-family: 'Montserrat', sans-serif; <br>
-                                                display: grid;<br>
-                                                <b>grid-template-rows: 2.5rem auto 8rem;</b><br>
-                                                height: 100%;<br>
-                                                }<br>
+        </nav>
+    </header>
+    <main>
 
-                                                main {<br>
-                                                <b>grid-row: 2 / 3;</b><br>
-                                                }<br>
+        <h1>Grid</h1>
+        <div class="container">
+            <div class="el1">Element 1</div>
+            <div class="el2">Element 2</div>
+            <div class="el3">Element 3</div>
+            <div class="el4">Element 4</div>
+        </div>
+        <div class="example">
+            <div class="item1">Header</div>
+            <div class="item2">Aside</div>
+            <div class="item3">Main</div>
+            <div class="item4">Footer</div>
+        </div>
+        <div style="display: flex">
+            <section>
+                <ul>
+                    <li>
+                        <h2><code>display: grid;</code></h2>
+                    </li>
+                    <li>
+                        Propiedades:
+                        <ul>
+                            <li>
+                                Plantilla:
+                                <ul>
+                                    <li>
+                                        <code>grid-template-columns: 200px 150px 20%; | grid-template-columns:
+                                            <b>repeat(4,
+                                                25%)</b>;</code>
+                                        <p><b>fr</b>: ej.: <code>grid-template-columns: 200px 2fr 1fr;</code></p>
+                                        <p>fr representa el espacio restante.</p>
+                                        <p>Si una columna es 2fr, ocupará el doble que la que sea 1fr</p>
+                                    </li>
+                                    <li>
+                                        <code>grid-template-rows: 5rem 2rem; | grid-template-rows: 5rem <b>minmax(10px,
+                                                auto)
+                                                100px</b>;</code>
+                                        <p>Se puede usar la función <b>fit-content()</b> para que, en caso de requerir
+                                            más o
+                                            menos espacio, se adapte. Ej.:</p>
+                                        <code>grid-template-rows: 2.5rem auto <b>fit-content(8rem)</b>;</code>
+                                    </li>
+                                    <li>
+                                        <p><code>grid-template-areas</code>: Se puede establecer un nombre para cada
+                                            posición
+                                            del
+                                            grid y luego utilizarlo en los
+                                            elementos para indicar desde cuál a cuál tienen que situarse, etc. Ej.:</p>
+                                        <div style="display: flex; justify-content: start;">
+                                            <code><b>grid-template-areas:</b></code> <code><b>"header header" <br>
+                                                    "aside
+                                                    main" <br>"footer
+                                                    footer";</b></code> (se puede poner así para visualizar mejor el
+                                            grid).
+                                        </div>
+                                        <p>Luego, a cada <b>item</b> del grid se le indica mediante <b>grid-area</b> a
+                                            qué
+                                            área
+                                            debe
+                                            pertenecer, lo cual es como indicárselo mediante grid-column-start,
+                                            grid-row-end,
+                                            etc..
+                                            Ej.:</p>
+                                        <code>.item1 { <br>
+                                            background-color: yellow; <br>
+                                            /* grid-column-start: 1;<br>
+                                            grid-column-end: 3; */<br>
+                                            <b>grid-area: header;</b><br>
+                                            text-align: center;<br>
+                                            }<br>
 
-                                                .main-footer {<br>
-                                                <b>grid-row: 3 / 4;</b><br>
-                                                }<br>
-                                            </code>
-                                        </li>
-                                        <li>
-                                            <h4>Nombrando las áreas y asignándolas <code>grid-template-rows al body y
-                                                    grid-area a cada elemento del layout</code> (al header/nav no,
-                                                porque al tener <code>position: fixed</code> está fuera del Document
-                                                Flow.) </h4>
-                                            <code>body { <br>
-                                                margin: 0; <br>
-                                                font-family: 'Montserrat', sans-serif; <br>
-                                                display: grid;<br>
-                                                grid-template-rows: 2.5rem auto 8rem;<br>
-                                                <b> grid-template-areas: "header"<br>
-                                                    "main"<br>
-                                                    "footer";</b><br>
-                                                height: 100%;<br>
-                                                }<br>
+                                            .item2 {<br>
+                                            background-color: aqua;<br>
+                                            text-align: center;<br>
+                                            <b>grid-area: aside;</b><br>
+                                            }<br>
 
-                                                main {<br>
-                                                /*grid-row: 2 / 3;*/<br>
-                                                <b>grid-area: main;</b><br>
-                                                }<br>
+                                            .item3 {<br>
+                                            background-color: springgreen;<br>
+                                            text-align: center;<br>
+                                            <b>grid-area: main;</b><br>
+                                            }<br>
 
-                                                .main-footer {<br>
-                                                /*grid-row: 3 / 4;*/<br>
-                                                <b>grid-area: footer;</b><br>
-                                                }<br>
-                                            </code>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                                            .item4 {<br>
+                                            background-color: orange;<br>
+                                            /* grid-column-start: 1;<br>
+                                            grid-column-end: 3; */<br>
+                                            <b>grid-area: footer;</b><br>
+                                            text-align: center;<br>
+                                            }</code>
+                                    </li>
+                                    <li>
+                                        Posicionamiento:
+                                        <ul>
+                                            <li><code>justify-items</code>: colocar todos los items en el eje principal
+                                                de
+                                                sus
+                                                respectivas casillas</li>
+                                            <li><code>align-items</code>: colocar items eje transversal (normalmente,
+                                                vertical) de
+                                                sus respectivas casillas
+                                            </li>
+                                            <li><code>justify-content</code>: posicionar en el eje principal el <b>grid
+                                                    completo</b> dentro de su contenedor</li>
+                                            <li>
+                                                <code>align-content</code>: posicionar en el eje transversal el <b>grid
+                                                    completo</b> dentro de su contenedor</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Responsive:
+                                        <ul>
+                                            <li>
+                                                Se pueden añadir/quitar filas y/o columnas mediante <i>media-queries</i>
+                                                y
+                                                que el grid cambie según el tamaño de la pantalla establecido.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Flow: Por defecto, al crear un grid, los elementos hijos se sitúan en filas,
+                                        cuyo
+                                        tamaño se ajusta al contenido de cada uno de esos hijos. Podemos cambiar ambas:
+                                        <ul>
+                                            <li>
+                                                <code>grid-auto-rows: minmax(8rem, auto);</code> Cambia el tamaño de las
+                                                filas generadas automáticamente, en este ejemplo estableceríamos que
+                                                como
+                                                mínimo fueran de 8rem y el máx fuese automático, adaptado a la longitud
+                                                del
+                                                contenido.
+                                            </li>
+                                            <li>
+                                                <code>grid-auto-flow: column;</code> Así, cambiaríamos el flujo
+                                                automático
+                                                y, en vez de que los hijos apareciesen en filas, aparecerían en
+                                                <b>columnas</b>
+                                            </li>
+                                            <li><code>grid-auto-columns: 5rem;</code> En caso de cambiar el flujo a
+                                                <i>column</i>, así estableceríamos el tamaño que quisiéramos a las
+                                                columnas
+                                                automáticas.</li>
+                                            <li>
+                                                Para que no haya casillas del grid en blanco tras el posicionamiento, se
+                                                puede añadir <i><b>dense</b></i> al lado de <code>grid-auto-flow:
+                                                    row/column
+                                                    dense;</code> así, pero <b>no es recomendable</b>, sólo tenerlo en
+                                                cuenta.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Ajustar automáticamente las columnas para que ocupen lo que la pantalla
+                                        requiera:
+                                        <ul>
+                                            <li>
+                                                <code>auto-fill</code>: hace que las columnas se ajusten automáticamente
+                                                para así rellenar siempre el ancho de la pantalla. <br>
+                                                Ej. <code>grid-template-columns: repeat(auto-fill, 10rem);</code>
+                                            </li>
+                                            <li>
+                                                <code>auto-fit</code>: cuando no hay muchos elementos y no ocupan todo
+                                                el
+                                                ancho (por tanto, no lo rellenan del todo), utilizamos <i>auto-fit</i>
+                                                para
+                                                que las columnas existentes se coloquen en el centro o de la mejor
+                                                manera
+                                                posible. <br>
+                                                Ej. <code>grid-template-columns: repeat(auto-fit, 10rem);</code>
+                                            </li>
+                                        </ul>
+                                    </li>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Item:
+                        <ul>
+                            <li>
+                                <code> grid-column-start: 3;
+                                    grid-column-end: 5;</code>
+                                <p>Aplicándolo al Element 3, le decimos que ocupe desde el vértice 3 al vértice 5 de
+                                    las
+                                    columnas
+                                    (había 4 columnas inicialmente, por lo que hay 5 vértices desde el principio
+                                    hasta
+                                    el
+                                    final).
+                                </p>
+                                <p>Eso genera que el siguiente elemento (el 4) pase a la siguiente columna, ya que
+                                    el 3
+                                    ha
+                                    ocupado
+                                    su espacio.</p>
+                            </li>
+                            <li>
+                                <code> grid-row-start: 1;
+                                    grid-row-end: 3;</code>
+                                <p>Aplicado el Element 3, le decimos que ocupe desde el vértice 1 de las filas al 3.
+                                </p>
+                            </li>
 
+                            <li>
+                                <b>Shorthand column:</b>
+                                <code>grid-column: <i>grid-column-start</i> / <i>grid-column-end</i>; </code>
+                                <p>Ej.: <code>grid-column: 1 / -1;</code> (-1 aplica a la <b>última columna</b>, así
+                                    no
+                                    hay
+                                    que cambiar la cifra de 5 a 6 por ej si añadimos una columna).</p>
+                            </li>
+                            <li>
+                                <b>Shorthand row:</b>
+                                <code>grid-row: <i>grid-row-start</i> / <i>grid-row-end</i>; </code>
+                                <p>Ej.: <code>grid-row: row-1-start (nombre que se puede predefinir mediante []) /
+                                        span
+                                        1;
+                                        (una fila después) (también sirve en el caso de column, una columna
+                                        después).</code>
+                                </p>
+                            </li>
+                            <li>
+                                <b>Shorthand completo:</b>
+                                <code>grid-area: <i>grid-row-start</i> / <i>grid-column-start</i> /
+                                    <i>grid-row-end</i>
+                                    /
+                                    <i>grid-column-end</i>;</code>
+                            </li>
+                            <li>
+                                Posicionamiento (sobreescribe lo que pueda haber aplicado para todos los elementos del
+                                grid
+                                en su conjunto):
+                                <ul>
+                                    <li>
+                                        <code>justify-self</code>: posicionar item en su casilla en el eje principal
+                                        (horizontal)
+                                    </li>
+                                    <li>
+                                        <code>align-self</code>: posicionar item en su casilla en el eje transversal
+                                        (vertical)
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </section>
+            <hr>
+            <section>
+                <ul>
+                    <li>
+                        <h2>Grid para Layout (Nav, Main y Footer)</h2>
+                        <p>Tenemos dos maneras:</p>
+                        <ul>
+                            <li>
+                                Manera 1:
+                                <ul>
+                                    <li>
+                                        <h3>2 rows: Una para el main (auto) y otra para el footer (la altura que
+                                            queramos
+                                            darle, ej. 3.5rem).</h3>
+                                        <p>Añadimos padding-top al main con la altura de la nav, para que se desplace
+                                            hacia
+                                            abajo y empiece justo
+                                            después de la nav.</p>
+                                        <p>Al estar posicionada de forma fija, la nav no forma parte del <i>Document
+                                                Flow</i> y por eso no necesita su propia fila en el grid.</p>
+                                    </li>
+                                    <li>
+                                        <h3>height: 100% al body y al html</h3>
+                                        <p>Con esto, provocamos que la row cuya altura es auto ocupe todo el espacio
+                                            restante de la altura del footer y el padding-top establecido, cuya altura
+                                            es la
+                                            de la nav.</p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Manera 2 (más correcta):
+                                <ul>
+                                    <li>
+                                        <h3>height: 100% al body y al html</h3>
+                                    </li>
+                                    <li>
+                                        <h3>Agregar 3 filas e indicar a partir de qué vertice comienza el main y a
+                                            partir de
+                                            cuál el footer</h3>
+                                        <ul>
+                                            Podemos indicarlo mediante:
+                                            <li>
+                                                <h4><code>grid-template-rows al body y grid-row al elemento (main,
+                                                        footer,
+                                                        etc.)</code></h4> (por ejemplo)
+                                                <code>body { <br>
+                                                    margin: 0; <br>
+                                                    font-family: 'Montserrat', sans-serif; <br>
+                                                    display: grid;<br>
+                                                    <b>grid-template-rows: 2.5rem auto 8rem;</b><br>
+                                                    height: 100%;<br>
+                                                    }<br>
+
+                                                    main {<br>
+                                                    <b>grid-row: 2 / 3;</b><br>
+                                                    }<br>
+
+                                                    .main-footer {<br>
+                                                    <b>grid-row: 3 / 4;</b><br>
+                                                    }<br>
+                                                </code>
+                                            </li>
+                                            <li>
+                                                <h4>Nombrando las áreas y asignándolas <code>grid-template-rows al body
+                                                        y
+                                                        grid-area a cada elemento del layout</code> (al header/nav no,
+                                                    porque al tener <code>position: fixed</code> está fuera del Document
+                                                    Flow.) </h4>
+                                                <code>body { <br>
+                                                    margin: 0; <br>
+                                                    font-family: 'Montserrat', sans-serif; <br>
+                                                    display: grid;<br>
+                                                    grid-template-rows: 2.5rem auto 8rem;<br>
+                                                    <b> grid-template-areas: "header"<br>
+                                                        "main"<br>
+                                                        "footer";</b><br>
+                                                    height: 100%;<br>
+                                                    }<br>
+
+                                                    main {<br>
+                                                    /*grid-row: 2 / 3;*/<br>
+                                                    <b>grid-area: main;</b><br>
+                                                    }<br>
+
+                                                    .main-footer {<br>
+                                                    /*grid-row: 3 / 4;*/<br>
+                                                    <b>grid-area: footer;</b><br>
+                                                    }<br>
+                                                </code>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link">
+                    <a href="#">Support</a>
+                </li>
+                <li class="main-footer__link">
+                    <a href="#">Terms of Use</a>
                 </li>
             </ul>
-        </section>
-    </div>
+        </nav>
+    </footer>
 </body>
 
 </html>

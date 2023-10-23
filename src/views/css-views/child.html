@@ -7,16 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hijo</title>
     <link rel="stylesheet" href="/src/styles/child.css">
+    <link rel="stylesheet" href="/shared.css">
 </head>
 
 <body>
-    <h1 style="text-align: center;">Hijo</h1>
-    <div style="text-align: center; display: flex; justify-content: center;">
-        <section style="display: flex; align-items: center;">
-            <div>
-                <h1>Child (div > span)</h1>
-                <hr>
-            <div>
+    <header class="header">
+        <div class="logo"><a href="/">laBibliaFrontend</a></div>
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a href="/src/views/css-views/main.html">CSS</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/javascript-views/main.html">JavaScript</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/webpack/main.html">Webpack</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Child (div > span)</h1>
+        <section class="three-columns-grid">
+            <div class="column">
+                <img src="/src/assets/child.png" alt="code-example">
+            </div>
+            <div class="column">
                 <h2>Not applied</h2>
                 <span>CSS applied</span>
                 <p>Not applied</p>
@@ -25,21 +42,37 @@
                     <p>Not applied</p>
                 </article>
                 <span>CSS applied</span>
-                <span><p>CSS applied</p></span>
+                <span>
+                    <p>CSS applied</p>
+                </span>
             </div>
-            </div>
-            <div>
-                <img src="/src/assets/child.png" alt="code-example">
+            <div class="column bigger-font">
+                <code>Cada elemento que esté <b>dentro</b> (por eso se llama hijo) del indicado previamente recibirá los
+                    estilos aplicados. <br>
+                    El elemento tiene que ser hijo <b>directo</b> del indicado previamente, es decir, si el
+                    <code>span</code> está dentro de un <code>article</code> dentro del <code>div</code> no recibiría
+                    los estilos, puesto que su padre directo en este caso sería el article, aunque estuviera dentro del
+                    <code>div</code>. <br>
+                    La diferencia con el general es que el otro se basa en que los elementos sean hermanos (estar al
+                    mismo nivel) y aquí en estar dentro el uno del otro.
+                    Igualmente, si fuese h2 > span > p, recibirían los estilos todas las etiquetas <code>p</code> que
+                    estuvieran dentro de un <code>span</code> que a su vez estuviera dentro de un <code>h2</code>
+                </code>
             </div>
         </section>
-    </div>
-        <div style="text-align: center; display: flex; justify-content: center;">
-            <code style="border: 1px solid black; padding: 5px;">Cada elemento que esté <b>dentro</b> (por eso se llama hijo) del indicado previamente recibirá los estilos aplicados. <br>
-                El elemento tiene que ser hijo <b>directo</b> del indicado previamente, es decir, si el <code>span</code> está dentro de un <code>article</code> dentro del <code>div</code> no recibiría los estilos, puesto que su padre directo en este caso sería el article, aunque estuviera dentro del <code>div</code>. <br>
-                La diferencia con el general es que el otro se basa en que los elementos sean hermanos (estar al mismo nivel) y aquí en estar dentro el uno del otro.
-                Igualmente, si fuese h2 > span > p, recibirían los estilos todas las etiquetas <code>p</code> que estuvieran dentro de un <code>span</code> que a su vez estuviera dentro de un <code>h2</code>
-            </code>
-        </div>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link">
+                    <a href="#">Support</a>
+                </li>
+                <li class="main-footer__link">
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 
 </html>

@@ -6,26 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Combinators</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/shared.css">
 </head>
 
 <body>
-    <h1 style="text-align: center">Combinators</h1>
-    <section style="display: flex; align-items: center">
-        <ul>
-            <li>
-                <a href="/src/views/css-views/adjacent-sibling.html">Hermano adyacente</a>
-            </li>
-            <li>
-                <a href="/src/views/css-views/general-sibling.html">Hermano general</a>
-            </li>
-            <li>
-                <a href="/src/views/css-views/child.html">Hijo</a>
-            </li>
-            <li>
-                <a href="/src/views/css-views/descendant.html">Descendiente</a>
-            </li>
-        </ul>
-    </section>
+    <header class="header">
+        <div class="logo"><a href="/">laBibliaFrontend</a></div>
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a href="/src/views/css-views/main.html">CSS</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/javascript-views/main.html">JavaScript</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/webpack/main.html">Webpack</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Combinators</h1>
+        <section class="main-css">
+            <ul class="combinators__items">
+                <a class="main-css__item" href="/src/views/css-views/adjacent-sibling.html">Hermano adyacente</a>
+                <a class="main-css__item" href="/src/views/css-views/general-sibling.html">Hermano general</a>
+                <a class="main-css__item" href="/src/views/css-views/child.html">Hijo</a>
+                <a class="main-css__item" href="/src/views/css-views/descendant.html">Descendiente</a>
+            </ul>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link">
+                    <a href="#">Support</a>
+                </li>
+                <li class="main-footer__link">
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 
 </html>

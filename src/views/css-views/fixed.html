@@ -4,38 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/src/styles/fixed.css">
     <title>Position</title>
+    <link rel="stylesheet" href="/shared.css">
+    <link rel="stylesheet" href="/src/styles/fixed.css">
 </head>
 
 <body>
-    <div class="parent">
-        <div class="child-1">Navigation Bar</div>
-        <div class="child-2">Background Image</div>
-        <div class="child-3">Features</div>
-    </div>
-    <div>
-        <h2>Ejemplo ( <code>fixed</code> ) con la Navigation Bar</h2>
-        <p>Para colocarla arriba del todo y que ocupe todo el ancho, una forma sería mediante el siguiente código:</p>
-        <code>.child-1 { position: fixed; top: 0; left: 0; margin: 0; width: 100% }</code>
-        <p>De esta forma, iría "pegada" arriba del todo y a la izquierda y, como ha pasado a ser un elemento
-            <code>inline-block</code>, establecemos que su <code>width</code> sea el 100%.
-        </p>
-        <p>En este caso podemos aplicar <code>fixed</code> sin problema y que quede fijada, porque al hacer scroll no se
-            va a notar, ya que queremos que siempre esté anclada al mismo lugar (arriba del todo).</p>
-        <p><b>IMPORTANTE: </b>Si no está aplicado de manera general en el proyecto, habría que establecer la propiedad
-            <b><code style="border: 1px solid black; padding: 3px;">box-sizing: border-box;</code></b> para que no se
-            añadan al ancho otras propiedades (margin, etc.)
-            establecidas por defecto o aposta.
-        </p>
-        <p>Es decir, el código final sería este: <code>.child-1 { position: fixed; top: 0; left: 0; margin: 0; width:
-                100%; box-sizing: border-box; }</code></p> (comprobar inspeccionando el elemento).
-        <h2>Ejemplo ( <code>relative</code> )</h2>
-        <p>Inspeccionar el primer elemento por ej. y aplicarle <code>.child-1 { position: relative; top: 400px; }</code>
-        </p>
-        <p>Vemos como los siguientes <i>childs</i> no suben a ocupar su espacio, ya que con <code>relative</code> el
-            elemento posicionado <b>NO SE SALE</b> del <i>Document Flow</i></p>.
-    </div>
+    <header class="header">
+        <div class="logo"><a href="/">laBibliaFrontend</a></div>
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a href="/src/views/css-views/main.html">CSS</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/javascript-views/main.html">JavaScript</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/webpack/main.html">Webpack</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="parent">
+            <div class="child-1">Navigation Bar</div>
+            <div class="child-2">Background Image</div>
+            <div class="child-3">Features</div>
+        </div>
+        <div>
+            <h2>Ejemplo ( <code>fixed</code> ) con la Navigation Bar</h2>
+            <p>Para colocarla arriba del todo y que ocupe todo el ancho, una forma sería mediante el siguiente código:
+            </p>
+            <code>.child-1 { position: fixed; top: 0; left: 0; margin: 0; width: 100% }</code>
+            <p>De esta forma, iría "pegada" arriba del todo y a la izquierda y, como ha pasado a ser un elemento
+                <code>inline-block</code>, establecemos que su <code>width</code> sea el 100%.
+            </p>
+            <p>En este caso podemos aplicar <code>fixed</code> sin problema y que quede fijada, porque al hacer scroll
+                no se
+                va a notar, ya que queremos que siempre esté anclada al mismo lugar (arriba del todo).</p>
+            <p><b>IMPORTANTE: </b>Si no está aplicado de manera general en el proyecto, habría que establecer la
+                propiedad
+                <b><code style="border: 1px solid black; padding: 3px;">box-sizing: border-box;</code></b> para que no
+                se
+                añadan al ancho otras propiedades (margin, etc.)
+                establecidas por defecto o aposta.
+            </p>
+            <p>Es decir, el código final sería este: <code>.child-1 { position: fixed; top: 0; left: 0; margin: 0;
+                    width:
+                    100%; box-sizing: border-box; }</code></p> (comprobar inspeccionando el elemento).
+            <h2>Ejemplo ( <code>relative</code> )</h2>
+            <p>Inspeccionar el primer elemento por ej. y aplicarle <code>.child-1 { position: relative; top: 400px;
+                    }</code>
+            </p>
+            <p>Vemos como los siguientes <i>childs</i> no suben a ocupar su espacio, ya que con <code>relative</code> el
+                elemento posicionado <b>NO SE SALE</b> del <i>Document Flow</i></p>.
+        </div>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link">
+                    <a href="#">Support</a>
+                </li>
+                <li class="main-footer__link">
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 
 </html>

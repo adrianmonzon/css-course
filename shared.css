@@ -16,11 +16,21 @@ body {
                          "main"
                          "footer" ;
     height: 100%;
+    width: 100%;
 }
 
 main {
     /* grid-row: 2 / 3; */
     grid-area: main;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
 }
 
 a {
@@ -137,4 +147,20 @@ a {
         max-width: 25rem;
         vertical-align: top;
     }
+}
+
+.three-columns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem;
+    align-items: center;
+    gap: 1rem;
+}
+
+.column {
+    text-align: center;
+}
+
+.bigger-font {
+    font-size: 1rem;
 }

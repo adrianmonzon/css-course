@@ -1,3 +1,4 @@
+/* index.html styling */
 .background {
     background: url('/src/assets/code.png');
     height: 100%;
@@ -139,6 +140,19 @@
     font-weight: bold;
     color: white;
     font-size: 1.2rem;
+    align-content: center;
+}
+
+.page-section {
+    display: flex;
+}
+
+.page-section__side {
+    width: 50%;
+}
+
+.page-section__img {
+    width: 100%;
 }
 
 @media (min-width: 40rem) {
@@ -169,4 +183,34 @@
         max-width: 25rem;
         vertical-align: top;
     }
+}
+
+/* main.html styling */
+.main-css ul {
+    padding: 1rem;
+}
+
+.main-css__items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.main-css__item {
+    border: 1px solid #2ddf2d;
+    color: #424242;
+    padding: 2rem;
+    text-align: center;
+}
+
+.main-css__item:hover {
+    border: 1px solid #424242;
+    color: #2ddf2d;
+}
+
+/* combinators.html */
+.combinators__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
 }

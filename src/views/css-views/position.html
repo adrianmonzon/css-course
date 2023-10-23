@@ -7,172 +7,215 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Position</title>
     <link rel="stylesheet" href="/src/styles/position.css">
+    <link rel="stylesheet" href="/shared.css">
 </head>
 
 <body>
-    <h1 style="text-align: center">Position</h1>
-    <h2>Definición</h2>
-    <p>Es la propiedad que permite posicionar a los elementos en casi cualquier posición de la página.</p>
-    <h2>Premisas importantes</h2>
-    <ul>
-        <li>
-            <p>Por defecto, el valor es: <code>position: static;</code></p>
-        </li>
-        <li>
-            <p>Para poder posicionar mediantes las diferentes propiedades, hay que cambiar el valor de
-                <code>position</code> para
-                que <b>deje de ser <code>static</code></b></p>
-        </li>
-        <li>
-            <p>Una vez se aplica a <code>position</code> cualquiera de los valores <span
-                    style="border: 1px solid black; padding: 3px; width: auto;"><code>fixed</code> o
-                    <code>absolute</code></span>, el
-                elemento <b>deja de existir</b> en el <i>Document
-                    Flow</i> (pero sigue presente con su ancho reducido, pasando a ser un elemento de tipo
-                <b>inline-block</b> ) y los siguientes elementos ocupan su
-                espacio.
-            </p>
-        </li>
-        <li>
-            <p>El posicionamiento se puede aplicar tanto a elementos en línea como en bloque (por supuesto también
-                inline-block).</p>
-        </li>
-    </ul>
-    <h2>Puede tener los siguientes valores:</h2>
-    <ul>
-        <li>
-            <h3><code>static</code></h3>
-            <p>Es el valor que viene por defecto.</p>
-        </li>
-        <li>
-            <h3><code>fixed</code></h3>
-            <ul>
-                <li>
-                    <p>Una vez posicionado el elemento con este valor, su posición será <b>FIJA</b>, es decir, que al
-                        hacer
-                        scroll ni subirá ni bajará, siempre estará anclada en el mismo lugar.</p>
+    <header class="header">
+        <div class="logo"><a href="/">laBibliaFrontend</a></div>
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a href="/src/views/css-views/main.html">CSS</a>
                 </li>
-                <li>
-                    <p>
-                        El elemento pasa a ir de la mano con el <i>viewport</i> (toda la pantalla o lo que ocupa la
-                        ventana
-                        del navegador), es decir, más allá incluso de la tag <code>html</code> .<br>
-                        Al ponerle por ej. <code>top: 0;</code> y quitarle los márgenes al elemento ( <code>margin:
-                            0;</code> ) si los tuviera, se puede apreciar cómo el elemento se pega arriba del todo
-                        de la
-                        página (si
-                        pusiéramos <code>bottom: 0;</code> se pegaría a la parte más baja de la ventana o
-                        <i>viewport</i>).
-                    </p>
+                <li class="main-nav__item">
+                    <a href="/src/views/javascript-views/main.html">JavaScript</a>
                 </li>
-                <li>
-                    <a href="/src/views/fixed.html">Ver ejemplo</a>
+                <li class="main-nav__item">
+                    <a href="/src/views/webpack/main.html">Webpack</a>
                 </li>
             </ul>
-        </li>
-        <li>
-            <h3><code>absolute</code></h3>
-            <ul>
-                <li>
-                    <p>Si el elemento que la recibe <b>NO</b> está dentro de otro elemento que tenga también la
-                        propiedad
-                        <code>position</code> aplicada, entonces su referencia es el elemento (o tag) <code>html</code>
-                        (comporobarlo
-                        aplicándole: <code>.element { position: absolute; top: 0; left: 0 }</code> (si el elemento a
-                        posicionar
-                        tiene
-                        márgenes aplicados o por defecto, entonces tamibén añadir <code> margin: 0</code><br>
-                        Veremos que queda pegado al elemento <code>html</code> inspeccionándolo.
-                    </p>
-                </li>
-                <li>
-                    <p>Si el elemento que la recibe <b>SÍ</b> está dentro de otro elemento que tenga también la
-                        propiedad
-                        <code>position</code> aplicada (y sea <code>relative</code>), entonces su referencia es este
-                        otro
-                        elemento (comprobarlo añadiéndole el código de arriba al elemento que queramos posicionar y
-                        <code>position: relative;</code> al elemento donde queramos que se meta). <br>
-                        Veremos que ahora, al aplicarle <code>top, bottom, right o left</code> las distancias van a ser
-                        respecto al elemento donde esté metido (es decir, que tenga <code>position: relative</code>,
-                        <b>ya no será</b> el elemento o tag <code>html</code>.</p>
-                </li>
-                <li>Ver ejemplo <a href="/index.html">aquí</a> inspeccionando 'PURO CSS!'
-                    (<i>.product-overview__badge</i>) y la <code>section</code>
-                    (<i>.product-overview</i>) en la que se encuentra.</li>
-            </ul>
-        </li>
-        <li>
-            <h3><code>relative</code></h3>
-            <ul>
-                <li>
-                    <p>Al aplicar este valor, los elementos <b>SÍ SIGUEN</b> estando presentes en el <i>Document
-                            Flow</i>, a
-                        diferencia de <code>fixed</code> y <code>absolute</code>.
-                    </p>
-                    <p>
-                        Por tanto, si posicionamos un elemento con <code>relative</code> donde sea, los siguientes
-                        elementos <b>no subirán</b> a ocupar su espacio, ya que sigue estando presente en el <i>Document
-                            Flow</i>.
-                    </p>
-                    <a href="/src/views/fixed.html">Ver ejemplo</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <h3><code>sticky</code></h3>
-            <ul>
-                <li>
-                    <p>El elemento está fijo en el viewport hasta que haciendo scroll se llega al final del contenido de
-                        su
-                        padre.</p>
-                </li>
-                <li>
-                    <p>Hay que añadirle siempre <code>top, bottom, right o left</code> para que tenga efecto.</p>
-                </li>
-                <li>
-                    <p>Inspeccionar y probar funcionamiento <a href="/src/views/fixed.html">aquí</a>.</p>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <p><b>Propiedad relacionada importante: <code style="border: 1px solid black; padding: 3px;">z-index</code></b><br>
+        </nav>
+    </header>
+    <main>
+        <h1>Position</h1>
+        <h2>Definición</h2>
+        <p>Es la propiedad que permite posicionar a los elementos en casi cualquier posición de la página.</p>
+        <h2>Premisas importantes</h2>
         <ul>
-            <li>Su valor por defecto es auto o 0</li>
-            <li><b>SOLO AFECTA</b> a elementos que tengan la propiedad <code>position</code> <b>distinta</b> de
-                <code>static</code> (valor por defecto) y a elementos <b>flexbox</b></li>
-            <li>Si queremos que el elemento que reciba la propiedad esté por <b>encima</b> de otro, usar un número
-                <b>mayor
-                    que 0</b></li>
-            <li>Si queremos que el elemento que reciba la propiedad esté <b>detrás</b> de otro, usar un número <b>menor
-                    que 0</b>
+            <li>
+                <p>Por defecto, el valor es: <code>position: static;</code></p>
             </li>
             <li>
-                Cuando usamos <code>position: fixed;</code> los elementos que vienen a continuación ocupan el espacio
-                que antes ocupaba el elemento que ha recibido dicha propiedad, ya que desaparece del <i>Document
-                    Flow</i>.<br>
-                Por ello, si por ejemplo el elemento que ha recibido <code>position: fixed;</code> es un div cuyo fondo
-                es una imagen, o una imagen en sí, aparecerá sobre los elementos siguientes, que acaban de "subir" y
-                ocupar su espacio, pero los "tapa" dicha imagen. Por tanto, para poder mandar este div o imagen detrás
-                de los elementos y así poder visualizarlos, quedando la imagen de fondo, usaríamos <code><b>z-index:
-                        -1;</b></code>
+                <p>Para poder posicionar mediantes las diferentes propiedades, hay que cambiar el valor de
+                    <code>position</code> para
+                    que <b>deje de ser <code>static</code></b></p>
             </li>
             <li>
-                Si un elemento <i>x</i> con <code>position: fixed;</code> está situado en el <code>html</code> pòr
-                debajo del elemento <i>y</i> (con también <code>position: fixed;</code>), el elemento <i>x</i> será el
-                que "suba"
-                a ocupar el espacio que ha dejado <i>y</i> al salirse del <i>Document Flow</i> y aparecerá <b>por
-                    delante</b>.
+                <p>Una vez se aplica a <code>position</code> cualquiera de los valores <span
+                        style="border: 1px solid black; padding: 3px; width: auto;"><code>fixed</code> o
+                        <code>absolute</code></span>, el
+                    elemento <b>deja de existir</b> en el <i>Document
+                        Flow</i> (pero sigue presente con su ancho reducido, pasando a ser un elemento de tipo
+                    <b>inline-block</b> ) y los siguientes elementos ocupan su
+                    espacio.
+                </p>
             </li>
             <li>
-                Cuando dos elementos tengan <code>position: fixed;</code> y también <code>z-index</code> cada uno,
-                estará por delante el elemento cuyo valor de <code>z-index</code> sea mayor. Ejemplo: <br>
-                Si <i>x</i> tiene <code>z-index: 5</code> e <i>y</i> tiene <code>z-index: 6</code>, <i>y</i> aparecerá
-                por delante. <br>
-                Al revés, si <i>x</i> tiene <code>z-index: -2</code> e <i>y</i> <code>z-index: -3</code>, <i>y</i>
-                aparecerá por detrás de <i>x</i>.
+                <p>El posicionamiento se puede aplicar tanto a elementos en línea como en bloque (por supuesto también
+                    inline-block).</p>
             </li>
         </ul>
-    </p>
+        <h2>Puede tener los siguientes valores:</h2>
+        <ul>
+            <li>
+                <h3><code>static</code></h3>
+                <p>Es el valor que viene por defecto.</p>
+            </li>
+            <li>
+                <h3><code>fixed</code></h3>
+                <ul>
+                    <li>
+                        <p>Una vez posicionado el elemento con este valor, su posición será <b>FIJA</b>, es decir, que
+                            al
+                            hacer
+                            scroll ni subirá ni bajará, siempre estará anclada en el mismo lugar.</p>
+                    </li>
+                    <li>
+                        <p>
+                            El elemento pasa a ir de la mano con el <i>viewport</i> (toda la pantalla o lo que ocupa la
+                            ventana
+                            del navegador), es decir, más allá incluso de la tag <code>html</code> .<br>
+                            Al ponerle por ej. <code>top: 0;</code> y quitarle los márgenes al elemento ( <code>margin:
+                                0;</code> ) si los tuviera, se puede apreciar cómo el elemento se pega arriba del todo
+                            de la
+                            página (si
+                            pusiéramos <code>bottom: 0;</code> se pegaría a la parte más baja de la ventana o
+                            <i>viewport</i>).
+                        </p>
+                    </li>
+                    <li>
+                        <a href="/src/views/css-views/fixed.html">Ver ejemplo</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3><code>absolute</code></h3>
+                <ul>
+                    <li>
+                        <p>Si el elemento que la recibe <b>NO</b> está dentro de otro elemento que tenga también la
+                            propiedad
+                            <code>position</code> aplicada, entonces su referencia es el elemento (o tag)
+                            <code>html</code>
+                            (comporobarlo
+                            aplicándole: <code>.element { position: absolute; top: 0; left: 0 }</code> (si el elemento a
+                            posicionar
+                            tiene
+                            márgenes aplicados o por defecto, entonces tamibén añadir <code> margin: 0</code><br>
+                            Veremos que queda pegado al elemento <code>html</code> inspeccionándolo.
+                        </p>
+                    </li>
+                    <li>
+                        <p>Si el elemento que la recibe <b>SÍ</b> está dentro de otro elemento que tenga también la
+                            propiedad
+                            <code>position</code> aplicada (y sea <code>relative</code>), entonces su referencia es este
+                            otro
+                            elemento (comprobarlo añadiéndole el código de arriba al elemento que queramos posicionar y
+                            <code>position: relative;</code> al elemento donde queramos que se meta). <br>
+                            Veremos que ahora, al aplicarle <code>top, bottom, right o left</code> las distancias van a
+                            ser
+                            respecto al elemento donde esté metido (es decir, que tenga <code>position: relative</code>,
+                            <b>ya no será</b> el elemento o tag <code>html</code>.</p>
+                    </li>
+                    <li>Ver ejemplo <a href="/index.html">aquí</a> inspeccionando 'PURO CSS!'
+                        (<i>.product-overview__badge</i>) y la <code>section</code>
+                        (<i>.product-overview</i>) en la que se encuentra.</li>
+                </ul>
+            </li>
+            <li>
+                <h3><code>relative</code></h3>
+                <ul>
+                    <li>
+                        <p>Al aplicar este valor, los elementos <b>SÍ SIGUEN</b> estando presentes en el <i>Document
+                                Flow</i>, a
+                            diferencia de <code>fixed</code> y <code>absolute</code>.
+                        </p>
+                        <p>
+                            Por tanto, si posicionamos un elemento con <code>relative</code> donde sea, los siguientes
+                            elementos <b>no subirán</b> a ocupar su espacio, ya que sigue estando presente en el
+                            <i>Document
+                                Flow</i>.
+                        </p>
+                        <a href="/src/views/css-views/fixed.html">Ver ejemplo</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3><code>sticky</code></h3>
+                <ul>
+                    <li>
+                        <p>El elemento está fijo en el viewport hasta que haciendo scroll se llega al final del
+                            contenido de
+                            su
+                            padre.</p>
+                    </li>
+                    <li>
+                        <p>Hay que añadirle siempre <code>top, bottom, right o left</code> para que tenga efecto.</p>
+                    </li>
+                    <li>
+                        <p>Inspeccionar y probar funcionamiento <a href="/src/views/css-views/fixed.html">aquí</a>.</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p><b>Propiedad relacionada importante: <code
+                    style="border: 1px solid black; padding: 3px;">z-index</code></b><br>
+            <ul>
+                <li>Su valor por defecto es auto o 0</li>
+                <li><b>SOLO AFECTA</b> a elementos que tengan la propiedad <code>position</code> <b>distinta</b> de
+                    <code>static</code> (valor por defecto) y a elementos <b>flexbox</b></li>
+                <li>Si queremos que el elemento que reciba la propiedad esté por <b>encima</b> de otro, usar un número
+                    <b>mayor
+                        que 0</b></li>
+                <li>Si queremos que el elemento que reciba la propiedad esté <b>detrás</b> de otro, usar un número
+                    <b>menor
+                        que 0</b>
+                </li>
+                <li>
+                    Cuando usamos <code>position: fixed;</code> los elementos que vienen a continuación ocupan el
+                    espacio
+                    que antes ocupaba el elemento que ha recibido dicha propiedad, ya que desaparece del <i>Document
+                        Flow</i>.<br>
+                    Por ello, si por ejemplo el elemento que ha recibido <code>position: fixed;</code> es un div cuyo
+                    fondo
+                    es una imagen, o una imagen en sí, aparecerá sobre los elementos siguientes, que acaban de "subir" y
+                    ocupar su espacio, pero los "tapa" dicha imagen. Por tanto, para poder mandar este div o imagen
+                    detrás
+                    de los elementos y así poder visualizarlos, quedando la imagen de fondo, usaríamos <code><b>z-index:
+                            -1;</b></code>
+                </li>
+                <li>
+                    Si un elemento <i>x</i> con <code>position: fixed;</code> está situado en el <code>html</code> pòr
+                    debajo del elemento <i>y</i> (con también <code>position: fixed;</code>), el elemento <i>x</i> será
+                    el
+                    que "suba"
+                    a ocupar el espacio que ha dejado <i>y</i> al salirse del <i>Document Flow</i> y aparecerá <b>por
+                        delante</b>.
+                </li>
+                <li>
+                    Cuando dos elementos tengan <code>position: fixed;</code> y también <code>z-index</code> cada uno,
+                    estará por delante el elemento cuyo valor de <code>z-index</code> sea mayor. Ejemplo: <br>
+                    Si <i>x</i> tiene <code>z-index: 5</code> e <i>y</i> tiene <code>z-index: 6</code>, <i>y</i>
+                    aparecerá
+                    por delante. <br>
+                    Al revés, si <i>x</i> tiene <code>z-index: -2</code> e <i>y</i> <code>z-index: -3</code>, <i>y</i>
+                    aparecerá por detrás de <i>x</i>.
+                </li>
+            </ul>
+        </p>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link">
+                    <a href="#">Support</a>
+                </li>
+                <li class="main-footer__link">
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 
 </html>
