@@ -13,14 +13,17 @@
     <section style="display: flex; align-items: center">
         <ul>
             <li>Def.: Librería para manejar el estado global (el local es de los propios componentes)</li>
-            <li>Para datos que se usan en varios componentes (ej. carrito de compra, autenticación de usuario, etc.)</li>
+            <li>Para datos que se usan en varios componentes (ej. carrito de compra, autenticación de usuario, etc.)
+            </li>
             <li>Pasos para su uso:
                 <ul>
                     <li>
                         <i>import {createStore} from vuex</i> en App.js
                     </li>
                     <li>
-                        creamos una constante llamada <i>store</i> que sea igual a la función createStore(), la cual contiene un objeto con el método state() dentro, que a su vez retorna otro objeto con las propiedades/datos del estado global:
+                        creamos una constante llamada <i>store</i> que sea igual a la función createStore(), la cual
+                        contiene un objeto con el método state() dentro, que a su vez retorna otro objeto con las
+                        propiedades/datos del estado global:
                     </li>
                     <li>
                         <code>
@@ -34,7 +37,269 @@
                         </code>
                     </li>
                     <li><i>app.use(store)</i> (la constante que hemos creado arriba) en App.js</li>
-                    <li>En el componente correspondiente, hacemos <i>$store.state.counter</i> para acceder en este caso al counter de nuestro store arriba</li>
+                    <li>En el componente correspondiente, si hacemos <i>$store.state.counter</i> accederíamos al counter
+                        de nuestro store arriba
+                        <ul>
+                            <li>
+                                podríamos crear un método dentro del compo que fuese <code>addOne() {
+                                    this.$store.state.counter++;
+                                    }</code> y asignárselo a un button para ir ampliando el counter
+                            </li>
+                            <li>Del mismo modo, se podría hacer eso pero en vez de sumar 1, sumar 2 en otro componente
+                            </li>
+                            <li><b>Ambas opciones serían incorrectas</b> --> no es correcto manipular el state del store
+                                en los componentes. Para ello utilizamos <b>mutations</b>.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        mutations
+                        <ul>
+                            <li>
+                                Def.: Contienen la lógica para modificar/mutar el state
+                            </li>
+                            <li>
+                                Deben ser <b>síncronas</b> --> no deben contener promesas/código asíncrono, porque:
+                                <ul>
+                                    <li>
+                                        tienen que ejecutarse rápido para manterner el state actualizado
+                                    </li>
+                                    <li>
+                                        si contiene código asíncrono, puede tardar hasta que llegue la respuesta, y ese
+                                        tiempo de retraso puede provocar que quien invoque a la mutation utilice el
+                                        estado anterior (sin tiempo de haber sido mutado) y no el más reciente
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Ej.: <code>
+                                    const store = createStore({<br>
+                                    state () {<br>
+                                    return {<br>
+                                    counter: 0 <br>
+                                    } <br>
+                                    },<br>
+                                    mutations: {<br>
+                                    increment(state) {<br>
+                                    state.counter++;<br>
+                                    } <br>
+                                    } <br>
+                                    })
+                                </code>
+                            </li>
+                            <li>En el compo correspondiente --> para utilizar la mutation de arriba, creamos un método
+                                que la llame (utilizando <b>commit</b>):
+                                <ul>
+                                    <li>
+                                        <code>
+                                            addOne() { this.$store.commit('increment') }
+                                        </code>
+                                    </li>
+                                    <li>
+                                        le pasamos la mutation como string (se tiene que llamar igual)
+                                    </li>
+                                    De esta forma, la lógica para mutar el store se
+                                    queda dentro del propio store y no en los
+                                    componentes
+
+                                </ul>
+                            </li>
+                            <li>
+                                Se le pueden pasar argumentos, por ejemplo:
+                                <ul>
+                                    <li>
+                                        <code>
+                                            mutations: {<br>
+                                            increase(state, payload) {<br>
+                                            state.counter = state.counter + payload.value; (aquí payload sería un
+                                            objeto, pero puede ser cualquier tipo de dato)<br>
+                                            } <br>
+                                            } <br>
+                                        </code>
+                                        (Se puede llamar payload o lo que sea, al igual que la propiedad value se podría
+                                        haber llamado diferente)
+                                    </li>
+                                    <li>
+                                        En el compo --> <code>
+                                            addTen() { this.$store.commit('increase', { value: 10 } } (como el segundo
+                                            parámetro era un objeto con una propiedad <i>value</i>, le pasamos eso con
+                                            el valor que queramos)
+                                        </code>
+                                    </li>
+                                    <li>
+                                        Otra opción: se puede pasar un objeto a commit:
+                                        <ul>
+                                            <li>
+                                                <code>
+                                                    addTen() { this.$store.commit({ <br>
+                                                    type: 'increase', (nombre de la mutation) <br>
+                                                    value: 10 (parámetro que hemos creado en la mutation)
+                                                    }) }
+                                                </code>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        getters
+                        <ul>
+                            <li>
+                                Def.: Son, por así decirlo, las computadas del store
+                            </li>
+                            <li>
+                                Tienen que <b>retornar</b> siempre un valor
+                            </li>
+                            <li>
+                                Como se utilizan para retornar/mostrar una información, deben ser llamados en los
+                                componentes <b>dentro de las computadas</b> (a diferencia de las mutations/actions, que
+                                se llaman en los methods)
+                            </li>
+                            <li>
+                                Al acceder a ellos en los componentes, no hay que utilizar paréntesis. Ej:
+                                <ul>
+                                    <li>
+                                        <code>
+                                            computed: { <br>
+                                            example() { <br>
+                                            return this.$store.getters.finalCounter; <br>
+                                            }
+                                            }
+                                        </code>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Siempre van a tener como argumento:
+                                <ul>
+                                    <li>
+                                        Como mínimo el <b>state</b>
+                                    </li>
+                                    <li>
+                                        Como posible segunda opción <b>otro getter</b>
+                                    </li>
+                                    <li>
+                                        Ej. con ambas opciones:
+                                        <ul>
+                                            <li>
+                                                <code>
+                                                    mutations: {<br>
+                                                    ... <br>
+                                                    }, <br>
+                                                    <b>getters</b>: {<br>
+                                                    finalCounter(state) {<br>
+                                                    return state.counter * 3;<br>
+                                                    }, <br>
+                                                    secondCounter(state, getters) {<br>
+                                                    const previousCounter = getters.finalCounter;<br>
+                                                    if (previousCounter < 0) { <br>
+                                                        return 0; <br>
+                                                        } <br>
+                                                        else { <br>
+                                                        return previousCounter; <br>
+                                                        } <br>
+                                                        } <br>
+                                                        } <br>
+                                                </code>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Como se puede apreciar, en el <i>secondCounter</i> usamos getter pero no el
+                                        state, por ello los
+                                        argumentos serían así:
+                                        <ul>
+                                            <li>
+                                                <code>
+                                                    getters: {<br>
+                                                    finalCounter(_, getters) { <br>
+                                                    const previousCounter = getters.finalCounter;<br>
+                                                    if (previousCounter < 0) { <br>
+                                                        return 0; <br>
+                                                        } <br>
+                                                        else { <br>
+                                                        return previousCounter; <br>
+                                                        } <br>
+                                                        } <br>
+                                                        } <br>
+                                                </code>
+                                                (El guión bajo es una convención usada para indicar que necesitamos
+                                                ocupar el espacio del primer argumento para poder utilzar el segundo)
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        actions
+                        <ul>
+                            <li>
+                                Def.: intermediador entre las mutations y los componentes
+                            </li>
+                            <li>
+                                Tienen como argumento:
+                                <ul>
+                                    <li>
+                                        su <b>context</b>
+                                    </li>
+                                    <li>
+                                        segundo opcional: un payload (del tipo que sea)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Sí pueden contener código <b>asíncrono</b>
+                            </li>
+                            <li>
+                                Por tanto, pueden ejecutar una mutation por ej cuando se resuelva una promesa
+                            </li>
+                            <li>
+                                Por ello, se suele poner el mismo nombre a la action que a la mutation a la que invoca
+                                (ejemplo más abajo)
+                            </li>
+                            <li>
+                                Cómo declararlas en el store:
+                                <ul>
+                                    <li>
+                                        <code>
+                                            mutations: {<br>
+                                            increase(state, payload) {<br>
+                                            state.counter = state.counter + payload.value; (aquí payload sería un
+                                            objeto, pero puede ser cualquier tipo de dato)<br>
+                                            } <br>
+                                            }, <br>
+                                            actions: { <br>
+                                            increase(context) {<br>
+                                            context.commit('increase') (<i>aquí commiteamos la mutation
+                                                declarada arriba</i>)
+                                            } <br>
+                                            }, <br>
+                                            getters: { <br>
+                                            ... <br>
+                                            }
+                                        </code>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Cómo llamarlas en el componente:
+                                <ul>
+                                    <li>
+                                        <code>
+                                            methods: { <br>
+                                            addTen() { <br>
+                                            this.$store.<b>dispatch</b>('increase') <br>
+                                            } <br>
+                                            }
+                                        </code>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
         </ul>
