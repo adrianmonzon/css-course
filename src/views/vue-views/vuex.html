@@ -86,7 +86,10 @@
                                     })
                                 </code>
                             </li>
-                            <li>En el compo correspondiente --> para utilizar la mutation de arriba, creamos un método
+                            <li>
+                                No se deben utilizar directamente en los componentes, sino en las actions (dentro del store)
+                            </li>
+                            <li>Para utilizar la mutation de arriba, creamos un método
                                 que la llame (utilizando <b>commit</b>):
                                 <ul>
                                     <li>
@@ -104,7 +107,7 @@
                                 </ul>
                             </li>
                             <li>
-                                Se le pueden pasar argumentos, por ejemplo:
+                                Se le pueden pasar parámetros (además del state), por ejemplo:
                                 <ul>
                                     <li>
                                         <code>
@@ -119,7 +122,7 @@
                                         haber llamado diferente)
                                     </li>
                                     <li>
-                                        En el compo --> <code>
+                                        En su invocación --> <code>
                                             addTen() { this.$store.commit('increase', { value: 10 } } (como el segundo
                                             parámetro era un objeto con una propiedad <i>value</i>, le pasamos eso con
                                             el valor que queramos)
@@ -229,6 +232,35 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        mapGetters
+                                        <ul>
+                                            <li>
+                                                En el compo, se pueden traer "de golpe" todos los getters (o los que se quiera usar) y utilizarlos llamándolos por su nombre
+                                            </li>
+                                            <li>
+                                                Ej. en el compo --> siempre dentro de <b>computed:</b>
+                                                <ul>
+                                                    <li>
+                                                        Opción 1 (directamente por su nombre original):
+                                                        <code>
+                                                            ...mapGetters(['finalCounter', 'whatever'])
+                                                        </code>
+                                                    </li>
+                                                    <li>
+                                                        Opción 2 (renombrándolos, mediante un objeto):
+                                                        <code>
+                                                            ...mapGetters({
+                                                                finCount: 'finalCounter',
+                                                                what: 'whatever'
+                                                            })
+                                                        </code>
+                                                    </li>
+                                                </ul>
+                                                Con las <b>actions</b> se puede hacer lo mismo (mapActions()), pero dentro de <b>methods</b>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -295,6 +327,86 @@
                                             } <br>
                                             }
                                         </code>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        modules
+                        <ul>
+                            <li>
+                                Def.: Bloques en los cuales se puede separar en store para tenerlo más ordenado.
+                            </li>
+                            <li>
+                                El store (con la función createStore()) contiene al mismo nivel del state, mutations, etc. el objeto <b>modules</b> (va antes que el state). Ej.:
+                                <ul>
+                                    <li>
+                                        <code>
+                                            const counterModule = { state() { return {counter: 0} }, mutations: {...}, etc }
+                                        </code>
+                                    </li>
+                                    <li>
+                                        Ahora, en el store, "importamos" ese módulo:
+                                        <ul>
+                                            <li>
+                                                <code>
+                                                    const store = createStore({ modules: { <b>numbers: counterModule</b> }, state() { return {...} }, mutations: {...}, etc. })
+                                                </code>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Este objeto contiene los módulos que estén fuera del store, que a su vez tienen su propio state local, mutations, getters y actions, por tanto:
+                                <ul>
+                                    <li>
+                                        Dentro de un módulo sólo podemos/debemos acceder al state del propio módulo
+                                    </li>
+                                    <li>
+                                        Si lo necesitásemos, podemos añadir lo siguiente (ejemplo de un getter):
+                                        <ul>
+                                            <li>
+                                                <code>
+                                                     testAuth(state, getters, <b>rootState</b>, <b>rootGetters</b>) {
+                                                        return rootState.isLoggedIn;
+                                                     }
+                                                </code> <br>
+                                                De esta forma, desde un módulo X, estaríamos accediendo al módulo de autenticación
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Namespacing
+                                <ul>
+                                    <li>
+                                        Manera de separar totalmente un módulo de otro (estén o no dentro de un mismo archivo, por ej. store.js) para que no haya confusiones si se utilizan mismos nombres para actions, getters, etc.
+                                    </li>
+                                    <li>
+                                        Antes del state, se pondría --> <code> <b>namespaced: true,</b> </code>
+                                    </li>
+                                    <li>
+                                        Al hacer esto, habría que tener en cuenta la palabra con la que, en el store, hemos llamado al módulo importado (<i>numbers</i> en el ejemplo de arriba):
+                                        <ul>
+                                            <li>
+                                                En un componente, si queremos acceder a un getter, ya no sería con el <i>this.$store.getters.whatever</i>, sino:
+                                                <ul>
+                                                    <li>
+                                                        <code>this.$store.getters['numbers/whatever']</code>
+                                                    </li>
+                                                    <li>
+                                                        Si utilizamos <i>mapGetters()</i>, sería -->
+                                                        <code>...mapGetters('numbers', ['whatever'])</code>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                Dentro del store, también habría que poner delante <code>'numbers/loQueSea'</code> (en este caso) para acceder a cosas del otro módulo que hemos restringido con <i>namespaced</i>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </li>
