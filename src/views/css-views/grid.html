@@ -12,7 +12,7 @@
 
 <body>
     <header class="header">
-        <div class="logo"><a href="/">laBibliaFrontend</a></div>
+        <div class="logo"><a href="/">desarrolloFront</a></div>
         <nav class="main-nav">
             <ul class="main-nav__items">
                 <li class="main-nav__item">
@@ -142,9 +142,23 @@
                                         Responsive:
                                         <ul>
                                             <li>
+                                                Ajustar automáticamente las columnas para que ocupen lo que la pantalla
+                                                requiera:
+                                                <ul>
+                                                    <li>
+                                                        <code>auto-fill</code>: hace que las columnas ocupen los huecos/tamaño que les corresponden, quedando vacíos los huecos que no estén rellenos (ej. resultados de una búsqueda) <br>
+                                                        Ej. <code>grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));</code>
+                                                    </li>
+                                                    <li>
+                                                        <code>auto-fit</code>: para que las columnas ocupen el total del ancho del contenedor, sin dejar huecos <br>
+                                                        Ej. <code>grid-template-columns: repeat(auto-fit, 10rem);</code>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
                                                 Se pueden añadir/quitar filas y/o columnas mediante <i>media-queries</i>
                                                 y
-                                                que el grid cambie según el tamaño de la pantalla establecido.
+                                                que el grid cambie según el tamaño de la pantalla establecido, pero es mejor la opción de arriba.
                                             </li>
                                         </ul>
                                     </li>
@@ -177,27 +191,6 @@
                                                     row/column
                                                     dense;</code> así, pero <b>no es recomendable</b>, sólo tenerlo en
                                                 cuenta.
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        Ajustar automáticamente las columnas para que ocupen lo que la pantalla
-                                        requiera:
-                                        <ul>
-                                            <li>
-                                                <code>auto-fill</code>: hace que las columnas se ajusten automáticamente
-                                                para así rellenar siempre el ancho de la pantalla. <br>
-                                                Ej. <code>grid-template-columns: repeat(auto-fill, 10rem);</code>
-                                            </li>
-                                            <li>
-                                                <code>auto-fit</code>: cuando no hay muchos elementos y no ocupan todo
-                                                el
-                                                ancho (por tanto, no lo rellenan del todo), utilizamos <i>auto-fit</i>
-                                                para
-                                                que las columnas existentes se coloquen en el centro o de la mejor
-                                                manera
-                                                posible. <br>
-                                                Ej. <code>grid-template-columns: repeat(auto-fit, 10rem);</code>
                                             </li>
                                         </ul>
                                     </li>

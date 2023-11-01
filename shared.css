@@ -11,7 +11,8 @@ body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     display: grid;
-    grid-template-rows: 2.5rem auto 8rem;
+    grid-template-rows: 2.5rem auto 4rem;
+    /* grid-template-rows: repeat(auto-fit, minmax(100px, 1fr)); */
     grid-template-areas: "header"
                          "main"
                          "footer" ;
@@ -28,10 +29,10 @@ h1 {
     text-align: center;
 }
 
-ul {
+/* ul {
     padding: 0;
     list-style-type: none;
-}
+} */
 
 a {
     text-decoration: none;
