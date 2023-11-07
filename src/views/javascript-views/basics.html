@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Básicos</title>
+</head>
+
+<body>
+    <h1>Básicos</h1>
+    <section style="display: flex; align-items: center">
+        <ul>
+            <li>
+                Lenguaje <b>híbrido</b> entre interpretado (se ejecuta línea a línea, es decir, si hay un error en la
+                línea 100, las 99 anteriores se han ejecutado correctamente) y compilado (se analiza en su totalidad y
+                ese error bloquearía la compilación)
+                <ul>
+                    <li>
+                        Las versiones anteriores a ES6 sí eran 100% interpretadas
+                    </li>
+                    <li>
+                        Desde ES6, existen compiladores en tiempo real que realizan una primera compilación del código y
+                        luego sí van línea a línea interpretándolo
+                    </li>
+                </ul>
+            <li>
+                Necesita un motor web para ejecutarse
+                <ul>
+                    <li>
+                        Salvo que se descargue ese motor web y se embeba en una herramienta (así funciona NodeJS - motor
+                        v8)
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Contexto global vs Contexto local
+                <ul>
+                    <li>
+                        <code>var example = 'Hi' <br> function change() { <br> example = 'You' <br> console.log(example)
+                            <br> } <br>change() // 'You'<br>console.log(example) // 'You'</code>
+                        <p>Tanto la función invocada como el console.log() se refieren a una variable del <b>contexto
+                                global</b>
+                        </p>
+                    </li>
+                    <li>
+                        <code>var example = 'Hi' <br> function change() { <br> var example = 'You' <br>
+                            console.log(example)
+                            <br> } <br>change() // 'You'<br>console.log(example) // 'Hi'</code>
+                        <p>La función invocada se refiere a una variable del <b>contexto
+                                local</b>, porque ha sido declarada <b>dentro</b> de la función (añadiendo el
+                            <code><b>var =</b> ...</code>)
+                        </p>
+                        <p>El console.log() se refiere a la variable <code>example</code> declarada en el <b>contexto
+                                global</b></p>
+                    </li>
+                    <li>
+                        <code>function change() { <br> var example = 'You' <br>
+                            console.log(example)
+                            <br> } <br>change() // 'You'<br>console.log(example) // <i>ReferenceError</i></code>
+                        <p>La función invocada se refiere a una variable del <b>contexto
+                                local</b>, exactamente igual que en el ejemplo anterior.
+                        </p>
+                        <p>El console.log() se refiere a la variable <code>example</code> declarada en el <b>contexto
+                                global</b>, pero como <b>no hay ninguna variable declarada con ese nombre</b>, tenemos
+                            un error de referencia: <b>example is not defined</b></p>
+                    </li>
+                    <li>
+                        Una característica de <b>var</b> es que se permite el <b><i>hoisting</i> o alzamiento</b>:
+                        "subir" las variables para que aparezcan declaradas antes de que sea inicializada (asignada a un
+                        valor):
+                        <ul>
+                            <li>
+                                <code>
+                                    console.log(example) // Undefined <br>
+                                    var example = 'Hi'
+                                </code>
+                                <p>
+                                    El <i>hoisting</i> de <b>var</b> provoca que la variable <code>example</code>, aun
+                                    estándo declarada debajo del console.log(), "suba" y se reconozca como una variable
+                                    declarada pero sin valor asignado (undefined), el cual recibe en la línea siguiente.
+                                </p>
+                            </li>
+                            <li>
+                                <code>
+                                    console.log(example) // Undefined <br>
+                                    if (false) { <br>
+                                        var example = 'Hi' <br>
+                                    }
+                                </code>
+                                <p>En este caso, <code>example</code> también es undefined, porque de nuevo el <i>hoisting</i> alza la variable declarada dentro del <code>if</code> y se reconoce como declarada pero no inicializada.</p>
+                                <p><b>IMPORTANTE:</b> Esto nos indica que en los <code>if, for, switch, while</code>, etc. <b>NO SE CREA OTRO CONTEXTO DE EJECUCIÓN</b>, como sí pasa con las funciones, tal y como vimos en los ejemplos superiores, donde tenemos <i>ReferenceError</i>, ya que no se reconoce ninguna variable declarada con ese nombre.</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</body>
+
+</html>
