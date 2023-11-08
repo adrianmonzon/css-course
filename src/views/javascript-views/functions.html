@@ -43,6 +43,19 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <b>Hoisting:</b> Al igual que sucede con las <code>var</code> (ver <a href="./basics.html">aquí</a>), las funciones declaradas en JS se "elevan" en el contexto global y por eso <b>pueden ser invocadas antes de su propia declaración</b>. Ej.: 
+                <ul>
+                    <li>
+                        <code>
+                            saludar() <br>
+                            function saludar() { <br>
+                                console.log('Hola') <br>
+                            } <br>
+                        </code>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </section>
 </body>
