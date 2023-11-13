@@ -162,13 +162,84 @@
                         null: existe pero no tiene valor/su valor es nulo
                     </li>
                     <li>
-                        Curiosidad:
+                        Curiosidades:
                         <ul>
                             <li>
-                                null == undefined // true --> porque ninguno tiene valor
+                                <ul>
+                                    <li>
+                                        null == undefined // true --> porque ninguno tiene valor
+                                    </li>
+                                    <li>
+                                        null === undefined // false --> porque uno no tiene porque es nulo, y otro no tiene porque aún no se le ha asignado
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                null === undefined // false --> porque uno no tiene porque es nulo, y otro no tiene porque aún no se le ha asignado
+                                <ul>
+                                    <li>
+                                        typeof undefined --> 'undefined'
+                                    </li>
+                                    <li>
+                                        typeof null --> 'object' <b>Esto es un bug de JS</b>, debería ser <b>'null'</b>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Asignación por valor vs Asignación por referencia
+                <ul>
+                    <li>
+                        Por valor
+                        <ul>
+                            <li>
+                                Tipos simples (String, Number, etc.)
+                            </li>
+                            <li>
+                                Ej.: <br>
+                                <code>
+                                    let string1 = 'Hi'; <br>
+                                    let string2 = string1; // string2 adquiere el valor de string1, pero no la referencia de string1 <br>
+                                    string1 = 'Bye'; <br>
+                                    console.log(string2); // 'Hi'
+                                </code>
+                                <p>Como <code>string2</code> no adquiere la referencia de <code>string1</code> (ocupan diferentes posiciones en memoria), no "sabe" cuándo ha actualizado su valor y por tanto se queda solo con el primer valor asignado.</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Por referencia
+                        <ul>
+                            <li>
+                                Para objetos
+                            </li>
+                            <li>
+                                Ej.: <br>
+                                <code>
+                                    let obj = {a: 1, b: 2}; <br>
+                                    let objRef = obj; <br>
+                                    obj.a = 4; <br>
+                                    console.log(objRef.a); // 4
+                                </code>
+                                <p><code>objRef</code> es una copia de obj (ocupan el mismo espacio en memoria), por tanto, al tener la misma referencia, si se actualiza el valor de uno se actualiza también el del otro.</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                == vs ===
+                <ul>
+                    <li>
+                        == : compara el valor (ej. 2 == '2' // true)
+                    </li>
+                    <li>
+                        === : compara el valor y el tipo de dato (ej. 2 === '2' // false)
+                        <ul>
+                            <li>
+                                esta opción es más recomendable, al ser más exacta
                             </li>
                         </ul>
                     </li>

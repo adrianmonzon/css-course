@@ -13,13 +13,47 @@
     <section style="display: flex; align-items: center">
         <ul>
             <li>
+                Son <b>objetos</b>
+            </li>
+            <li>
                 Argumentos vs Parámetros:
                 <ul>
                     <li>
                         Parámetros: variables que se establecen entre paréntesis al CREAR la función. (ej. sayHi(name);)
+                        <ul>
+                            <li>
+                                una función puede tener asignado un parámetro por defecto por si no recibe dicho argumento. Ej.:
+                            </li>
+                            <li>
+                                <code>
+                                    function example(number = 3, secondNumber) { ... }
+                                </code>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         Argumentos: valor concreto entre paréntesis al LLAMAR a la función. (ej. sayHi('Juan');)
+                        <ul>
+                            <li>
+                                Al ser invocada la función, puede no recibir todos los argumentos (el valor de los ausentes sería <i>undefined</i>)
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Una función puede no recibir parámetros en su declaración y sí argumentos en su invocación</p>
+                <ul>
+                    <li>
+                        mediante el array <code>arguments</code>, podemos asignar cada argumento añadido en la invocación a la posición que queramos. Ej.: 
+                    </li>
+                    <li>
+                        <code>
+                            function example() { <br>
+                                console.log(arguments[0]); // 1 (lo que saldría al invocar a la función abajo)<br>
+                                console.log(arguments[1]); // 2<br>
+                                console.log(arguments[2]); // 3<br>
+                            } <br>
+                            example(1, 2, 3)
+                        </code>
                     </li>
                 </ul>
             </li>
