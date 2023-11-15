@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promesas</title>
+</head>
+
+<body>
+    <h1>Promesas</h1>
+    <section style="display: flex; align-items: center">
+        <ul>
+            <li>
+                Son similares a los callbacks (funciones que se pasan como argumentos a otras fucniones), pero simplifican el proceso <b>asíncrono</b>
+            </li>
+            <li>
+                Estados:
+                <ul>
+                    <li>
+                        in execution
+                    </li>
+                    <li>
+                        resolved
+                    </li>
+                    <li>
+                        rejected
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Declaración:
+                <ul>
+                    <li>
+                        <code>
+                            let example = new Promise(function(resolve, reject)) { <br>
+                                setTimeout(() => { <br>
+                                    if (whatever) { <br>
+                                        resolve('OK') <br>
+                                    } else { <br>
+                                        reject('NOT OK') <br>
+                                    } <br>
+                                }, 1000) <br>
+                             }
+                        </code>
+                    </li>
+                    <li>
+                        <code>resolve</code> y <code>reject</code> son <b>callbacks</b>, es decir, hacen referencia a funciones
+                    </li>
+                    <li>
+                        Por tanto, hay que crear una función para cada caso. Ej.: 
+                        <ul>
+                            <li>
+                                para el parámetro <code>resolve</code>, creamos una función llamada callbackResolve que sustituirá al parámetro <code>resolve</code> y hará lo que se le indique con su <i>value</i>
+                                <ul>
+                                    <li>
+                                        Ej.: 
+                                        <code>
+                                            const callbackResolve = (value) => console.log('Result:', value); // Result: OK
+                                        </code>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                para el parámetro <code>reject</code>, creamos una función llamada callbackReject que hará lo propio con el <i>value</i> de <code>reject</code>
+                                <ul>
+                                    <li>
+                                        Ej.:
+                                        <code>
+                                            const callbackResolve = (value) => console.log('Result:', value); // Result: NOT OK
+                                        </code>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul> 
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Invocación:
+                <ul>
+                    <li>
+                        <code>
+                            example.then(callbackResolve, callbackReject)
+                        </code>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</body>
+
+</html>
