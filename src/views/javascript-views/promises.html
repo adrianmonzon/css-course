@@ -19,7 +19,7 @@
                 Estados:
                 <ul>
                     <li>
-                        in execution
+                        pending
                     </li>
                     <li>
                         resolved
@@ -84,6 +84,38 @@
                         <code>
                             example.then(callbackResolve, callbackReject)
                         </code>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Asincronía 
+                <ul>
+                    <li>
+                        Def.: código que tarda más en ejecutarse y afecta a la secuencialidad del resto
+                    </li>
+                    <li>
+                        Las promesas son asíncronas, ya que se tarda cierto tiempo hasta que se devuelve lo que se ha requerido
+                    </li>
+                    <li>
+                        Cuando utilizamos una función para retornar una promesa, tenemos que indicar que esa función va a ser asíncrona y que tenemos que esperar hasta obtener la respuesta para seguir ejecutando el resto del código:
+                        <ul>
+                            <li>
+                                <code>
+                                    <b>async</b> function example() { <br>
+                                        const url = "http://..."; <br>
+                                        const res = <b>await</b> fetch(url); // Esperamos a la llamada a la api <br>
+                                        const resJson = <b>await</b> res.json(); // Esperamos a que el método json la convierta para poder usar keys y values<br>
+                                        return resJson.name (por ej, si fuera solo un objeto con un campo <i>name</i>) <br>
+                                    }
+                                </code>
+                            </li>
+                            <li>
+                                añadir <code>try catch</code> para la gestión en caso de error
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        También se puede manejar mediante <code>then</code> y <code>catch</code>, pero es más flexible la manera anterior
                     </li>
                 </ul>
             </li>

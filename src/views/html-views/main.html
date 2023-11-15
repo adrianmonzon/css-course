@@ -20,6 +20,20 @@
                 </li>
             </ul>
         </li>
+        <li>
+            Importar css: etiqueta <code>link rel="stylesheet" type="text/css" href="styles.css"></code> <b>en el head</b>
+        </li>
+        <li>
+            Importar script: etiqueta <code>script scr="script.js"></code>:
+            <ul>
+                <li>
+                    justo antes de que cierre la etiqueta <code>body</code>
+                </li>
+                <li>
+                    si ese JS es crítico y tiene que ejecutarse antes de cargar el <code>body</code>, entonces irá en el <code>head</code>
+                </li>
+            </ul>
+        </li>
     </ul>
 </body>
 </html>
