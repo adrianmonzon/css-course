@@ -30,8 +30,17 @@
                 </ul>
             </li>
             <li>
-                Al añadir una función a un eventListener sin pasarle argumentos -> el <b>evento</b> será el argumento
-                por defecto otorgado por el navegador.
+                Los callbacks de los eventos pueden recibir un argumento con información sobre el propio evento:
+                <ul>
+                    <li>
+                        <code>
+                            button.addEventListener('click', function(e) { <br>
+                                console.log(e); <br>
+                                e.stopPropagation(); <br>
+                            })
+                        </code>
+                    </li>
+                </ul>
             </li>
             <li>
                 event.target: retorna el elemento donde el elemento ha ocurrido.
@@ -57,10 +66,10 @@
                 </ul>
             </li>
             <li>
-                stopPropagation()
+                stopPropagation() - para evitar el <i><b>Bubbling</b></i>
                 <ul>
                     <li>
-                        Evita que se ejecuten eventos asignados a elementos padres
+                        Evita que se propaguen eventos a elementos superiores del DOM que tengan también un eventListener asociado
                     </li>
                     <li>
                         Ejemplo: un botón dentro de un div, le añadimos al evento <i>stopPropagation()</i> para que solo

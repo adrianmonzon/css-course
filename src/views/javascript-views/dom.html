@@ -11,6 +11,175 @@
 <body>
     <h1>DOM</h1>
     <section style="display: flex; align-items: center">
+        <article>
+            <ul>
+                <li>
+                    Def.
+                </li>
+                <li>
+                    Cómo se "prepara"
+                    <ul>
+                        <li>
+                            Tras procesar el HTML (de forma síncrona, secuencial. Ej.: si hay un script en el head, la
+                            carga del contenido del html se detiene hasta que ese script se haya cargado (por eso se
+                            recomienda meterlo abajo del todo en el body))
+                        </li>
+                        <li>
+                            De forma asíncrona
+                            <ul>
+                                <li>
+                                    script <b>defer</b>
+                                    <ul>
+                                        <li>
+                                            Si hay un script dentro del head (o donde sea) con el atributo
+                                            <code>defer</code>, dicho script se cargará <b>después</b> de que se haya
+                                            cargado todo el html
+                                        </li>
+                                        <li>
+                                            evita que la carga de un script pesado bloquee el contenido
+                                            "visual" de la página
+                                        </li>
+                                        <li>
+                                            antes del evento <i>DOMContentLoaded</i>, que espera a que el script haya
+                                            cargado para ejecutarse
+                                        </li>
+                                        <li>
+                                            Aquí no habría problema con el DOM, ya que los scripts con este atributo se
+                                            cargarían después de que se haya cargado todo el contenido del html
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    script <b>async</b>
+                                    <ul>
+                                        <li>
+                                            El script se carga en segundo plano, <b>a la vez</b> que se carga el html
+                                        </li>
+                                        <li>
+                                            <i>DOMContentLoaded</i> no espera a que el script haya cargado
+                                        </li>
+                                        <li>
+                                            No es recomendable usar el DOM en este tipo de casos donde se usa
+                                            <code>async</code> en los scripts, ya que si carga antes el script que un
+                                            elemento del html que por ej. tenga una clase a la que estamos referenciando
+                                            en el script para manipular el DOM, se bloquearía el contenido de la página
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Tras procesar algo (imágenes, scripts, etc.) mediante el evento window.onload
+                        </li>
+                        <li>
+
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Tras acceder a un elemento del DOM, mediante por ej <code>querySelectorAll()</code>, podemos
+                    manipularlo mediante:
+                    <ul>
+                        <li>
+                            innerHtml: Contenido entre las etiquetas de apertura y cierre de un elemento. Siempre será de tipo <b>string</b>
+                        </li>
+                        <li>
+                            innerText
+                        </li>
+                        <li>
+                            appendChild(elementoY): añade a un elemento X un elemento hijo (elementoY en este ejemplo)
+                        </li>
+                        <li>
+                            style
+                            <ul>
+                                ej. element.style.backgroundColor = 'red'
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Navegación
+                    <ul>
+                        <li>
+                            parentNode
+                        </li>
+                        <li>
+                            childNodes (lista de elementos hijos)
+                        </li>
+                        <li>
+                            Hermanos
+                            <ul>
+                                <li>
+                                    previousSibling
+                                </li>
+                                <li>
+                                    nextSibling
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Añadir un elemeno:
+                            <ul>
+                                <li>
+                                    createElement() - crea un elemento huérfano (sin parentNode), por lo que no sería
+                                    visible
+                                    <ul>
+                                        <li>
+                                            habría que hacerle <b>hijo</b> (no valdría sibling) de otro elemento:
+                                            <ul>
+                                                <li>
+                                                    añadiéndole a una lista <code>childNodes</code> de otro elemento
+                                                </li>
+                                                <li>
+                                                    appendChild<br>
+                                                    <code>
+                                                        element.appendChild(elementoHuérfano)
+                                                    </code>
+                                                </li>
+                                                <li>
+                                                    insertAdjacentElement<br>
+                                                    <code>
+                                                        element.insertAdjacentElement('afterend', elementoHuérfano)
+                                                    </code>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Eliminar elemento:
+                            <ul>
+                                <li>
+                                    remove()
+                                </li>
+                                <li>
+                                    removeChild(element)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Nodos del DOM
+                    <ul>
+                        <li>
+                            Document
+                        </li>
+                        <li>
+                            Element 
+                        </li>
+                        <li>
+                            Text
+                        </li>
+                        <li>
+                            Attribute
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
         <img style="width: 100%;" src="/src/assets/DOM.png" alt="DOM-schema">
     </section>
 </body>
