@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Básicos</title>
+</head>
+
+<body>
+    <h1>Básicos</h1>
+    <section style="display: flex; align-items: center">
+        <ul>
+            <li>
+                Def.:
+                <ul>
+                    <li>
+                        Librería desarrollada por un ingeniero de Facebook
+                    </li>
+                    <li>
+                        Muy utilizada para SPA's (aplicaciones con un solo HTML y varias vistas)
+                    </li>
+                    <li>
+                        Orientado a componentes
+                        <ul>
+                            <li>
+                                Antiguamente: componentes de clase
+                            </li>
+                            <li>
+                                Actualmente: componentes <b>funcionales</b>
+                                <ul>
+                                    <li>
+                                        Todos tienen <code>export</code> delante
+                                    </li>
+                                    <li>
+                                        Importación: <br>
+                                        <code>
+                                            import { ExampleComponent } from './Example'
+                                        </code>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        DOM Virtual: React guarda una copia del DOM auténtico (el que facilita el navegador)
+                        <ul>
+                            <li>
+                                Cuando es necesario --> comunica (mueve) los cambios al DOM auténtico (<b>reconciliación</b>)
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Cómo renderiza React
+                <ul>
+                    <li>
+                        DOM virtual y método <code>render</code>, el cual contiene el component principal de la aplicación (App.js). Ej.: en index.js<br>
+                        <code>
+                            const root = ReactDom.createRoot(document.getElementById('root')); // Crea la raíz en el HTML principal, que tiene el id <i>root</i><br>
+                            root.render( <br>
+                                < React.StrictMode> // StrictMode se utiliza para visualizar más información (warnings, errores, etc.) en la consola del navegador<br>
+                                    < App /> <br>
+                                < /React.StrictMode>, // Hasta aquí (primer argumento) sería lo que queremos renderizar (compo principal <i>App</i>)<br>
+                                document.getElementById('root') // Identificador del HTML principal donde se va a renderizar el compo principal<br>
+                            )
+                        </code>
+                    </li>
+                    <li>
+                        React permanece atento (suscrito) a los cambios dentro de los componentes
+                        <ul>
+                            <li>
+                                Al detectar cambios --> re-rerenderiza (no recarga) la página (comunicación con el DOM del navegador)
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Cómo crear proyecto de React
+                <ul>
+                    <li>
+                        <code>
+                            npx create-react-app example-name
+                        </code>
+                    </li>
+                    <li>
+                        cd example-name --> npm start
+                    </li>
+                </ul>
+            </li>
+            <li>
+                JSX
+                <ul>
+                    <li>
+                        Extensión de la sintaxis de JavaScript que se utiliza sólo en React
+                    </li>
+                    <li>
+                        Permite crear <b>elementos</b>: mezcla de HTML y JavaScript
+                        <ul>
+                            <li>
+                                Siempre tienen que estar compuestos por un único bloque (se suele utilizar <i>fragment</i>)
+                            </li>
+                            <li>
+                                Para utilizar JS (por ej. la lógica desarrollada en un propio componente) en un elemento --> ponerlo entre llaves: { <code>example()</code> }
+                            </li>
+                            <li>
+                                Se utiliza <b><code>className</code></b> en lugar de <code>class</code>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        props 
+                        <ul>
+                            <li>
+                                <code>
+                                    export const Example = (props) => < div>{props.edad}</ div>
+                                </code>
+                                <code>
+                                    export const Example = ({edad}) => < div>{edad}</ div>
+                                </code>
+                            </li>
+                            <li>
+                                En el compo:
+                                <ul>
+                                    <li>
+                                        <code>
+                                            < Example edad="20" />
+                                        </code>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</body>
+
+</html>
