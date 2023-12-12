@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hooks</title>
+</head>
+
+<body>
+    <h1>Hooks</h1>
+    <section style="display: flex; align-items: center">
+        <ul>
+            <li>
+                Características
+                <ul>
+                    <li>
+                        Def.: Permiten "enganchar" <b>componentes funcionales</b> con otras características de React o
+                        desarrolladas por nosotros mismos
+                    </li>
+                    <li>
+                        Se deben llamar dentro de los propios componentes funcionales (NO crear archivo tipo utils.js
+                        para
+                        meterlos ahí)
+                    </li>
+                    <li>
+                        Comienzan por la palabra <code>use</code>
+                    </li>
+                    <li>
+                        Se ejecutan dos veces (probarlo con console.logs) debido al StrictMode de React en index.js (< React.StrictMode>< /React.StrictMode>) al crear un proyecto de React, el cual sirve para identificar posibles efectos secundarios o situaciones de las que no hayamos sido conscientes (en general, no solo para los hooks)
+                    </li>
+                </ul>
+            </li>
+            <li>
+                useState()
+                <ul>
+                    Características
+                    <li>
+                        Definimos una propiedad del estado del componente funcional y la función que puede modificar su
+                        valor
+                        <ul>
+                            <li>
+                                Dicha función es <b>asíncrona</b>, por lo que no es seguro utilizar justo después el valor modificado, ya que puede que aún no se haya actualizado
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        useState() como argumento tiene el valor inicial de la propiedad definida
+                    </li>
+                    <li>
+                        Ej. <code>const [clicks, setClicks] = useState(0)</code>
+                    </li>
+                </ul>
+            <li>
+                useEffect()
+                <ul>
+                    Características
+                    <li>
+                        Efectos que se producirán cuando el componente se monte
+                    </li>
+                    <li>
+                        Primer argumento: callback que se ejecutará cuando el hook se invoque
+                    </li>
+                    <li>
+                        Segundo argumento: array de dependencias
+                        <ul>
+                            <li>
+                                Según su contenido, dependerá cuántas veces se ejecutará el efecto
+                                <ul>
+                                    <li>
+                                        Ej. <code>
+                                            useEffect(() => { <br>
+                                                console.log("efecto ligado a click local"); <br>
+                                            }, [clicks]) // Si se produce un cambio en <i>clicks</i> (propiedad declarada con el hook useState), se ejecuta el efecto
+                                        </code>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Si esta vacío, el efecto se ejecutará solo una vez (cuando el componente se monte)
+                            </li>
+                            <li>
+                                Si NO hay array de dependencia, el efecto se ejecutará tanto tras el montaje del componente como cuando cambie cualquier dependencia (propiedad)
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                useNavigate()
+                <ul>
+                    <li>
+                        Para navegar a otras rutas
+                    </li>
+                    <li>
+                        <code>
+                            const navigate = useNavigate() <br>
+                            JSX --> button onClick={ () => navigate("/lo-que-sea")}>Ir a lo-que-sea // Mejor utilizar el componente Link to="/example" de react-router-dom
+                        </code>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                useContext()
+                <ul>
+                    <li>
+                        Def.: Para poder utilizar información no local desde los componentes funcionales
+                    </li>
+                    <li>
+                        Cómo se usa 
+                        <ul>
+                            <li>
+                                Crear componente Contexto que contenga
+                                <code>
+                                    import React from 'react'; <br>
+                                    export const GeoContext = React.createContext();
+                                </code>
+                            </li>
+                            <li>
+                                Lo importamos en el App.js y:
+                                <ul>
+                                    <li>
+                                        Creamos un useState con la variable o propiedad globalClicks y la función de modificación setGlobalClicks <br>
+                                        <code>
+                                            const [globalClicks, setGlobalClicks] = useState(0);
+                                        </code>
+                                    </li>
+                                    <li>
+                                        Creamos una función que tenga como callback la función de modificación del punto anterior: <br>
+                                        <code>
+                                            let updateClicks = () => setGlobalClicks(globalClicks + 1);
+                                        </code>
+                                    </li>
+                                    <li>
+                                        En la renderización de componentes añadimos: <br>
+                                        <code>
+                                            < GeoContext.Provider value="{{ globalClicks, updateClicks }}">
+                                                < GeometricRouter />
+                                            < /GeoContext.Provider>
+                                        </code>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Lo llamamos en el compo que queramos mediante <code>const {globalClicks, updateClicks} = useContext(GeoContext);</code>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                useParams()
+                <ul>
+                    <li>
+                        En la definición de las rutas en el Router, si queremos que un path param (los que van justo después de /, no confundir con los query params, que van después de ?) sea dinámico lo definimos así: <br>
+                        <code>
+                            /cuadrado/:id
+                        </code>
+                    </li>
+                    <li>
+                        Para utilizar ese param en un componente, creamos mediante desestructuración un objeto con ese mismo nombre: <br>
+                        <code>
+                            const { id } = useParams();
+                        </code>
+                    </li>
+                    <li>
+                        Ya podemos utilizarlo en la parte de JSX y tendrá el mismo valor que el introducido en la url sustituyendo el :id <br>
+                        <code>
+                            return < div >Cuadrado {id}< /div>
+                        </code>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                useLocation()
+                <ul>
+                    <li>
+                        Para los query params (también se puede utilizar para los path params)
+                    </li>
+                    <li>
+                        Cómo obtenerlos:
+                        <ul>
+                            <li>
+                                <code>
+                                    const location = useLocation(); <br> (hacer un console.log de location ayuda a ver la info que podemos usar)
+                                    const queryParams = new URLSearchParams(location.search); <br>
+                                    const paramValue = queryParams.get("param"); // Ese "param" es el nombre que le quiera dar al query param (/ej?param=hola), devuelve: hola
+                                </code>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Custom hook (creado por nosotros)
+                <li>
+                    Función que puede utilizar JS puro u otros hooks
+                </li>
+                <li>
+                    No devuelve jsx, ya que en ese caso sería un componente funcional
+                </li>
+            </li>
+            </li>
+        </ul>
+    </section>
+</body>
+
+</html>

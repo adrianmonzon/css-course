@@ -136,6 +136,61 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                React Router 
+                <ul>
+                    <li>
+                        Librería externa a React (hecha por Remix) que permite el enrutamiento dinámico
+                    </li>
+                    <li>
+                        Instalación 
+                        <ul>
+                            <li>
+                                npm i react-router react-router-dom
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Atributos de las rutas (< Route path="/" element="{< Home />}" />)
+                        <ul>
+                            <li>
+                                caseSensitive : tiene en cuenta las mayúsculas/minúsculas (por defecto es caseInsensitive)
+                            </li>
+                            <li>
+                                Ya no existe el atributo <code>exact</code>, ahora todas lo son por defecto
+                            <ul>
+                                <li>
+                                    Ej. Si tenemos definida una ruta localhost:3000/c1/ y buscamos en el navegador
+                                    localhost:3000/c1/algo, en la versión anterior de React Router nos llevaba a
+                                    localhost:3000/c1 (por defecto <b>no eran exactas</b>)
+                                </li>
+                                <li>
+                                    En React Router 6, las rutas por defecto llevan el atributo <code>exact</code> y, por
+                                    tanto, no encontraría dicha ruta (localhost:3000/c1/algo)
+                                </li>
+                                <li>
+                                    Añadiendo un asterisco después de la barra (ej. .../c1/*), sí que se reconocería la ruta .../c1/lo-que-sea
+                                </li>
+                            </ul>
+                            </li>
+                            <li>
+                                La última ruta (al menos en la versión anterior era la ruta definida abajo del todo) debe tener path="*", que significa que para cualquier ruta que no coincida con alguna de las descritas anteriormente, redirija a esta última (por ej. 404 not found)
+                            </li>
+                            <li>
+                                Rutas dinámicas
+                                <ul>
+                                    <li>
+                                        /questions/:questionsId
+                                    </li>
+                                    <li>
+                                        mediante hook <code>useParams()</code>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </section>
 </body>
