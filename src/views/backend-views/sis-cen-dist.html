@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistemas centralizados y distribuidos</title>
+    <link rel="stylesheet" href="/src/styles/display.css" />
+    <link rel="stylesheet" href="/shared.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo"><a href="/">desarrolloFront</a></div>
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a href="/src/views/css-views/main.html">CSS</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/javascript-views/main.html">JavaScript</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/webpack/main.html">Webpack</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Sistemas centralizados y distribuidos</h1>
+        <section>
+            <ul>
+                <li>
+                    Sistema centralizado ("monolito")
+                    <ul>
+                        <li>
+                            Todo el contenido está en una misma ubicación/distribución
+                        </li>
+                        <li>
+                            No es una mala opción, como se suele creer
+                            <ul>
+                                Casos aplicables:
+                                <li>
+                                    Ej.: aplicaciones de escritorio (Word, Photoshop, etc.)
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Desventajas
+                            <ul>
+                                <li>
+                                    Cualquier cambio (por ej. de funcionalidad) afecta a todas las capas
+                                </li>
+                                <li>
+                                    No es posible un escalado horizontal (aumentar nº servidores que atienden a la aplicación), sí vertical (aumentar recursos del servidor, como RAM, etc.)
+                                    <ul>
+                                        <li>
+                                            Al estar todo en un único sistema, no se pueden repartir las solicitudes en varios servidores
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Puntos únicos de fallo: un sólo fallo puede hacer que se caiga todo el programa
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Modelo-Vista-Controlador 
+                            <ul>
+                                <li>
+                                    Modelo:
+                                    <ul>
+                                        <li>
+                                            Datos que maneja la aplicación
+                                        </li>
+                                        <li>
+                                            MongoDB, ElasticSearch, etc.
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Vista:
+                                    <ul>
+                                        <li>
+                                            Capa con la que interactúa el usuario
+                                        </li>
+                                        <li>
+                                            Presenta la información del modelo, a través del controlador, al usuario
+                                        </li>
+                                        <li>
+                                            HTML, CSS, JS, archivos (pdf)
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Controlador:
+                                    <ul>
+                                        <li>
+                                            Solicita información al modelo y la traslada a la vista
+                                        </li>
+                                        <li>
+                                            En ocasiones se dice que también realiza lógica de negocio, pero teóricamente actúa solo como <i>dispatcher</i> o intermediador
+                                        </li>
+                                        <li>
+                                            Sí que se encarga de la gestión de roles (quién puede acceder a qué información)
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Sistema distribuido
+                    <ul>
+                        <li>
+                            Las diferentes capas de la aplicación (front, back, etc.) están separadas físicamente y conectadas a través de la red (pública (internet) o privada (subred concreta))
+                        </li>
+                        <li>
+                            Comunicación -> paso de mensajes
+                            <ul>
+                                <li>
+                                    SOAP: no tan usado ya
+                                </li>
+                                <li>
+                                    REST: comunicación síncrona
+                                </li>
+                                <li>
+                                    Colas / Topics: comunicación asíncrona
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Ventajas
+                            <ul>
+                                <li>
+                                    Concurrencia (varios procesos dentro de una máquina se producen a la vez y compiten
+                                    por los recursos del sistema operativo) real / paralelismo
+                                    <ul>
+                                        <li>
+                                            Al haber diferentes máquinas, no hay competencia por los recursos y los hilos de ejecución son paralelos entre las máquinas
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Escalabilidad vertical y horizontal
+                                </li>
+                                <li>
+                                    Independencia de hardware
+                                    <ul>
+                                        <li>
+                                            Diferentes partes del sistema pueden estar alojados en diferentes hardwares y conectarse mediante REST, colas, etc.
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Patrones
+                            <ul>
+                                <li>
+                                    Cliente - Servidor
+                                    <ul>
+                                        <li>
+                                            Dos nodos
+                                            <ul>
+                                                <li>
+                                                    Cliente
+                                                </li>
+                                                <li>
+                                                    Servidor
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Se comunican a través de 
+                                            <ul>
+                                                <li>
+                                                    Servicios web 
+                                                </li>
+                                                <li>
+                                                    APIs REST
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Síncrono
+                                            <li>
+                                                Cliente hace petición y espera respuesta del servidor
+                                            </li>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Editor - Suscriptor
+                                    <ul>
+                                        <li>
+                                            N máquinas (ordenadores/servidores) editoras -> mandan mensajes
+                                        </li>
+                                        <li>
+                                            N máquinas suscriptoras -> reciben mensajes (se suscriben a un <b>topic</b> de un editor o a un topic de varios editores)
+                                        </li>
+                                        <li>
+                                            Asíncrono -> el editor manda el mensaje y "se olvida", no espera a que los sucriptores reciban el mensaje (no sabe ni quiénes son los suscriptores)
+                                        </li>
+                                        <li>
+                                            Ejemplos:
+                                            <ul>
+                                                <li>
+                                                    Twitter
+                                                </li>
+                                                <li>
+                                                    Foro de Unir
+                                                </li>
+                                                <li>
+                                                    Newsletters
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Microservicios
+                                    <ul>
+                                        <li>
+                                            Def.:
+                                            <ul>
+                                                <li>
+                                                    Servicio especializado en resolver un problema concreto
+                                                </li>
+                                                <li>
+                                                    Es independiente del resto de componentes del sistema distribuido
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Tienen total autonomía -> No afectan al resto de microservicios
+                                        </li>
+                                        <li>
+                                            Expone su API para que otros micros se integren con él
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link">
+                    <a href="#">Support</a>
+                </li>
+                <li class="main-footer__link">
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>

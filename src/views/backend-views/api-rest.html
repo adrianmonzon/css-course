@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Rest</title>
+    <link rel="stylesheet" href="/src/styles/display.css" />
+    <link rel="stylesheet" href="/shared.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo"><a href="/">desarrolloFront</a></div>
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a href="/src/views/css-views/main.html">CSS</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/javascript-views/main.html">JavaScript</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/webpack/main.html">Webpack</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>API Rest</h1>
+        <section>
+            <ul>
+                Def.:
+                <ul>
+                    <li>
+                        Estilo de arquitectura de software para diseñar APIs
+                    </li>
+                    <li>
+                        Opción más utilizada a día de hoy para interconectar sistemas mediante HTTP
+                        <ul>
+                            Métodos:
+                            <li>
+                                GET
+                                <ul>
+                                    <li>
+                                        <b>seguro</b> (no realiza modificaciones en el estado de ningún recurso)
+                                    </li>
+                                    <li>
+                                        <b>idempotente</b> (múltiples llamadas no modifican el estado de los recursos)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                POST
+                                <ul>
+                                    <li>
+                                        no seguro (realiza modificaciones en el estado)
+                                    </li>
+                                    <li>
+                                        no idempotente (múltiples llamadas modifican el estado de los recursos)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                PUT (modificar todo el contenido de un recurso. Ej.: <code>{age, name, email}</code>)
+                                <ul>
+                                    <li>
+                                        no seguro: realiza modificaciones en el estado
+                                    </li>
+                                    <li>
+                                        idempotente: múltiples llamadas no modifican el estado de los recursos, ya que
+                                        se modifica el contenido en la primera llamada pero en las demás el cambio ya se
+                                        habría producido y el contenido sería el mismo que en las llamadas anteriores
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                PATCH (modificaciones parciales de un recurso. Ej.: <code>{age: 26}</code>)
+                                <ul>
+                                    <li>
+                                        no seguro: realiza modificaciones en el estado del recurso (cambia el valor de <i>age</i> en este caso)
+                                    </li>
+                                    <li>
+                                        no idempotente: múltiples llamadas modifican el estado de los recursos, ya que no se puede asegurar que no se alteren otras cosas tras esa modificación parcial (ver documentación de HTTP)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                DELETE
+                                <ul>
+                                    <li>
+                                        no seguro: realiza modificaciones en el estado, eliminando algo que antes existía
+                                    </li>
+                                    <li>
+                                        idempotente: múltiples llamadas no modifican el estado de los recursos, ya que una vez se ha borrado el elemento, por más que se haga la llamada no va a alterar el recurso (se obtendría un 404 tras la llamada)
+                                    </li>
+                                </ul>
+                            </li>
+                            En una uri (endpoint), <b>no es correcto</b> que aparezcan verbos (ej. /pedidos/actualizarPedido/{id}), ya que el verbo (en este caso "actualizar") ya lo establece el método HTTP (aquí sería PUT o PATCH).
+                        </ul>
+                    </li>
+                </ul>
+                Características:
+                <ul>
+                    <li>
+                        No hay estado --> En cada petición hay que, por ejemplo, autenticarse (mediante tokens, por
+                        ej.), no se guarda la info en un estado
+                    </li>
+                    <li>
+                        Es un estilo arquitectónico
+                        <ul>
+                            <li>
+                                Una empresa puede no adoptar al 100% el estilo y modificar cosas, por ej.:
+                                <ul>
+                                    <li>
+                                        modificaciones parciales con PUT
+                                    </li>
+                                    <li>
+                                        hacer un GET con un body
+                                    </li>
+                                    <li>
+                                        etc.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Si se cumple todo bien, se denomina <b>RESTFUL</b>
+                            </li>
+                            <li>
+                                Entradas y salidas de las llamadas a la API: codificadas mediante JSON
+                            </li>
+                            <li>
+                                Existen códigos de error
+                                <ul>
+                                    <li>
+                                        Informativos (100-199)
+                                    </li>
+                                    <li>
+                                        Respuesta OK (200-299)
+                                    </li>
+                                    <li>
+                                        Redirección (300-399)
+                                    </li>
+                                    <li>
+                                        Errores por parte del cliente (400-499)
+                                    </li>
+                                    <li>
+                                        Errores por parte del servidor (500-599)
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Cómo consumir API Rest
+                        <ul>
+                            <li>
+                                De forma programática
+                            </li>
+                            <li>
+                                Manualmente (ej. Postman)
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </ul>
+
+        </section>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link">
+                    <a href="#">Support</a>
+                </li>
+                <li class="main-footer__link">
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spring</title>
+    <link rel="stylesheet" href="/src/styles/display.css" />
+    <link rel="stylesheet" href="/shared.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo"><a href="/">desarrolloFront</a></div>
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a href="/src/views/css-views/main.html">CSS</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/javascript-views/main.html">JavaScript</a>
+                </li>
+                <li class="main-nav__item">
+                    <a href="/src/views/webpack/main.html">Webpack</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Spring</h1>
+        <section>
+            <ul>
+                <li>
+                    Comenzar proyecto:
+                    <ul>
+                        <li>
+                            Spring initializr (start.spring.io)
+                            <ul>
+                                <li>
+                                    Como create-react-app pero desde el navegador directamente
+                                </li>
+                                <li>
+                                    Opciones a elegir recomendadas:
+                                    <ul>
+                                        <li>
+                                            Project: Maven
+                                        </li>
+                                        <li>
+                                            Language: Java
+                                        </li>
+                                        <li>
+                                            Spring Boot: la versión más reciente que NO sea Snapshot
+                                        </li>
+                                        <li>
+                                            Project Metadata:
+                                            <ul>
+                                                <li>
+                                                    Group: dominio (.com, .es, .com.unir, etc)
+                                                </li>
+                                                <li>
+                                                    Artifact: para qué es la app (se puede poner lo que sea)
+                                                </li>
+                                                <li>
+                                                    Name: se pone autom. igual que el artifact pero se puede cambiar sin problema
+                                                </li>
+                                                <li>
+                                                    Description: descripción de la app
+                                                </li>
+                                                <li>
+                                                    Package name: se crea autom. con group + artifact
+                                                </li>
+                                                <li>
+                                                    Packaging: Jar
+                                                </li>
+                                                <li>
+                                                    Java: En este caso, 17
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Dependencies:
+                                            <ul>
+                                                <li>
+                                                    Spring Web: permite desarrollo de aplicaciones web
+                                                </li>
+                                                <li>
+                                                    Spring Data JPA: trabajar con BbDd relacionales a través de JPA (interfaz de Java para trabajar con ese tipo de BbDd sin tener que utilizar lenguaje sql)
+                                                </li>
+                                                <li>
+                                                    Lombok: para generar automáticamente constructores, getters, setters, etc. 
+                                                </li>
+                                                <li>
+                                                    Spring Boot DevTools
+                                                </li>
+                                                <li>
+                                                    H2 Database: BbDd en memoria, que se borran/vacían cuando se borra la aplicación
+                                                    <ul>
+                                                        <li>
+                                                            útil para probar aplicaciones
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Clickamos en "Generate" y abrimos el descomprimimos el zip descargado con la configuración elegida
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            En IntelliJ
+                            <ul>
+                                <li>
+                                    File -> New -> Project
+                                </li>
+                                <li>
+                                    File -> New -> Module from existing sources -> Seleccionamos y clickamos en la carpeta descargada descomprimida -> importamos con Maven
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Empezar a manipular el proyecto:
+                    <ul>
+                        <li>
+                            src -> main -> java -> groupElegido.name -> <b>NombreApplication</b>
+                            <ul>
+                                <li>
+                                    Clase principal de la aplicación
+                                    <ul>
+                                        <li>
+                                            Se encarga de:
+                                            <ul>
+                                                <li>
+                                                    levantar el servidor Tomcat de la aplicación embebido dentro de la
+                                                    aplicación
+                                                </li>
+                                                <li>
+                                                    ejecutar nuestro código Java
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @SpringBootApplication -> contiene la clase principal
+                                        </li>
+                                        <li>
+                                            <i>main</i>:
+                                            <ul>
+                                                <li>
+                                                    punto de entrada principal
+                                                </li>
+                                                <li>
+                                                    ejecuta el método <i>run</i> de la <i>SpringApplication</i>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Clickar botón <i>Play</i> al comienzo de la línea de WhateverApplication
+                                            para iniciar la aplicación
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            En Services, abajo a la izquierda:
+                            <ul>
+                                <li>
+                                    Desplegable "Spring Boot" -> WhateverApplication -> clickar en el puerto para ver la
+                                    aplicación en el navegador
+                                    <ul>
+                                        <li>
+                                            Al principio saldrá un error (es normal), porque aún no habremos programado
+                                            nada para visualizar
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            src -> resources -> <b>application.properties</b>
+                            <ul>
+                                <li>
+                                    fichero para añadir configuración que queramos
+                                </li>
+                                <li>
+                                    renombrarlo a .yml para que la sintaxis de la configuración pueda ser más limpia
+                                    <ul>
+                                        Ej.:
+                                        <li>
+                                            server: <br>
+                                            port: 8080 <br>
+                                            address: localhost
+                                        </li>
+                                        (port y address, si no se ven, deben estar tabuladas a la derecha, ya que están
+                                        dentro de server, no a su altura)
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            src -> pom.xml
+                            <ul>
+                                <li>
+                                    Fichero de configuración de la aplicación
+                                </li>
+                                <li>
+                                    Para verificar que su contenido es correcto y las versiones de las dependencias
+                                    están actualizadas
+                                    <ul>
+                                        <li>
+                                            carpeta princpal de la aplicación -≥ botón derecho -> Maven -> 'Reload
+                                            project'
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Arrancar proyecto
+                    <ul>
+                        <li>
+                            Terminal -> carpeta del proyecto -> <i>mvn clean package</i>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <nav>
+            <ul class="main-footer__links">
+                <li class="main-footer__link">
+                    <a href="#">Support</a>
+                </li>
+                <li class="main-footer__link">
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>
