@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coworking — Plano con CSS Grid</title>
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --text: #e9ecff;
+      --muted:#b8c0ff;
+      --border: rgba(255,255,255,.12);
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --accent: #66e3c4;
+      --accent2:#7aa7ff;
+
+      --r: 16px;
+      --gap: 12px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+
+    /* GRID GLOBAL: contenido + footer pegado abajo */
+    body{
+      margin:0;
+      font-family: var(--font);
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(102,227,196,.18), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(122,167,255,.16), transparent 60%),
+        linear-gradient(180deg, var(--bg), #070b16);
+      color: var(--text);
+
+      min-height: 100vh;
+      display:grid;
+      grid-template-rows: 1fr auto;
+    }
+
+    .page{
+      max-width: 1500px;
+      margin: 0 auto;
+      width: 100%;
+      align-self: stretch;
+
+      display:grid;
+      grid-template-rows: auto 1fr;
+      gap: 12px;
+
+      padding: 12px 10px 16px;
+      min-width: 0;
+    }
+
+    /* ===== HEADER ===== */
+    header{
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items:start;
+      min-width: 0;
+    }
+
+    .title{ min-width:0; }
+    .title h1{
+      font-size: clamp(20px, 2.2vw, 28px);
+      margin:0;
+      letter-spacing:.2px;
+    }
+    .title p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 60ch;
+      line-height: 1.35;
+      font-size: 14px;
+    }
+
+    .pill{
+      display:grid;
+      grid-auto-flow: column;
+      grid-auto-columns: max-content;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: 999px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+      height: fit-content;
+      min-width: 0;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(102,227,196,.12);
+    }
+    .pill small{ color: var(--muted); }
+
+    /* ===== LAYOUT PRINCIPAL ===== */
+    main.layout{
+      display:grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      gap: 16px;
+      align-items:start;
+      align-content:start;
+      min-width: 0;
+    }
+    main.layout > *{ min-width:0; }
+
+    /* ====== PLANO ====== */
+    .plan{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      min-width:0;
+    }
+
+    .plan__top{
+      padding: 12px 12px 10px;
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap; /* evita overflow */
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.12);
+    }
+    .plan__top strong{ font-size: 14px; letter-spacing:.2px; }
+    .plan__top span{ color: var(--muted); font-size: 12px; }
+
+    .grid-floor{
+      padding: 8px;
+      display:grid;
+      gap: var(--gap);
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-template-rows: repeat(10, minmax(clamp(40px, 4.2vw, 54px), 1fr));
+      grid-template-areas:
+        "reception reception reception reception corridor corridor corridor corridor meetingA meetingA meetingA meetingA"
+        "reception reception reception reception corridor corridor corridor corridor meetingA meetingA meetingA meetingA"
+        "openDesk openDesk openDesk openDesk corridor corridor corridor corridor phone1 phone1 kitchen kitchen"
+        "openDesk openDesk openDesk openDesk corridor corridor corridor corridor phone2 phone2 kitchen kitchen"
+        "openDesk openDesk openDesk openDesk corridor corridor corridor corridor lounge lounge lounge lounge"
+        "openDesk openDesk openDesk openDesk corridor corridor corridor corridor lounge lounge lounge lounge"
+        "openDesk openDesk openDesk openDesk corridor corridor corridor corridor meetingB meetingB meetingB meetingB"
+        "openDesk openDesk openDesk openDesk corridor corridor corridor corridor meetingB meetingB meetingB meetingB"
+        "storage storage storage storage corridor corridor corridor corridor terrace terrace terrace terrace"
+        "storage storage storage storage corridor corridor corridor corridor terrace terrace terrace terrace";
+    }
+
+    .space{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 12px;
+      text-align:left;
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+      position:relative;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      overflow:hidden;
+      min-height: 44px;
+      width:100%;
+    }
+    .space:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.20); }
+    .space:active{ transform: translateY(0); }
+    .space:focus-visible{
+      outline: 3px solid rgba(122,167,255,.55);
+      outline-offset: 2px;
+    }
+
+    .space__name{
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing:.2px;
+      margin: 0 0 4px;
+      display:flex;
+      flex-wrap: wrap;
+      align-items:center;
+      gap: 8px;
+    }
+    .tag{
+      font-size: 11px;
+      color: rgba(255,255,255,.85);
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.12);
+      white-space:nowrap;
+    }
+    .space__meta{
+      margin:0;
+      font-size: 12px;
+      color: var(--muted);
+      line-height:1.25;
+    }
+
+    .space::after{
+      content:"";
+      position:absolute;
+      inset:auto -40px -40px auto;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at 30% 30%, rgba(102,227,196,.25), transparent 60%);
+      transform: rotate(18deg);
+      pointer-events:none;
+    }
+
+    .reception{ grid-area: reception; }
+    .openDesk{ grid-area: openDesk; }
+    .meetingA{ grid-area: meetingA; }
+    .meetingB{ grid-area: meetingB; }
+    .lounge{ grid-area: lounge; }
+    .kitchen{ grid-area: kitchen; }
+    .phone1{ grid-area: phone1; }
+    .phone2{ grid-area: phone2; }
+    .storage{ grid-area: storage; }
+    .terrace{ grid-area: terrace; }
+
+    .corridor{
+      grid-area: corridor;
+      border-style: dashed;
+      background: rgba(255,255,255,.03);
+      cursor: default;
+    }
+    .corridor:hover{ transform:none; background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.12); }
+
+    .type-desk{ border-color: rgba(102,227,196,.30); }
+    .type-meeting{ border-color: rgba(122,167,255,.32); }
+    .type-common{ border-color: rgba(255,255,255,.18); }
+
+    /* ====== PANEL LATERAL ====== */
+    .side{ display:grid; gap: 16px; min-width:0; }
+
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      min-width:0;
+    }
+    .panel__hd{
+      padding: 12px 12px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.12);
+    }
+    .panel__hd strong{ font-size:14px; }
+    .panel__bd{ padding: 12px; }
+
+    .legend{
+      display:grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+    .legend__item{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      min-width:0;
+    }
+    .legend__swatch{
+      width: 12px; height: 12px; border-radius: 4px;
+      margin-top: 2px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(102,227,196,.10);
+      flex: 0 0 auto;
+    }
+    .legend__swatch.meeting{ background: var(--accent2); box-shadow: 0 0 0 6px rgba(122,167,255,.10); }
+    .legend__swatch.common{ background: rgba(255,255,255,.6); box-shadow: 0 0 0 6px rgba(255,255,255,.08); }
+    .legend__item b{ font-size: 13px; }
+    .legend__item p{ margin: 2px 0 0; font-size: 12px; color: var(--muted); line-height:1.25; }
+
+    .hint{
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height:1.35;
+    }
+
+    /* ====== MODAL ====== */
+    .modal-backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 50;
+    }
+    .modal-backdrop[aria-hidden="false"]{ display:flex; }
+
+    .modal{
+      width: min(520px, 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(18,26,51,.95), rgba(10,16,34,.95));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      transform: translateY(6px);
+      animation: pop .14s ease forwards;
+    }
+    @keyframes pop{ to { transform: translateY(0); } }
+
+    .modal__hd{
+      padding: 14px 14px 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .modal__hd h2{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .close{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      cursor:pointer;
+      flex: 0 0 auto;
+    }
+    .close:hover{ background: rgba(255,255,255,.10); }
+
+    .modal__bd{ padding: 14px; }
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .kv .box{
+      padding: 10px 12px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      min-width:0;
+    }
+    .kv .box small{ display:block; color: var(--muted); font-size: 11px; }
+    .kv .box b{ display:block; margin-top: 3px; font-size: 13px; }
+
+    .modal__actions{
+      display:flex;
+      gap: 10px;
+      justify-content:flex-end;
+      margin-top: 12px;
+    }
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .btn:hover{ background: rgba(255,255,255,.10); }
+    .btn.primary{
+      border-color: rgba(102,227,196,.35);
+      background: rgba(102,227,196,.14);
+    }
+    .btn.primary:hover{ background: rgba(102,227,196,.18); }
+
+    /* ====== FOOTER ====== */
+    footer{
+      border-top: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+      align-self: stretch;
+    }
+    .footer-inner{
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 12px 10px calc(14px + env(safe-area-inset-bottom));
+      display:grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+      min-width:0;
+    }
+    .footer-inner strong{
+      color: var(--text);
+      display:block;
+      margin-bottom: 4px;
+      letter-spacing: .2px;
+    }
+    .footer-chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      border-radius: 999px;
+      width: fit-content;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .mini-dot{
+      width:8px;height:8px;border-radius:50%;
+      background: var(--accent2);
+      box-shadow: 0 0 0 5px rgba(122,167,255,.10);
+    }
+
+    /* =======================
+       BREAKPOINTS “SIN ZONAS FEAS”
+       ======================= */
+
+    /* Ajuste fino para pantallas medianas/grandes */
+    @media (max-width: 1200px){
+      main.layout{
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+        gap: 14px;
+      }
+    }
+
+    /* ✅ CLAVE: desde 980 hacia abajo apilamos (evita el horror 760→980) */
+    @media (max-width: 980px){
+      header{
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .pill{
+        grid-auto-flow: row;
+        grid-auto-columns: 1fr;
+        justify-items:start;
+        width: 100%;
+        border-radius: 16px;
+      }
+
+      main.layout{
+        grid-template-columns: 1fr; /* sidebar debajo del plano */
+        gap: 14px;
+      }
+
+      .legend{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* ✅ CLAVE: desde 720 hacia abajo, plano ya en modo “móvil” (arregla 710→560) */
+    @media (max-width: 720px){
+      .legend{ grid-template-columns: 1fr; }
+
+      .plan__top{
+        padding: 10px 10px 9px;
+        flex-direction: column;
+        align-items:flex-start;
+        gap: 6px;
+      }
+
+      .grid-floor{
+        padding: 8px;
+        gap: 10px;
+
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-template-rows: none;
+        grid-auto-rows: minmax(54px, auto);
+
+        grid-template-areas:
+          "reception reception reception reception reception reception"
+          "openDesk openDesk openDesk openDesk openDesk openDesk"
+          "openDesk openDesk openDesk openDesk openDesk openDesk"
+          "meetingA meetingA meetingA meetingA meetingA meetingA"
+          "phone1 phone1 kitchen kitchen kitchen kitchen"
+          "phone2 phone2 kitchen kitchen kitchen kitchen"
+          "lounge lounge lounge lounge lounge lounge"
+          "lounge lounge lounge lounge lounge lounge"
+          "meetingB meetingB meetingB meetingB meetingB meetingB"
+          "storage storage storage storage storage storage"
+          "terrace terrace terrace terrace terrace terrace"
+          "corridor corridor corridor corridor corridor corridor";
+      }
+
+      .kv{ grid-template-columns: 1fr; }
+      .modal__actions{ flex-direction: column; }
+      .modal__actions .btn{ width: 100%; }
+
+      .footer-inner{ grid-template-columns: 1fr; }
+    }
+
+    /* móvil “pequeño” extra */
+    @media (max-width: 560px){
+      .page{ padding: 10px 10px 14px; }
+    }
+
+    @media (min-width: 1200px){
+      .page{ padding-left: 6px; padding-right: 6px; }
+      .footer-inner{ padding-left: 6px; padding-right: 6px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="title">
+        <h1>Plano del coworking (CSS Grid)</h1>
+        <p>
+          Haz clic en cualquier espacio para ver capacidad, horario y reservar.
+          El plano se adapta a móvil/tablet/escritorio.
+        </p>
+      </div>
+
+      <div class="pill" title="Estado del coworking">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <div style="font-weight:800;font-size:13px;line-height:1.1">Abierto</div>
+          <small>L–V 08:00–20:00</small>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="plan" aria-label="Plano del coworking">
+        <div class="plan__top">
+          <strong>Mapa interactivo</strong>
+          <span>Tip: también funciona con teclado (TAB + Enter)</span>
+        </div>
+
+        <div class="grid-floor">
+          <button class="space reception type-common"
+            data-name="Recepción"
+            data-type="Zona común"
+            data-capacity="2 personas (staff)"
+            data-hours="08:00–20:00"
+            data-desc="Punto de información, acreditaciones y atención al cliente."
+            data-price="Gratis">
+            <div class="space__name">Recepción <span class="tag">Info</span></div>
+            <p class="space__meta">Acceso / acreditaciones</p>
+          </button>
+
+          <button class="space openDesk type-desk"
+            data-name="Open Desk"
+            data-type="Mesas compartidas"
+            data-capacity="24 puestos"
+            data-hours="08:00–20:00"
+            data-desc="Zona de trabajo flexible con enchufes, luz natural y Wi-Fi."
+            data-price="Desde 12€/día">
+            <div class="space__name">Open Desk <span class="tag">Desks</span></div>
+            <p class="space__meta">Puestos flexibles</p>
+          </button>
+
+          <button class="space meetingA type-meeting"
+            data-name="Sala Reuniones A"
+            data-type="Sala de reuniones"
+            data-capacity="8 personas"
+            data-hours="09:00–19:00"
+            data-desc="Pantalla 55”, HDMI/USB-C, pizarra y aislamiento acústico."
+            data-price="15€/h">
+            <div class="space__name">Reuniones A <span class="tag">Meeting</span></div>
+            <p class="space__meta">Pantalla + pizarra</p>
+          </button>
+
+          <button class="space meetingB type-meeting"
+            data-name="Sala Reuniones B"
+            data-type="Sala de reuniones"
+            data-capacity="12 personas"
+            data-hours="09:00–19:00"
+            data-desc="Mesa grande, videollamada, altavoz y cámara. Ideal equipos."
+            data-price="22€/h">
+            <div class="space__name">Reuniones B <span class="tag">Meeting</span></div>
+            <p class="space__meta">Para equipos</p>
+          </button>
+
+          <button class="space lounge type-common"
+            data-name="Lounge / Zona relax"
+            data-type="Zona común"
+            data-capacity="10–14 personas"
+            data-hours="08:00–20:00"
+            data-desc="Sofás, mesas bajas y espacio informal para descansos o charlas."
+            data-price="Gratis">
+            <div class="space__name">Lounge <span class="tag">Relax</span></div>
+            <p class="space__meta">Descanso / networking</p>
+          </button>
+
+          <button class="space kitchen type-common"
+            data-name="Cocina"
+            data-type="Zona común"
+            data-capacity="4–6 personas"
+            data-hours="08:00–20:00"
+            data-desc="Café, microondas, nevera y fregadero. Mantener limpio."
+            data-price="Gratis">
+            <div class="space__name">Cocina <span class="tag">Kitchen</span></div>
+            <p class="space__meta">Café + micro</p>
+          </button>
+
+          <button class="space phone1 type-common"
+            data-name="Cabina telefónica 1"
+            data-type="Cabina"
+            data-capacity="1 persona"
+            data-hours="08:00–20:00"
+            data-desc="Para llamadas o videollamadas rápidas sin molestar."
+            data-price="Gratis">
+            <div class="space__name">Cabina 1 <span class="tag">Call</span></div>
+            <p class="space__meta">Silenciosa</p>
+          </button>
+
+          <button class="space phone2 type-common"
+            data-name="Cabina telefónica 2"
+            data-type="Cabina"
+            data-capacity="1 persona"
+            data-hours="08:00–20:00"
+            data-desc="Cabina individual con ventilación y buena acústica."
+            data-price="Gratis">
+            <div class="space__name">Cabina 2 <span class="tag">Call</span></div>
+            <p class="space__meta">Silenciosa</p>
+          </button>
+
+          <button class="space storage type-common"
+            data-name="Almacén"
+            data-type="Servicios"
+            data-capacity="—"
+            data-hours="Solo staff"
+            data-desc="Material de oficina, limpieza y repuestos."
+            data-price="—">
+            <div class="space__name">Almacén <span class="tag">Staff</span></div>
+            <p class="space__meta">Solo personal</p>
+          </button>
+
+          <button class="space terrace type-common"
+            data-name="Terraza"
+            data-type="Zona común"
+            data-capacity="8 personas"
+            data-hours="09:00–19:30"
+            data-desc="Zona exterior para pausas. Evitar ruido alto en llamadas."
+            data-price="Gratis">
+            <div class="space__name">Terraza <span class="tag">Outdoor</span></div>
+            <p class="space__meta">Aire libre</p>
+          </button>
+
+          <button class="space corridor"
+            tabindex="-1"
+            aria-disabled="true"
+            title="Pasillo (no reservable)">
+            <div class="space__name">Pasillo <span class="tag">Circulación</span></div>
+            <p class="space__meta">Conecta las zonas</p>
+          </button>
+        </div>
+      </section>
+
+      <aside class="side">
+        <section class="panel" aria-label="Leyenda y ayuda">
+          <div class="panel__hd"><strong>Leyenda</strong></div>
+          <div class="panel__bd">
+            <div class="legend">
+              <div class="legend__item">
+                <span class="legend__swatch" aria-hidden="true"></span>
+                <div>
+                  <b>Desks</b>
+                  <p>Mesas compartidas / puestos de trabajo.</p>
+                </div>
+              </div>
+              <div class="legend__item">
+                <span class="legend__swatch meeting" aria-hidden="true"></span>
+                <div>
+                  <b>Salas</b>
+                  <p>Reuniones con equipamiento.</p>
+                </div>
+              </div>
+              <div class="legend__item">
+                <span class="legend__swatch common" aria-hidden="true"></span>
+                <div>
+                  <b>Zonas comunes</b>
+                  <p>Recepción, cocina, lounge, terraza…</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="hint">
+              Requisito: plano con <b>grid-template-areas</b>, responsive con <b>media queries</b>,
+              y leyenda con <b>auto-fit + minmax()</b>.
+            </p>
+          </div>
+        </section>
+
+        <section class="panel" aria-label="Información">
+          <div class="panel__hd"><strong>Cómo funciona</strong></div>
+          <div class="panel__bd">
+            <p class="hint" style="margin:0">
+              Cada espacio es un botón. Al hacer clic se abre un popup con información y opción de reserva.
+              Esto justifica la “interactividad básica”.
+            </p>
+          </div>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>Coworking Space</strong>
+        Plano interactivo con CSS Grid +
+        <span class="footer-chip"><span class="mini-dot" aria-hidden="true"></span>grid-template-areas</span>
+      </div>
+      <div>
+        <strong>Accesibilidad</strong>
+        Navegable con teclado (TAB/Enter). Cierre con ESC y click fuera del modal.
+      </div>
+      <div>
+        <strong>Responsive</strong>
+        2 columnas en desktop, 1 en tablet y reordenación de áreas en móvil.
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal__hd">
+        <div>
+          <h2 id="modalTitle">Espacio</h2>
+          <div id="modalType" style="color:var(--muted);font-size:12px;margin-top:2px;"></div>
+        </div>
+        <button class="close" id="closeBtn" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div class="modal__bd">
+        <div class="kv" role="list">
+          <div class="box" role="listitem">
+            <small>Capacidad</small>
+            <b id="modalCap">—</b>
+          </div>
+          <div class="box" role="listitem">
+            <small>Horario</small>
+            <b id="modalHours">—</b>
+          </div>
+          <div class="box" role="listitem" style="grid-column: 1 / -1;">
+            <small>Precio</small>
+            <b id="modalPrice">—</b>
+          </div>
+        </div>
+
+        <p id="modalDesc" class="space__meta" style="margin:0; color: var(--muted); line-height:1.35"></p>
+
+        <div class="modal__actions">
+          <button class="btn" id="secondaryBtn">Ver disponibilidad</button>
+          <button class="btn primary" id="reserveBtn">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const backdrop = document.getElementById('backdrop');
+    const closeBtn = document.getElementById('closeBtn');
+
+    const modalTitle = document.getElementById('modalTitle');
+    const modalType  = document.getElementById('modalType');
+    const modalCap   = document.getElementById('modalCap');
+    const modalHours = document.getElementById('modalHours');
+    const modalDesc  = document.getElementById('modalDesc');
+    const modalPrice = document.getElementById('modalPrice');
+
+    const reserveBtn = document.getElementById('reserveBtn');
+    const secondaryBtn = document.getElementById('secondaryBtn');
+
+    let lastFocus = null;
+
+    function openModalFrom(el){
+      if (el.getAttribute('aria-disabled') === 'true') return;
+
+      lastFocus = document.activeElement;
+
+      modalTitle.textContent = el.dataset.name || 'Espacio';
+      modalType.textContent  = el.dataset.type || '';
+      modalCap.textContent   = el.dataset.capacity || '—';
+      modalHours.textContent = el.dataset.hours || '—';
+      modalDesc.textContent  = el.dataset.desc || '';
+      modalPrice.textContent = el.dataset.price || '—';
+
+      backdrop.setAttribute('aria-hidden', 'false');
+      closeBtn.focus();
+
+      reserveBtn.onclick = () => {
+        alert(`Reserva solicitada: ${modalTitle.textContent}`);
+        closeModal();
+      };
+      secondaryBtn.onclick = () => {
+        alert(`Mostrando disponibilidad de: ${modalTitle.textContent}`);
+      };
+    }
+
+    function closeModal(){
+      backdrop.setAttribute('aria-hidden', 'true');
+      if (lastFocus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('.space').forEach(btn => {
+      btn.addEventListener('click', () => openModalFrom(btn));
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModalFrom(btn);
+        }
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && backdrop.getAttribute('aria-hidden') === 'false') closeModal();
+    });
+  </script>
+</body>
+</html>

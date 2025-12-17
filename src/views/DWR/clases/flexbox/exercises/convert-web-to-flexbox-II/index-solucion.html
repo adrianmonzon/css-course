@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Acme Workspace – Solución Flexbox</title>
+  <link rel="stylesheet" href="styles-solucion.css" />
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- CABECERA -->
+    <header class="page-row header-row">
+      <div class="page-section">
+
+        <div class="site-header">
+          <div class="logo">Acme</div>
+
+          <nav class="main-nav">
+            <a href="#">Producto</a>
+            <a href="#">Precios</a>
+            <a href="#">Clientes</a>
+            <a href="#">Recursos</a>
+            <a href="#">Contacto</a>
+          </nav>
+
+          <a href="#" class="btn-cta">Probar gratis</a>
+        </div>
+
+      </div>
+
+      <aside class="live-editor">
+        <h3>CSS cabecera (solución)</h3>
+        <textarea spellcheck="false">
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 12px 4px;
+}
+
+.main-nav {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+}
+
+.main-nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 14px;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+}
+
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #4f46e5;
+    color: #ffffff;
+    text-decoration: none;
+}
+        </textarea>
+      </aside>
+    </header>
+
+    <!-- HERO + FEATURES -->
+    <section class="page-row content-row">
+      <div class="page-section">
+
+        <section class="hero">
+          <h1>La forma más sencilla de coordinar a tu equipo</h1>
+          <p>
+            Acme Workspace reúne tareas, archivos y comunicación en un solo lugar
+            para que puedas centrarte en lo importante.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#" class="btn-primary">Comenzar ahora</a>
+            <a href="#" class="btn-secondary">Ver demo</a>
+          </div>
+        </section>
+
+        <section class="features-section">
+          <h2>Todo lo que necesitas para trabajar en equipo</h2>
+          <p class="features-intro">
+            Centraliza la información y reduce el caos de herramientas dispersas.
+          </p>
+
+          <div class="features">
+            <article class="card">
+              <h3>Panel unificado</h3>
+              <p>Estado de proyectos, próximas entregas y responsables en un único lugar.</p>
+            </article>
+
+            <article class="card">
+              <h3>Documentos compartidos</h3>
+              <p>Edita y comenta documentos con tu equipo en tiempo real.</p>
+            </article>
+
+            <article class="card">
+              <h3>Automatizaciones</h3>
+              <p>Crea flujos que asignen tareas y notificaciones de forma automática.</p>
+            </article>
+
+            <article class="card">
+              <h3>Seguridad empresarial</h3>
+              <p>Permisos avanzados, registros de actividad y cifrado de extremo a extremo.</p>
+            </article>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="live-editor">
+        <h3>CSS contenido (solución)</h3>
+        <textarea spellcheck="false">
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.btn-primary {
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: #111827;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    color: #374151;
+    text-decoration: none;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.card {
+    flex: 1 1 220px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #f9fafb;
+    padding: 14px 16px;
+}
+        </textarea>
+      </aside>
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+    <section class="page-row stats-row">
+      <div class="page-section">
+
+        <section class="stats-section">
+          <h2>Resultados en los primeros 6 meses</h2>
+          <p class="stats-intro">
+            Equipos que utilizan Acme Workspace reportan mejoras claras en coordinación y productividad.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-number">+120</span>
+              <span class="stat-label">Equipos activos</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">32%</span>
+              <span class="stat-label">Menos reuniones</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">2,4 h</span>
+              <span class="stat-label">Tiempo ahorrado / día</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Satisfacción</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="live-editor">
+        <h3>CSS estadísticas (solución)</h3>
+        <textarea spellcheck="false">
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.stat {
+    flex: 1 1 160px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: #f9fafb;
+}
+
+.stat-number {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #4b5563;
+}
+        </textarea>
+      </aside>
+    </section>
+
+    <!-- PRECIOS -->
+    <section class="page-row pricing-row">
+      <div class="page-section">
+
+        <section class="pricing-section">
+          <h2>Planes pensados para tu equipo</h2>
+          <p class="pricing-intro">
+            Empieza gratis y amplía solo cuando tu equipo lo necesite.
+          </p>
+
+          <div class="pricing">
+            <article class="pricing-card pricing-card--basic">
+              <h3>Básico</h3>
+              <p class="pricing-price">0 €</p>
+              <ul class="pricing-list">
+                <li>Hasta 3 usuarios</li>
+                <li>Proyectos ilimitados</li>
+                <li>Soporte por email</li>
+              </ul>
+              <a href="#" class="pricing-cta">Empezar</a>
+            </article>
+
+            <article class="pricing-card pricing-card--pro">
+              <h3>Pro</h3>
+              <p class="pricing-price">12 € / usuario</p>
+              <ul class="pricing-list">
+                <li>Usuarios ilimitados</li>
+                <li>Automatizaciones</li>
+                <li>Integraciones avanzadas</li>
+              </ul>
+              <a href="#" class="pricing-cta">Probar 14 días</a>
+            </article>
+
+            <article class="pricing-card pricing-card--enterprise">
+              <h3>Enterprise</h3>
+              <p class="pricing-price">Contactar</p>
+              <ul class="pricing-list">
+                <li>Soporte dedicado</li>
+                <li>SSO y control de acceso</li>
+                <li>Formación personalizada</li>
+              </ul>
+              <a href="#" class="pricing-cta">Hablar con ventas</a>
+            </article>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="live-editor">
+        <h3>CSS precios (solución)</h3>
+        <textarea spellcheck="false">
+.pricing {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 12px;
+}
+
+.pricing-card {
+    flex: 1 1 240px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px 18px;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pricing-price {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 4px 0 8px;
+}
+
+.pricing-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #111827;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+}
+        </textarea>
+      </aside>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="page-row footer-row">
+      <div class="page-section">
+
+        <div class="site-footer">
+          <div class="footer-col">
+            <h4>Producto</h4>
+            <a href="#">Características</a>
+            <a href="#">Integraciones</a>
+            <a href="#">Novedades</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Empresa</h4>
+            <a href="#">Sobre nosotros</a>
+            <a href="#">Empleo</a>
+            <a href="#">Sala de prensa</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Recursos</h4>
+            <a href="#">Centro de ayuda</a>
+            <a href="#">Guías</a>
+            <a href="#">Eventos</a>
+          </div>
+        </div>
+
+        <p class="footer-meta">© 2025 Acme Technologies. Todos los derechos reservados.</p>
+
+      </div>
+
+      <aside class="live-editor">
+        <h3>CSS pie de página (solución)</h3>
+        <textarea spellcheck="false">
+.site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 16px;
+}
+
+.footer-col {
+    flex: 1 1 160px;
+}
+
+.footer-col a {
+    display: block;
+    text-decoration: none;
+    color: #4b5563;
+}
+
+.footer-meta {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #9ca3af;
+}
+        </textarea>
+      </aside>
+
+    </footer>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const editors = document.querySelectorAll('.live-editor textarea');
+
+      editors.forEach((textarea, index) => {
+        const styleEl = document.createElement('style');
+        styleEl.setAttribute('data-editor-style', index);
+        document.head.appendChild(styleEl);
+
+        const applyStyles = () => {
+          styleEl.textContent = textarea.value;
+        };
+
+        textarea.addEventListener('input', applyStyles);
+        applyStyles();
+      });
+    });
+  </script>
+</body>
+</html>

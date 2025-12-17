@@ -1,0 +1,282 @@
+/* ========== BASE DE LA PÁGINA ========== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 24px 24px 40px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+}
+
+/* ========== LAYOUT GENERAL (contenido + cajetillas) ========== */
+
+.page-row {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.page-section {
+  flex: 2;
+}
+
+.live-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.live-editor h3 {
+  margin: 6px 0 8px;
+  font-size: 14px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.live-editor textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 220px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5f5;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 13px;
+  background: #f9fafb;
+  color: #111827;
+}
+
+/* ========== CABECERA (YA MAQUETADA CON FLEXBOX) ========== */
+
+.header-row {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 16px;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px 4px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.main-nav {
+  display: flex;
+  gap: 20px;
+  flex: 1; /* el nav ocupa el espacio intermedio */
+}
+
+.main-nav a {
+  display: inline-block;
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 14px;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.main-nav a:hover {
+  border-bottom-color: #4f46e5;
+  color: #111827;
+}
+
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  padding: 6px 12px;
+  font-size: 13px;
+  text-decoration: none;
+  border-radius: 999px;
+  border: 1px solid #4f46e5;
+  background: #4f46e5;
+  color: #ffffff;
+}
+
+/* ========== HERO + FEATURES (YA MAQUETADO CON FLEXBOX) ========== */
+
+.hero {
+  margin-top: 24px;
+}
+
+.hero h1 {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+.hero p {
+  margin: 0 0 12px;
+  color: #4b5563;
+  max-width: 40rem;
+}
+
+/* Botones del hero en fila con flex */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-primary {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.btn-secondary {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+.features-section {
+  margin-top: 32px;
+}
+
+.features-section h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+}
+
+.features-intro {
+  margin: 0 0 16px;
+  color: #6b7280;
+  max-width: 34rem;
+}
+
+/* Cards en grid flexible */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.card {
+  flex: 1 1 220px; /* grow, shrink, basis */
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: #f9fafb;
+}
+
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+/* ========== FOOTER (YA MAQUETADO CON FLEXBOX) ========== */
+
+.footer-row {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 16px;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.footer-col {
+  flex: 1 1 160px;
+}
+
+.footer-col h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  text-decoration: none;
+  color: #4b5563;
+  margin-bottom: 2px;
+}
+
+.footer-col a:hover {
+  color: #111827;
+}
+
+.footer-meta {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 900px) {
+  .page-row {
+    flex-direction: column;
+  }
+
+  .live-editor textarea {
+    min-height: 160px;
+  }
+
+  .site-header {
+    flex-wrap: wrap;
+  }
+
+  .main-nav {
+    flex-basis: 100%;
+    justify-content: flex-start;
+    order: 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .features {
+    flex-direction: column;
+  }
+
+  .card {
+    flex-basis: 100%;
+  }
+
+  .site-footer {
+    flex-direction: column;
+  }
+}

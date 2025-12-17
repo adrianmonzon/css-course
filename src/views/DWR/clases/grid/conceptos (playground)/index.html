@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS Grid – Playground Didáctico</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<div class="page">
+
+  <header class="page-header">
+    <div>
+      <h1>CSS Grid – Guía visual interactiva</h1>
+      <p>
+        Playground didáctico para aprender CSS Grid modificando el código en tiempo real.
+        Verás cómo se generan columnas y filas, las diferencias entre valores como
+        <code>auto</code>, <code>1fr</code>, <code>minmax()</code>, qué diferencia hay entre
+        <code>auto-fit</code> y <code>auto-fill</code>, y cómo definir áreas completas para un layout real.
+      </p>
+    </div>
+
+    <button id="theme-toggle" class="theme-toggle" type="button">
+      🌙 Modo oscuro
+    </button>
+  </header>
+
+
+  <!-- ========================================================= -->
+  <!-- 1. COLUMNAS: grid-template-columns                        -->
+  <!-- ========================================================= -->
+  <section class="playground">
+    <div class="playground-main">
+      <h2>1. Columnas en Grid: <code>grid-template-columns</code> y <code>fr</code></h2>
+      <p>
+        Grid se activa con <strong>display: grid</strong>. En esta sección nos centramos
+        únicamente en las <strong>columnas</strong> usando <code>grid-template-columns</code>.
+        Las filas se irán creando automáticamente según el número de ítems.
+      </p>
+
+      <p class="prop-explanation">
+        Cambiando las columnas decides cuántos ítems caben por fila.  
+        Más columnas ⇒ menos filas; menos columnas ⇒ más filas.
+      </p>
+
+      <div class="control-row">
+        <div class="slider-group">
+          <label for="slider1">Ancho del contenedor:
+            <span id="w1" class="slider-value">900px</span>
+          </label>
+          <input id="slider1" type="range" min="340" max="1500" value="900" />
+        </div>
+
+        <div class="select-group">
+          <label for="select1">Presets columnas</label>
+          <select id="select1" class="prop-select">
+            <option value="2cols">2 columnas iguales (1fr, 1fr)</option>
+            <option value="3cols">3 columnas iguales (repeat(3, 1fr))</option>
+            <option value="fixed-fluid">200px + 1fr (fijo + flexible)</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="exp1" class="prop-explanation"></p>
+
+      <div id="demo1-wrapper" class="demo-wrapper">
+        <div id="demo1" class="demo-box">
+          <div class="item">A</div>
+          <div class="item">B</div>
+          <div class="item">C</div>
+          <div class="item">D</div>
+          <div class="item">E</div>
+          <div class="item">F</div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="playground-editor">
+      <div class="editor-header">
+        <h3>CSS contenedor (columnas)</h3>
+        <button class="btn-reset" data-reset="css1" type="button">Reset</button>
+      </div>
+
+<textarea id="css1" class="js-css-editor"
+data-target-style="style-css1"
+data-default="#demo1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px;
+}"
+></textarea>
+    </aside>
+  </section>
+
+
+
+
+  <!-- ========================================================= -->
+  <!-- 2. FILAS: grid-template-rows vs grid-auto-rows            -->
+  <!-- ========================================================= -->
+  <section class="playground">
+    <div class="playground-main">
+      <h2>2. Filas en Grid: <code>grid-template-rows</code> y <code>grid-auto-rows</code></h2>
+
+      <p>
+        Aquí nos centramos en cómo se calculan las <strong>filas</strong>.
+        Grid distingue entre:
+      </p>
+      <ul class="prop-explanation">
+        <li>
+          <strong>Filas explícitas</strong> → las que defines con
+          <code>grid-template-rows</code> (fila 1, fila 2, etc.).
+        </li>
+        <li>
+          <strong>Filas implícitas</strong> → las que Grid crea automáticamente
+          cuando hacen falta más filas. Su altura se controla con
+          <code>grid-auto-rows</code>.
+        </li>
+      </ul>
+
+      <p class="prop-explanation">
+        En todos los presets mantenemos <strong>3 columnas</strong>. Lo que cambia es
+        cómo se le da altura a las filas: solo implícitas, explícitas + implícitas,
+        o todo por <code>grid-auto-rows</code>.
+      </p>
+
+      <div class="control-row">
+        <div class="slider-group">
+          <label for="slider2">Ancho del contenedor:
+            <span id="w2" class="slider-value">900px</span>
+          </label>
+          <input id="slider2" type="range" min="340" max="1500" value="900" />
+        </div>
+
+        <div class="select-group">
+          <label for="select2">Presets filas</label>
+          <select id="select2" class="prop-select">
+            <option value="implicit-only">Solo filas implícitas (sin grid-template-rows)</option>
+            <option value="explicit-auto">2 filas explícitas + implícitas auto</option>
+            <option value="explicit-fixed-auto">2 filas explícitas + implícitas fijas (40px)</option>
+            <option value="only-auto-rows">Todas las filas a 100px (solo grid-auto-rows)</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="exp2" class="prop-explanation"></p>
+
+      <div id="demo2-wrapper" class="demo-wrapper">
+        <div id="demo2" class="demo-box">
+          <div class="item">Item 1</div>
+          <div class="item">Item 2</div>
+          <div class="item">Item 3</div>
+          <div class="item">Item 4</div>
+          <div class="item">Item 5</div>
+          <div class="item">Item 6</div>
+          <div class="item">Item 7</div>
+          <div class="item">Item 8</div>
+          <div class="item">Item 9</div>
+        </div>
+      </div>
+
+      <!-- Ejemplo extra: más filas definidas que ítems -->
+      <h3 class="prop-explanation" style="margin-top: 1rem;">
+        Ejemplo extra: defino más filas de las que puedo “llenar”
+      </h3>
+      <p class="prop-explanation">
+        Aquí definimos <strong>5 filas fijas</strong> con <code>grid-template-rows</code>,
+        pero solo hay <strong>3 ítems</strong>.  
+        Grid <em>no inventa ítems nuevos</em> para rellenar las filas: simplemente
+        deja parte del grid vacío. El contenedor tiene altura para 5 filas, pero solo
+        las primeras líneas están ocupadas.
+      </p>
+      <p class="prop-explanation">
+        Las líneas horizontales (las “rejillas” que ves) marcan los límites de cada fila.
+        Se aprecia que hay 5 filas de 40px, aunque solo las dos primeras tengan contenido.
+      </p>
+
+      <div id="demo2b-wrapper" class="demo-wrapper demo-wrapper-rows-extra">
+        <div id="demo2b" class="demo-box demo-rows-explicit">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+      </div>
+
+      <p class="prop-explanation">
+        CSS que se aplica en este ejemplo:
+      </p>
+      <pre class="code-inline">
+#demo2b {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 40px); /* 5 filas fijas */
+}
+      </pre>
+      <p class="prop-explanation">
+        Conclusión: <strong>puedes definir más filas de las que realmente usas</strong>.
+        El grid existe (las líneas están ahí), pero si no hay ítems en esas celdas,
+        simplemente verás espacio vacío dentro del contenedor.
+      </p>
+
+    </div>
+
+    <aside class="playground-editor">
+      <div class="editor-header">
+        <h3>CSS filas</h3>
+        <button class="btn-reset" data-reset="css2" type="button">Reset</button>
+      </div>
+
+<textarea id="css2" class="js-css-editor"
+data-target-style="style-css2"
+data-default="#demo2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Sin grid-template-rows → todas las filas son implícitas */
+  gap: 10px;
+  padding: 12px;
+}"
+></textarea>
+    </aside>
+  </section>
+
+
+
+
+  <!-- ========================================================= -->
+  <!-- 3. AUTO-FIT VS AUTO-FILL + minmax()                       -->
+  <!-- ========================================================= -->
+  <section class="playground">
+    <div class="playground-main">
+      <h2>3. <code>auto-fit</code> vs <code>auto-fill</code> + <code>minmax()</code></h2>
+
+      <p>
+        Ambos calculan <em>cuántas columnas caben</em> con un tamaño mínimo,
+        por ejemplo <code>minmax(60px, 1fr)</code>, pero se comportan distinto
+        con las columnas sin contenido:
+      </p>
+      <ul class="prop-explanation">
+        <li><strong>auto-fit</strong> colapsa columnas vacías y reparte el espacio entre las que tienen contenido. El usuario ve solo lo que existe.</li>
+        <li><strong>auto-fill</strong> mantiene columnas potenciales aunque no haya ítems. El usuario intuye capacidad o huecos “donde podría haber más”.</li>
+      </ul>
+      <p class="prop-explanation">
+        Desde el punto de vista de UX:
+        <strong>auto-fit</strong> es ideal para listados de elementos reales (productos, posts…),
+        mientras que <strong>auto-fill</strong> es útil cuando quieres representar
+        <em>capacidad</em> (slots, plazas, casillas de calendario…) aunque todavía no estén ocupados.
+      </p>
+
+      <div class="control-row">
+        <div class="slider-group">
+          <label for="slider3">Ancho del contenedor (plazas):
+            <span id="w3" class="slider-value">1000px</span>
+          </label>
+          <input id="slider3" type="range" min="340" max="1500" value="1000" />
+        </div>
+
+        <div class="select-group">
+          <label for="slotsModeSelect">Vista plazas</label>
+          <select id="slotsModeSelect" class="prop-select">
+            <option value="both">Ver ambos</option>
+            <option value="fit">Solo auto-fit</option>
+            <option value="fill">Solo auto-fill</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="prop-explanation">
+        Ejemplo real: curso con <strong>capacidad máxima 12 plazas</strong>,
+        pero solo <strong>7 plazas reservadas</strong> (las únicas que recibimos desde una API).
+        No generamos huecos a mano en el HTML.
+      </p>
+      <p class="prop-explanation">
+        <strong>Capacidad:</strong> 12 · <strong>Reservadas:</strong> 7 ·
+        <strong>Libres:</strong> 5 (las libres no existen como elementos,
+        solo como “espacio potencial”).
+      </p>
+
+      <div id="demo3-slots-compare" class="demo-wrapper" data-view="both">
+
+        <div class="slots-group slots-group--fit">
+          <h5 class="prop-explanation">
+            <strong>auto-fit</strong> · solo se ve lo que existe, las plazas se estiran
+          </h5>
+          <p class="prop-explanation">
+            El navegador colapsa las columnas vacías. Solo “cuentan” las 7 plazas reales.
+            El resultado es un grid compacto donde cada “Reservado” ocupa más ancho.
+            Visualmente: perfecto si solo quieres mostrar quién está apuntado,
+            sin insistir en cuántas plazas máximas había.
+          </p>
+          <div id="slots-fit" class="demo-box slots-grid-fit">
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+          </div>
+        </div>
+
+        <div class="slots-group slots-group--fill">
+          <h5 class="prop-explanation">
+            <strong>auto-fill</strong> · se insinúan las plazas que faltan
+          </h5>
+          <p class="prop-explanation">
+            El navegador mantiene también las columnas sin contenido. Aunque solo haya 7 plazas,
+            la rejilla reserva espacio para las 12 columnas potenciales.
+            Gracias al borde del contenedor se ve claro que el grid “da para más”:
+            queda espacio visible a la derecha aunque no existan más elementos en el HTML.
+          </p>
+          <div id="slots-fill" class="demo-box slots-grid-fill">
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+            <div class="slot slot--busy">Reservado</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Ejemplo real de auto-fit: listado de productos -->
+      <h4 class="prop-explanation" style="margin-top: 20px;">
+        Ejemplo real auto-fit · Grid de productos (solo importa lo que existe)
+      </h4>
+      <p class="prop-explanation">
+        Aquí lo que nos interesa es que las tarjetas de producto rellenen el ancho disponible,
+        sin insinuar huecos ni capacidad máxima. <strong>auto-fit</strong> es perfecto:
+        si hay 2 productos, se verán grandes; si hay 8, cabrán más columnas,
+        pero siempre ocupando todo el ancho del contenedor.
+      </p>
+
+      <div id="demo3-products" class="demo-wrapper">
+        <div class="demo-box product-grid-autofit">
+          <article class="product-card">
+            <h5 class="product-name">Camiseta técnica</h5>
+            <p class="product-meta">Secado rápido · Unisex</p>
+            <p class="product-price">19,90€</p>
+          </article>
+          <article class="product-card">
+            <h5 class="product-name">Mancuernas 5kg</h5>
+            <p class="product-meta">Pack de 2 · Caucho</p>
+            <p class="product-price">34,90€</p>
+          </article>
+          <article class="product-card">
+            <h5 class="product-name">Esterilla yoga</h5>
+            <p class="product-meta">Antideslizante · 6mm</p>
+            <p class="product-price">24,90€</p>
+          </article>
+          <article class="product-card">
+            <h5 class="product-name">Botella acero</h5>
+            <p class="product-meta">750ml · Térmica</p>
+            <p class="product-price">14,90€</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="playground-editor">
+      <div class="editor-header">
+        <h3>CSS auto-fit / auto-fill</h3>
+        <button class="btn-reset" data-reset="css3" type="button">Reset</button>
+      </div>
+
+<textarea id="css3" class="js-css-editor"
+data-target-style="style-css3"
+data-default="#slots-fit.slots-grid-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 8px;
+  padding: 8px;
+}
+
+/* auto-fill muestra la capacidad potencial del grid */
+#slots-fill.slots-grid-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 8px;
+  padding: 8px;
+}
+
+/* Borde para ver claramente los límites del grid
+   y apreciar el espacio libre que queda en auto-fill */
+#slots-fit.slots-grid-fit,
+#slots-fill.slots-grid-fill {
+  border: 2px dashed #f59e0b;
+  border-radius: 10px;
+  background: #fffbeb;
+}
+
+/* Estilos de slot */
+.slot {
+  height: 40px;
+  border-radius: 999px;
+  border: 1px dashed #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #475569;
+  background: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.slot--busy {
+  border-style: solid;
+  border-color: #22c55eaa;
+  background: #ecfdf3;
+  color: #15803d;
+}
+
+/* Ejemplo real auto-fit: grid de productos */
+.product-grid-autofit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.product-card {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  padding: 10px 12px;
+  font-size: 12px;
+}
+
+.product-name {
+  margin: 0 0 4px;
+  font-size: 13px;
+}
+
+.product-meta {
+  margin: 0 0 6px;
+  color: #64748b;
+}
+
+.product-price {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Pistas:
+   - auto-fit: las columnas sin contenido se colapsan, las tarjetas ocupan
+     todo el ancho disponible. Ideal para listados de productos, posts, etc.
+   - auto-fill: el grid mantiene columnas potenciales aunque no tengan ítems,
+     lo que ayuda a comunicar visualmente que aún hay espacio/capacidad
+     (plazas, slots, casillas de calendario...). */
+"
+></textarea>
+    </aside>
+  </section>
+
+
+
+
+  <!-- ========================================================= -->
+  <!-- 4. GRID-ITEM: grid-column / grid-row                      -->
+  <!-- ========================================================= -->
+  <section class="playground">
+    <div class="playground-main">
+      <h2>4. <code>grid-column</code> y <code>grid-row</code> (vértices del grid)</h2>
+      <p>
+        En este ejemplo el contenedor tiene <strong>3 columnas</strong>. Eso significa que
+        hay <strong>4 líneas verticales</strong> (vértices): 1, 2, 3 y 4.
+        <br>
+        <strong>grid-column</strong> y <strong>grid-row</strong> se escriben como
+        <code>inicio / fin</code> y usan precisamente esos vértices.
+      </p>
+
+      <ul class="prop-explanation">
+        <li>
+          <strong>Fila usada:</strong> siempre estamos en la <strong>primera fila</strong>,
+          así que en todos los presets el <code>grid-row</code> es <code>1 / 2</code>  
+          (entre el vértice horizontal 1 y el 2).
+        </li>
+        <li>
+          <code>grid-column: 1 / 4</code> ⇒ del vértice vertical 1 al 4.  
+          Como hay columnas entre (1–2), (2–3) y (3–4), el ítem ocupa las
+          <strong>3 columnas completas</strong>.
+        </li>
+        <li>
+          <code>grid-column: 1 / 3</code> ⇒ del vértice 1 al 3.  
+          Ocupa las columnas entre (1–2) y (2–3): es decir, las
+          <strong>2 columnas de la izquierda</strong>.
+        </li>
+        <li>
+          <code>grid-column: 2 / 4</code> ⇒ del vértice 2 al 4.  
+          Ocupa las columnas entre (2–3) y (3–4): las
+          <strong>2 columnas de la derecha</strong>.
+        </li>
+      </ul>
+
+      <p class="prop-explanation">
+        La tarjeta “Destacado” está coloreada y con un borde distinto para ver claramente
+        qué columnas está ocupando según los vértices que elijas en cada preset.
+      </p>
+
+      <div class="control-row">
+        <div class="slider-group">
+          <label for="slider4">Ancho del contenedor:
+            <span id="w4" class="slider-value">900px</span>
+          </label>
+          <input id="slider4" type="range" min="340" max="1500" value="900" />
+        </div>
+
+        <div class="select-group">
+          <label for="select4">Presets</label>
+          <select id="select4" class="prop-select">
+            <option value="full-row">De vértice 1 a 4 (fila completa)</option>
+            <option value="half">De vértice 1 a 3 (2 columnas)</option>
+            <option value="right">De vértice 2 a 4 (2 columnas a la derecha)</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="exp4" class="prop-explanation"></p>
+
+      <div id="demo4-wrapper" class="demo-wrapper">
+        <div id="demo4" class="demo-box">
+          <div class="item item-special">Destacado</div>
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="playground-editor">
+      <div class="editor-header">
+        <h3>CSS item destacado</h3>
+        <button class="btn-reset" data-reset="css4" type="button">Reset</button>
+      </div>
+
+<textarea id="css4" class="js-css-editor"
+data-target-style="style-css4"
+data-default="#demo4 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 80px;
+  gap: 12px;
+  padding: 12px;
+}
+
+/* Item destacado: usa los “vértices” de las líneas del grid
+   grid-column: 1 / 4 → de la línea vertical 1 a la 4 (3 columnas)
+   grid-row: 1 / 2   → entre la línea horizontal 1 y la 2 (1 fila) */
+#demo4 .item-special {
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  background: #fee2e2;
+  border-color: #b91c1c;
+  color: #7f1d1d;
+  font-weight: 600;
+}"
+></textarea>
+    </aside>
+  </section>
+
+
+
+
+  <!-- ========================================================= -->
+  <!-- 5. ÁREAS DEL LAYOUT                                       -->
+  <!-- ========================================================= -->
+  <section class="playground">
+    <div class="playground-main">
+      <h2>5. Áreas con <code>grid-template-areas</code></h2>
+
+      <p>
+        Permiten dibujar un layout completo: cabecera, sidebar, contenido, footer…
+        Y puedes reorganizar el diseño sin tocar el HTML, solo editando la plantilla.
+      </p>
+
+      <div class="control-row">
+        <div class="slider-group">
+          <label for="slider5">Ancho del contenedor:
+            <span id="w5" class="slider-value">900px</span>
+          </label>
+          <input id="slider5" type="range" min="340" max="1500" value="900" />
+        </div>
+
+        <div class="select-group">
+          <label for="select5">Diseño</label>
+          <select id="select5" class="prop-select">
+            <option value="desktop">Escritorio</option>
+            <option value="mobile">Móvil</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="exp5" class="prop-explanation"></p>
+
+      <div id="demo5-wrapper" class="demo-wrapper">
+        <div id="demo5" class="demo-box">
+          <div class="layout">
+            <header class="header">ActivaFit – Usuario: Laura</header>
+            <nav class="nav">
+              <ul>
+                <li>Actividades</li>
+                <li>Mi perfil</li>
+                <li>Reservas</li>
+                <li>Facturación</li>
+              </ul>
+            </nav>
+            <main class="main">
+              <h3>Próximas actividades</h3>
+              <p>Hoy: Crossfit 18:00 · Yoga 20:00</p>
+            </main>
+            <footer class="footer">© 2025 Gimnasio ActivaFit</footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="playground-editor">
+      <div class="editor-header">
+        <h3>CSS layout ActivaFit</h3>
+        <button class="btn-reset" data-reset="css5" type="button">Reset</button>
+      </div>
+
+<textarea id="css5" class="js-css-editor"
+data-target-style="style-css5"
+data-default="#demo5 .layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 80px 1fr 60px;
+  grid-template-areas:
+    &quot;header header&quot;
+    &quot;nav main&quot;
+    &quot;footer footer&quot;;
+  min-height: 320px;
+}
+
+#demo5 .header {
+  grid-area: header;
+  background: #3e4e5e;
+  color: #fff;
+  padding: 1rem;
+}
+
+#demo5 .nav {
+  grid-area: nav;
+  background: #dfe6ec;
+  padding: 1rem;
+}
+
+#demo5 .nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#demo5 .nav li {
+  margin-bottom: 0.5rem;
+}
+
+#demo5 .main {
+  grid-area: main;
+  padding: 1rem;
+  background: #ffffff;
+}
+
+#demo5 .footer {
+  grid-area: footer;
+  background: #3e4e5e;
+  color: white;
+  text-align: center;
+  padding: 0.75rem;
+}"
+></textarea>
+    </aside>
+  </section>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- SCRIPT COMPLETO                                           -->
+<!-- ========================================================= -->
+<script>
+function initEditors() {
+  document.querySelectorAll('.js-css-editor').forEach((ta) => {
+    const styleId = ta.dataset.targetStyle;
+    const defaultCode = ta.dataset.default;
+
+    const styleEl = document.createElement('style');
+    styleEl.id = styleId;
+    document.head.appendChild(styleEl);
+
+    ta.value = defaultCode;
+    const apply = () => (styleEl.textContent = ta.value);
+    ta.addEventListener('input', apply);
+    apply();
+  });
+}
+
+function initResetButtons() {
+  document.querySelectorAll('.btn-reset').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.reset;
+      const ta = document.getElementById(id);
+      ta.value = ta.dataset.default;
+      ta.dispatchEvent(new Event('input'));
+    });
+  });
+}
+
+function setupSlider(sliderId, labelId, wrapperId) {
+  const slider = document.getElementById(sliderId);
+  const label = document.getElementById(labelId);
+  const wrapper = document.getElementById(wrapperId);
+
+  if (!slider) return;
+
+  const update = () => {
+    const v = slider.value + 'px';
+    wrapper.style.width = v;
+    label.textContent = v;
+  };
+
+  slider.addEventListener('input', update);
+  update();
+}
+
+function initSliders() {
+  setupSlider('slider1','w1','demo1-wrapper');
+  setupSlider('slider2','w2','demo2-wrapper');
+  setupSlider('slider3','w3','demo3-slots-compare');
+  setupSlider('slider4','w4','demo4-wrapper');
+  setupSlider('slider5','w5','demo5-wrapper');
+}
+
+function initSelects() {
+  // Sección 1 (columnas)
+  const select1 = document.getElementById('select1');
+  const ta1 = document.getElementById('css1');
+  const exp1 = document.getElementById('exp1');
+  const presets1 = {
+    '2cols': {
+      code: `#demo1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px;
+}`,
+      text: "2 columnas iguales: cada una se lleva el 50% del ancho disponible (1fr + 1fr)."
+    },
+    '3cols': {
+      code: `#demo1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 12px;
+}`,
+      text: "3 columnas iguales con repeat(3, 1fr): se reparten el ancho en tres partes idénticas."
+    },
+    'fixed-fluid': {
+      code: `#demo1 {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 12px;
+  padding: 12px;
+}`,
+      text: "Primera columna fija (200px) y segunda flexible (1fr) que ocupa el resto del espacio."
+    }
+  };
+  select1.addEventListener('change', () => {
+    const o = presets1[select1.value];
+    ta1.value = o.code;
+    ta1.dataset.default = o.code;
+    ta1.dispatchEvent(new Event('input'));
+    exp1.textContent = o.text;
+  });
+  select1.dispatchEvent(new Event('change'));
+
+  // Sección 2 (filas)
+  const select2 = document.getElementById('select2');
+  const ta2 = document.getElementById('css2');
+  const exp2 = document.getElementById('exp2');
+  const presets2 = {
+    'implicit-only': {
+      code: `#demo2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Sin grid-template-rows → todas las filas son implícitas */
+  gap: 10px;
+  padding: 12px;
+}`,
+      text: "No definimos grid-template-rows. Todas las filas son implícitas y su altura se calcula con grid-auto-rows (por defecto, auto)."
+    },
+    'explicit-auto': {
+      code: `#demo2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 80px 80px; /* 2 filas explícitas */
+  grid-auto-rows: auto;          /* el resto se adaptan al contenido */
+  gap: 10px;
+  padding: 12px;
+}`,
+      text: "Dos filas explícitas de 80px. A partir de la tercera, las filas se crean implícitamente con altura auto (según contenido)."
+    },
+    'explicit-fixed-auto': {
+      code: `#demo2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 80px 80px; /* filas 1 y 2 */
+  grid-auto-rows: 40px;          /* filas 3, 4, 5... de 40px */
+  gap: 10px;
+  padding: 12px;
+}`,
+      text: "Fila 1 y 2 miden 80px (explícitas). Las filas implícitas que vienen después tienen altura fija de 40px (grid-auto-rows: 40px)."
+    },
+    'only-auto-rows': {
+      code: `#demo2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Sin filas explícitas, todas implícitas */
+  grid-auto-rows: 100px;  /* todas las filas miden 100px */
+  gap: 10px;
+  padding: 12px;
+}`,
+      text: "No declaramos filas explícitas: todas las filas se crean implícitamente y miden 100px gracias a grid-auto-rows."
+    }
+  };
+  select2.addEventListener('change', () => {
+    const o = presets2[select2.value];
+    ta2.value = o.code;
+    ta2.dataset.default = o.code;
+    ta2.dispatchEvent(new Event('input'));
+    exp2.textContent = o.text;
+  });
+  select2.dispatchEvent(new Event('change'));
+
+  // Sección 4 (vértices grid-column / grid-row)
+  const select4 = document.getElementById('select4');
+  const ta4 = document.getElementById('css4');
+  const exp4 = document.getElementById('exp4');
+  const presets4 = {
+    'full-row': {
+      code: `#demo4 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 80px;
+  gap: 12px;
+  padding: 12px;
+}
+
+#demo4 .item-special {
+  grid-column: 1 / 4;  /* de vértice vertical 1 a 4 → 3 columnas */
+  grid-row: 1 / 2;     /* entre vértice horizontal 1 y 2 → 1 fila */
+  background: #fee2e2;
+  border-color: #b91c1c;
+  color: #7f1d1d;
+  font-weight: 600;
+}`,
+      text: "Del vértice 1 al 4 en horizontal: el destacado ocupa la fila completa (las 3 columnas). grid-row 1/2 mantiene solo la primera fila."
+    },
+    'half': {
+      code: `#demo4 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 80px;
+  gap: 12px;
+  padding: 12px;
+}
+
+#demo4 .item-special {
+  grid-column: 1 / 3;  /* de vértice vertical 1 a 3 → columnas 1 y 2 */
+  grid-row: 1 / 2;     /* primera fila (vértices 1 a 2) */
+  background: #fee2e2;
+  border-color: #b91c1c;
+  color: #7f1d1d;
+  font-weight: 600;
+}`,
+      text: "Del vértice 1 al 3 en horizontal: el destacado ocupa las 2 columnas de la izquierda."
+    },
+    'right': {
+      code: `#demo4 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 80px;
+  gap: 12px;
+  padding: 12px;
+}
+
+#demo4 .item-special {
+  grid-column: 2 / 4;  /* de vértice vertical 2 a 4 → columnas 2 y 3 */
+  grid-row: 1 / 2;     /* primera fila */
+  background: #fee2e2;
+  border-color: #b91c1c;
+  color: #7f1d1d;
+  font-weight: 600;
+}`,
+      text: "Del vértice 2 al 4: el destacado ocupa las 2 columnas de la derecha."
+    }
+  };
+  select4.addEventListener('change', () => {
+    const o = presets4[select4.value];
+    ta4.value = o.code;
+    ta4.dataset.default = o.code;
+    ta4.dispatchEvent(new Event('input'));
+    exp4.textContent = o.text;
+  });
+  select4.dispatchEvent(new Event('change'));
+
+  // Sección 5 (grid-template-areas)
+  const select5 = document.getElementById('select5');
+  const ta5 = document.getElementById('css5');
+  const exp5 = document.getElementById('exp5');
+  const presets5 = {
+    'desktop': {
+      code: `#demo5 .layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 80px 1fr 60px;
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "footer footer";
+  min-height: 320px;
+}
+
+#demo5 .header {
+  grid-area: header;
+  background: #3e4e5e;
+  color: #fff;
+  padding: 1rem;
+}
+
+#demo5 .nav {
+  grid-area: nav;
+  background: #dfe6ec;
+  padding: 1rem;
+}
+
+#demo5 .nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#demo5 .nav li {
+  margin-bottom: 0.5rem;
+}
+
+#demo5 .main {
+  grid-area: main;
+  padding: 1rem;
+  background: #ffffff;
+}
+
+#demo5 .footer {
+  grid-area: footer;
+  background: #3e4e5e;
+  color: white;
+  text-align: center;
+  padding: 0.75rem;
+}`,
+      text: "Escritorio: sidebar a la izquierda y contenido a la derecha, con header y footer ocupando todo el ancho."
+    },
+    'mobile': {
+      code: `#demo5 .layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "footer";
+  min-height: 320px;
+}
+
+#demo5 .header {
+  grid-area: header;
+  background: #3e4e5e;
+  color: #fff;
+  padding: 1rem;
+}
+
+#demo5 .nav {
+  grid-area: nav;
+  background: #dfe6ec;
+  padding: 1rem;
+}
+
+#demo5 .nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#demo5 .nav li {
+  margin-bottom: 0.5rem;
+}
+
+#demo5 .main {
+  grid-area: main;
+  padding: 1rem;
+  background: #ffffff;
+}
+
+#demo5 .footer {
+  grid-area: footer;
+  background: #3e4e5e;
+  color: white;
+  text-align: center;
+  padding: 0.75rem;
+}`,
+      text: "Móvil: todo apilado en una sola columna, manteniendo las mismas áreas."
+    }
+  };
+  select5.addEventListener('change', () => {
+    const o = presets5[select5.value];
+    ta5.value = o.code;
+    ta5.dataset.default = o.code;
+    ta5.dispatchEvent(new Event('input'));
+    exp5.textContent = o.text;
+  });
+  select5.dispatchEvent(new Event('change'));
+
+  // Vista auto-fit / auto-fill para las plazas
+  const slotsModeSelect = document.getElementById('slotsModeSelect');
+  const slotsWrapper = document.getElementById('demo3-slots-compare');
+  if (slotsModeSelect && slotsWrapper) {
+    slotsModeSelect.addEventListener('change', () => {
+      slotsWrapper.dataset.view = slotsModeSelect.value;
+    });
+  }
+}
+
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle');
+  btn.addEventListener('click', () => {
+    document.body.classList.toggle('theme-dark');
+    btn.textContent =
+      document.body.classList.contains('theme-dark')
+        ? "☀️ Modo claro"
+        : "🌙 Modo oscuro";
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initEditors();
+  initResetButtons();
+  initSliders();
+  initSelects();
+  initThemeToggle();
+});
+</script>
+
+</body>
+</html>
